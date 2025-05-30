@@ -162,7 +162,7 @@ ecwt<!DOCTYPE html>
                 </li>
                 <li><strong>Device and App Information (for API Key Validation):</strong>
                     <ul>
-                        <li><strong>Backend Interaction:</strong> To securely fetch API keys necessary for app functionality (Spotify Client ID/Secret, YouTube API Key), the App communicates with our backend server (core.tunetransit.app). During this process, a unique identifier for your device (identifierForVendor) and the app version are sent to the server. This information is used solely for validating the request and logging access. The backend generates a short-lived JSON Web Token (JWT) based on your device ID, which the app then uses to request the API keys. These API keys are then stored securely in your device's Keychain.</li>
+                        <li><strong>Backend Interaction:</strong> To securely fetch API keys necessary for app functionality (Spotify Client ID/Secret, YouTube API Key), the App communicates with our backend server. During this process, a unique identifier for your device (identifierForVendor) and the app version are sent to the server. This information is used solely for validating the request and logging access. The backend generates a short-lived JSON Web Token (JWT) based on your device ID, which the app then uses to request the API keys. These API keys are then stored securely in your device's Keychain.</li>
                     </ul>
                 </li>
                 <li><strong>Purchase Information:</strong>
@@ -209,7 +209,7 @@ ecwt<!DOCTYPE html>
                         <li><strong>Multipeer Connectivity:</strong> Used for Nearby Sharing, facilitating direct peer-to-peer data transfer.</li>
                     </ul>
                 </li>
-                <li><strong>Our Backend (core.tunetransit.app):</strong>
+                <li><strong>Our Backend:</strong>
                     <ul>
                         <li>Your device identifier (identifierForVendor) and app version are sent to our server solely to authenticate requests for API keys needed by the app. This data is logged for security and operational purposes but is not used for tracking you across other apps or services.</li>
                     </ul>
@@ -223,7 +223,7 @@ ecwt<!DOCTYPE html>
                 <li><strong>Local Storage:</strong> Conversion history is stored locally on your device using Core Data. Saved transfers and preferences (like default view, Nearby Sharing name) are stored using UserDefaults or AppStorage.</li>
                 <li><strong>Keychain:</strong> Sensitive data such as Spotify authentication tokens, your Spotify User ID, third-party API keys (Spotify, YouTube), and your premium entitlement status are stored securely in your device's Keychain. This includes storage in the shared Keychain to allow app extensions (TuneShare, TuneMessage) to access necessary credentials and check premium status.</li>
                 <li><strong>CloudKit (Private Database):</strong> Daily usage counts for free tier users are stored in your private iCloud database, which is encrypted and managed by Apple. The Developer does not have direct access to the content of your private iCloud database.</li>
-                <li><strong>Backend Server:</strong> Our backend server (core.tunetransit.app), which validates requests for API keys, employs security measures to protect the validation process. Device identifiers and app versions sent for this purpose are logged securely.</li>
+                <li><strong>Backend Server:</strong> Our backend server, which validates requests for API keys, employs security measures to protect the validation process. Device identifiers and app versions sent for this purpose are logged securely.</li>
                 <li><strong>Multipeer Connectivity:</strong> Data shared via Nearby Sharing is transmitted directly between devices and is encrypted by the Multipeer Connectivity framework.</li>
                 <li><strong>Security Measures:</strong> While we use industry-standard practices (like Keychain and HTTPS for backend communication) to protect information, no method of transmission over the Internet or method of electronic storage is 100% secure.</li>
             </ul>
