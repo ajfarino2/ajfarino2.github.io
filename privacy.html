@@ -8,11 +8,11 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="images/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="images/favicon-16x16.png">
     <link rel="shortcut icon" href="images/favicon.ico">
-    <link rel="manifest" href="/images/site.webmanifest">
+    <link rel="manifest" href="images/site.webmanifest">
     <style>
         /* Apply Inter font globally */
         body {
@@ -34,7 +34,7 @@
 
         /* Subtle Transit Map Lines Background Pattern */
         .bg-transit-lines {
-             background-image:
+            background-image:
                 linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
                 linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
                 linear-gradient(45deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px),
@@ -62,34 +62,45 @@
             font-weight: 600; /* font-semibold */
             margin-top: 1rem; /* mt-4 */
             margin-bottom: 0.5rem; /* mb-2 */
-             color: #FFFFFF;
+            color: #FFFFFF;
         }
         .policy-content p {
             margin-bottom: 1rem; /* mb-4 */
             line-height: 1.6; /* leading-relaxed */
             color: rgba(255, 255, 255, 0.85); /* text-white/85 - slightly less transparent */
         }
-         .policy-content ul {
+        .policy-content ul {
             list-style-type: disc;
             margin-left: 1.5rem; /* ml-6 */
             margin-bottom: 1rem; /* mb-4 */
-             color: rgba(255, 255, 255, 0.85); /* text-white/85 */
-             padding-left: 0.5rem; /* pl-2 */
+            color: rgba(255, 255, 255, 0.85); /* text-white/85 */
+            padding-left: 0.5rem; /* pl-2 */
         }
-         .policy-content li {
-             margin-bottom: 0.75rem; /* mb-3 */
-             line-height: 1.6; /* leading-relaxed */
-         }
-         .policy-content strong { /* Style bold text within list items */
+        .policy-content li {
+            margin-bottom: 0.75rem; /* mb-3 */
+            line-height: 1.6; /* leading-relaxed */
+        }
+        .policy-content strong { /* Style bold text within list items or paragraphs */
             font-weight: 600; /* font-semibold */
             color: #FFFFFF;
-         }
+        }
         .policy-content a {
             color: #FFA500; /* text-orange-400 */
             text-decoration: underline;
         }
         .policy-content a:hover {
             color: #FFC04D; /* Lighter orange on hover */
+        }
+        .btn-playful { /* Copied from your index.html for consistency if needed */
+            transition: transform 0.2s ease-out, box-shadow 0.2s ease-out;
+        }
+        .btn-playful:hover {
+            transform: translateY(-3px) scale(1.03);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+         .btn-playful:active {
+            transform: translateY(-1px) scale(0.98);
+            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
         }
 
     </style>
@@ -99,7 +110,7 @@
     <nav class="sticky top-0 z-50 bg-black/40 backdrop-blur-lg p-4 shadow-lg border-b border-white/10">
         <div class="container mx-auto flex justify-between items-center">
             <a href="index.html" class="flex items-center space-x-2 cursor-pointer">
-                <img src="images/tt-logo.png" alt="TuneTransit Logo" class="w-8 h-8 rounded">
+                <img src="images/tt-logo.png" alt="TuneTransit Logo" class="w-8 h-8 rounded" onerror="this.src='https://placehold.co/32x32/cccccc/333333?text=Logo'; this.onerror=null;">
                 <span class="text-xl font-bold text-white">TuneTransit</span>
             </a>
             <div class="hidden md:flex space-x-6">
@@ -107,70 +118,149 @@
                 <a href="index.html#how-it-works" class="text-white hover:text-blue-300 transition duration-300">How It Works</a>
                 <a href="index.html#premium" class="text-white hover:text-orange-300 transition duration-300">Premium</a>
             </div>
-            <a href="https://apps.apple.com/us/app/tunetransit/id6743822790" class="btn-playful bg-white text-purple-700 font-semibold px-4 py-2 rounded-full hover:bg-gray-200 text-sm shadow-md">Download</a>
+            <a href="https://apps.apple.com/us/app/tunetransit/id6479403631" class="btn-playful bg-white text-purple-700 font-semibold px-4 py-2 rounded-full hover:bg-gray-200 text-sm shadow-md">Download</a>
         </div>
     </nav>
 
     <main class="container mx-auto px-6 py-16 md:py-24">
         <div class="max-w-4xl mx-auto bg-black/20 p-8 md:p-12 rounded-2xl shadow-xl border border-white/10 policy-content">
-            <h1 class="text-3xl md:text-4xl font-bold text-center text-white mb-8">Privacy Policy for TuneTransit</h1>
-
-            <p class="text-center text-white/70 text-sm mb-8">Last Updated: April 23, 2025</p>
-
-            <p>This Privacy Policy describes how Anthony Farino ("Developer", "we", "us", or "our") collects, uses, and handles your information when you use the TuneTransit mobile application (the "App").</p>
+            <h1 class="text-3xl md:text-4xl font-bold text-center text-white mb-2">Privacy Policy for TuneTransit</h1>
+            <p class="text-center text-white/70 text-sm mb-8">Last Updated: May 29, 2025</p> <p>This Privacy Policy describes how Anthony Farino ("Developer", "we", "us", or "our") collects, uses, and handles your information when you use the TuneTransit mobile application (the "App") and its related services, including the iMessage Extension and Share Extension.</p>
 
             <h2>1. Information We Collect</h2>
-            <p>We collect information necessary to provide the core functionality of TuneTransit, which involves converting music links and playlists between supported services (Apple Music and Spotify) and providing related features. The types of information include:</p>
+            <p>We collect information necessary to provide and improve the core functionality of TuneTransit. The types of information include:</p>
             <ul>
-                <li><strong>Music Service Information:</strong> When you connect your Spotify account, we securely store authentication tokens provided by Spotify in your device's Keychain to allow the App to interact with Spotify on your behalf (e.g., fetch playback state, create playlists). We do not store your Spotify password. We may fetch and store your Spotify User ID locally in the Keychain to interact with Spotify's playlist features. The App requires permission to access your Apple Music library and activity to perform conversions originating from Apple Music, fetch catalog details for matching songs/albums, and provide discovery features based on your listening history. This access is managed through standard iOS permissions. The App may access the currently playing song information from Apple Music or Spotify to display it on the home screen and offer quick transfer functionality.</li>
-                <li><strong>User-Provided Information:</strong> URLs for songs, albums, or playlists that you manually enter, paste from the clipboard, or share with the App via the Share Extension.</li>
-                <li><strong>Conversion & Usage Data:</strong> Details about the music being converted (song title, artist, album, artwork URL, ISRC/UPC codes where available) and the resulting links for the destination platform are processed during conversion. We store a history of your successful conversions (including metadata like song title, artist, album, artwork URL, platform links, and timestamp) locally on your device using Core Data. This history is used for features like the "Discover" tab. You can optionally save specific conversions. This saved data (similar to history data) is stored locally on your device using UserDefaults. A counter for your total number of transfers is stored locally on your device using AppStorage.</li>
-                <li><strong>Daily Transfer Limits (CloudKit):</strong> For users on the free tier ("TuneTransit Day Pass"), we use Apple's CloudKit technology to track daily transfer usage to enforce limits. Specifically, we store a record in your private iCloud database containing your daily transfer count and the date the count was last reset. This record is associated with your iCloud User Record ID, but this ID is not stored or accessed by the Developer directly. This data resides within your personal iCloud space, managed by Apple, and is used solely for the purpose of resetting the daily transfer limit each day. The Developer cannot directly view or access individual user counts stored in private databases.</li>
-                <li><strong>Device Information:</strong> A unique identifier for your device (identifierForVendor) may be sent to our secure backend server solely for the purpose of validating requests when fetching API keys necessary for app functionality. This identifier is not used for tracking purposes otherwise. We may send the app version along with the device identifier when fetching API keys.</li>
-                <li><strong>API Keys:</strong> API keys required to communicate with third-party services (Spotify, YouTube) are fetched from our secure backend and stored securely in your device's Keychain.</li>
-                <li><strong>Purchase Information:</strong> If you make In-App Purchases (e.g., for TuneTransit Premium), purchase status and history are processed and managed through Apple's StoreKit framework. We receive verification of purchase status (entitlement) but do not directly handle or store your payment information.</li>
+                <li><strong>Music Service Information:</strong>
+                    <ul>
+                        <li><strong>Spotify:</strong> When you connect your Spotify account, we securely store authentication tokens (access and refresh tokens) provided by Spotify in your device's Keychain. This allows the App to interact with Spotify on your behalf (e.g., fetch playback state, search for tracks/albums/playlists, create playlists, and retrieve your Spotify User ID). Your Spotify User ID is also stored in the Keychain to facilitate playlist operations. We do not store your Spotify password.</li>
+                        <li><strong>Apple Music:</strong> The App requires permission to access your Apple Music library and activity to perform conversions originating from Apple Music, fetch catalog details for matching songs/albums/playlists (including ISRC and UPC codes where available), display playback state, and provide discovery features based on your listening history. This access is managed through standard iOS permissions.</li>
+                    </ul>
+                </li>
+                <li><strong>User-Provided Information:</strong>
+                    <ul>
+                        <li><strong>URLs:</strong> Music links (for songs, albums, or playlists) that you manually enter, paste from the clipboard, or share with the App via the Share Extension or iMessage Extension.</li>
+                        <li><strong>Search Queries:</strong> Text you enter when searching for music within the app or its extensions.</li>
+                    </ul>
+                </li>
+                <li><strong>Conversion &amp; Usage Data:</strong>
+                    <ul>
+                        <li><strong>Music Metadata:</strong> Details about the music being converted (song title, artist, album, artwork URL, ISRC/UPC codes where available, duration) and the resulting links for the destination platform are processed during conversion.</li>
+                        <li><strong>Conversion History:</strong> A history of your successful conversions (including metadata like song title, artist, album, artwork URL, platform links, and timestamp) is stored locally on your device using Core Data. This is used for features like the "History" tab and to inform recommendations in the "Discover" tab.</li>
+                        <li><strong>Saved Transfers:</strong> You can optionally save specific conversions. This saved data (similar to history data) is stored locally on your device using UserDefaults.</li>
+                        <li><strong>Total Transfer Count:</strong> A counter for your total number of transfers is stored locally on your device using AppStorage for statistical display to you.</li>
+                    </ul>
+                </li>
+                <li><strong>Daily Transfer Limits (Free Tier):</strong>
+                    <ul>
+                        <li><strong>CloudKit:</strong> For users on the free tier ("TuneTransit Day Pass"), we use Apple's CloudKit technology to track daily transfer usage to enforce limits. We store a record in your private iCloud database containing your daily transfer count and the date the count was last reset. This record is associated with your iCloud User Record ID, but this ID is not directly stored or accessed by the Developer. This data resides within your personal iCloud space, managed by Apple, and is used solely for resetting the daily transfer limit. The Developer cannot directly view individual user counts stored in private iCloud databases.</li>
+                    </ul>
+                </li>
+                <li><strong>Nearby Sharing (Premium Feature):</strong>
+                    <ul>
+                        <li><strong>Multipeer Connectivity:</strong> If you use the Nearby Sharing feature, your chosen "Train Name" (device display name for the session) is broadcast to nearby TuneTransit users. When sharing, metadata of the music you are playing (song title, artist, artwork URL, platform links) is shared with connected peers. This data is transmitted directly between devices using Apple's Multipeer Connectivity framework and is not routed through our servers.</li>
+                    </ul>
+                </li>
+                <li><strong>Device and App Information (for API Key Validation):</strong>
+                    <ul>
+                        <li><strong>Backend Interaction:</strong> To securely fetch API keys necessary for app functionality (Spotify Client ID/Secret, YouTube API Key), the App communicates with our backend server (core.tunetransit.app). During this process, a unique identifier for your device (identifierForVendor) and the app version are sent to the server. This information is used solely for validating the request and logging access. The backend generates a short-lived JSON Web Token (JWT) based on your device ID, which the app then uses to request the API keys. These API keys are then stored securely in your device's Keychain.</li>
+                    </ul>
+                </li>
+                <li><strong>Purchase Information:</strong>
+                    <ul>
+                        <li><strong>StoreKit:</strong> If you make In-App Purchases (e.g., for TuneTransit Premium subscriptions or lifetime access), purchase status and history are processed and managed through Apple's StoreKit framework. We receive verification of purchase status (entitlement) but do not directly handle or store your payment information. Your entitlement status (e.g., "isPremium") may be stored in the shared Keychain to allow app extensions (like the iMessage app) to verify premium access.</li>
+                    </ul>
+                </li>
+                <li><strong>Clipboard Access:</strong>
+                    <ul>
+                        <li>The app may detect music URLs on your clipboard when the app becomes active to suggest them for conversion. This check happens locally on your device. You can choose to use or ignore the suggestion.</li>
+                    </ul>
+                </li>
             </ul>
 
             <h2>2. How We Use Your Information</h2>
-            <p>We use the collected information solely for the following purposes:</p>
+            <p>We use the collected information for the following purposes:</p>
             <ul>
-                <li><strong>To Provide App Functionality:</strong> Authenticating with music services, fetching music metadata, performing link/playlist conversions, searching for matches across platforms, displaying playback state, storing your history and saved items, providing discovery recommendations.</li>
-                <li><strong>To Enforce Usage Limits:</strong> Utilizing CloudKit in your private database to track and reset daily transfer counts for free tier users.</li>
-                <li><strong>To Authenticate Your Accounts:</strong> Connecting to your Spotify account securely.</li>
-                <li><strong>To Improve User Experience:</strong> Storing preferences like your default startup screen.</li>
-                <li><strong>To Secure API Access:</strong> Using device identifiers to validate requests for essential API keys from our backend.</li>
-                <li><strong>To Manage Purchases:</strong> Verifying and restoring In-App Purchases via StoreKit.</li>
+                <li><strong>To Provide App Functionality:</strong> Authenticating with music services, fetching music metadata, performing link/playlist conversions between Spotify and Apple Music, searching for matches across platforms (including searching YouTube for music videos), displaying your playback state, providing "Now Playing" quick transfer options.</li>
+                <li><strong>To Enable Core Features:</strong> Storing your conversion history and saved items, facilitating Nearby Sharing between users, enabling the Share Extension and iMessage Extension to process music links.</li>
+                <li><strong>To Manage Usage:</strong> Utilizing CloudKit in your private iCloud database to track and reset daily transfer counts for free tier users.</li>
+                <li><strong>To Personalize Experience:</strong> Providing discovery recommendations based on your conversion history.</li>
+                <li><strong>To Secure API Access:</strong> Using device identifiers and JWTs to validate requests for essential API keys from our backend. This helps protect our API quotas and ensure legitimate app usage.</li>
+                <li><strong>To Manage Purchases:</strong> Verifying and restoring In-App Purchases via StoreKit, and checking entitlement status for premium features.</li>
+                <li><strong>To Improve User Experience:</strong> Storing preferences like your default startup screen, remembering API keys securely in the Keychain.</li>
             </ul>
 
             <h2>3. Data Sharing and Third Parties</h2>
-             <p>We do not sell your personal information. We only share information as necessary to provide the App's functionality:</p>
+            <p>We do not sell your personal information. We share information only as necessary to provide the App's functionality or as required by law:</p>
             <ul>
-                <li><strong>Music Services (Spotify, Apple Music, YouTube):</strong> Information like song titles, artist names, album names, ISRCs, or UPCs are sent to the respective services' APIs to find matches and perform conversions. Authentication tokens are used to interact with Spotify on your behalf. When using the "Open in YouTube" feature, a search query is sent to the YouTube API. Your use of these third-party services is subject to their respective privacy policies.</li>
-                <li><strong>Apple Services:</strong> We utilize Apple technologies like Keychain (for secure storage), Core Data and UserDefaults (for local storage), CloudKit (for daily usage counts in your private database), and StoreKit (for In-App Purchases). Apple's Privacy Policy governs their handling of data.</li>
-                <li><strong>Our Backend:</strong> Your device identifier and app version are sent to our secure server solely to authenticate requests for API keys needed by the app.</li>
-                <li><strong>Legal Requirements:</strong> We may disclose information if required by law, subpoena, or other legal process.</li>
+                <li><strong>Music Services (Spotify, Apple Music, YouTube):</strong>
+                    <ul>
+                        <li><strong>Spotify API:</strong> Information like song titles, artist names, album names, ISRCs, or UPCs are sent to the Spotify API to find matches, retrieve track/album/playlist details, and create playlists. Spotify authentication tokens and User ID are used to interact with Spotify on your behalf for these purposes.</li>
+                        <li><strong>Apple Music API (MusicKit):</strong> Similar music metadata is used with Apple's MusicKit to find matches, retrieve details, and create playlists in your Apple Music library.</li>
+                        <li><strong>YouTube API:</strong> When using the "Open in YouTube" feature, a search query (typically song title and artist) is sent to the YouTube Data API to find relevant music videos.</li>
+                    </ul>
+                    Your use of these third-party services is subject to their respective privacy policies.
+                </li>
+                <li><strong>Apple Services:</strong>
+                    <ul>
+                        <li><strong>CloudKit:</strong> As described above, for daily transfer limits on the free tier, data is stored in your private iCloud database, governed by Apple's iCloud terms and privacy policy.</li>
+                        <li><strong>Keychain:</strong> Used for secure local storage of sensitive data like API keys, authentication tokens, and entitlement status.</li>
+                        <li><strong>Core Data &amp; UserDefaults:</strong> Used for local storage of conversion history and saved transfers on your device.</li>
+                        <li><strong>StoreKit:</strong> Used for processing In-App Purchases.</li>
+                        <li><strong>Multipeer Connectivity:</strong> Used for Nearby Sharing, facilitating direct peer-to-peer data transfer.</li>
+                    </ul>
+                </li>
+                <li><strong>Our Backend (core.tunetransit.app):</strong>
+                    <ul>
+                        <li>Your device identifier (identifierForVendor) and app version are sent to our server solely to authenticate requests for API keys needed by the app. This data is logged for security and operational purposes but is not used for tracking you across other apps or services.</li>
+                    </ul>
+                </li>
+                <li><strong>Legal Requirements:</strong> We may disclose information if required by law, subpoena, or other legal process, or if we believe in good faith that disclosure is reasonably necessary to protect our rights, property, or the safety of our users or the public.</li>
             </ul>
 
             <h2>4. Data Storage and Security</h2>
+            <p>We prioritize the security of your information:</p>
             <ul>
-                <li><strong>Local Storage:</strong> Conversion history, saved conversions, and preferences are stored locally on your device using Core Data and UserDefaults.</li>
-                <li><strong>Keychain:</strong> Sensitive data like Spotify authentication tokens and third-party API keys are stored securely in your device's Keychain. An entitlement status flag derived from your purchase status may also be stored in the shared Keychain to allow the iMessage extension to verify premium access.</li>
-                <li><strong>CloudKit:</strong> Daily usage counts for free tier users are stored in your private iCloud database, managed by Apple. This data is not directly accessible by the Developer.</li>
-                <li><strong>Security:</strong> We use standard security measures like the Keychain to protect sensitive information stored by the App. However, no method of transmission or storage is 100% secure.</li>
+                <li><strong>Local Storage:</strong> Conversion history is stored locally on your device using Core Data. Saved transfers and preferences (like default view, Nearby Sharing name) are stored using UserDefaults or AppStorage.</li>
+                <li><strong>Keychain:</strong> Sensitive data such as Spotify authentication tokens, your Spotify User ID, third-party API keys (Spotify, YouTube), and your premium entitlement status are stored securely in your device's Keychain. This includes storage in the shared Keychain to allow app extensions (TuneShare, TuneMessage) to access necessary credentials and check premium status.</li>
+                <li><strong>CloudKit (Private Database):</strong> Daily usage counts for free tier users are stored in your private iCloud database, which is encrypted and managed by Apple. The Developer does not have direct access to the content of your private iCloud database.</li>
+                <li><strong>Backend Server:</strong> Our backend server (core.tunetransit.app), which validates requests for API keys, employs security measures to protect the validation process. Device identifiers and app versions sent for this purpose are logged securely.</li>
+                <li><strong>Multipeer Connectivity:</strong> Data shared via Nearby Sharing is transmitted directly between devices and is encrypted by the Multipeer Connectivity framework.</li>
+                <li><strong>Security Measures:</strong> While we use industry-standard practices (like Keychain and HTTPS for backend communication) to protect information, no method of transmission over the Internet or method of electronic storage is 100% secure.</li>
             </ul>
 
             <h2>5. Your Rights and Choices</h2>
+            <p>You have control over your information:</p>
             <ul>
-                <li><strong>Access and Deletion:</strong> You can view and delete your saved conversions within the App. You can clear your entire locally stored conversion history via the App's Settings screen. Disconnecting your Spotify account in the App's Settings will remove the associated tokens from the Keychain. Data stored in your private CloudKit database (daily usage counts) is managed via your iCloud account settings with Apple; the App does not provide a direct interface to delete these specific records.</li>
-                <li><strong>Permissions:</strong> You can manage the App's access to your Apple Music library and activity at any time through your device's iOS Settings > Privacy & Security > Media & Apple Music.</li>
-                <li><strong>Clipboard:</strong> The app may detect music URLs on your clipboard to suggest them for conversion. This check happens locally on your device. You can choose to use or ignore the suggestion.</li>
+                <li><strong>Access and Deletion:</strong>
+                    <ul>
+                        <li><strong>Saved Transfers:</strong> You can view and delete your saved transfers from within the App.</li>
+                        <li><strong>Conversion History:</strong> You can clear your entire locally stored conversion history via the App's Settings screen by selecting the app version 5 times consecutively.</li>
+                        <li><strong>Spotify Account:</strong> You can disconnect your Spotify account in the App's Settings, which will remove the associated tokens from the Keychain. You can also manage app permissions directly in your Spotify account settings.</li>
+                        <li><strong>CloudKit Data:</strong> Data stored in your private CloudKit database (daily usage counts) is managed via your iCloud account settings with Apple. The App does not provide a direct interface to delete these specific CloudKit records.</li>
+                    </ul>
+                </li>
+                <li><strong>Permissions:</strong>
+                    <ul>
+                        <li><strong>Apple Music:</strong> You can manage the App's access to your Media &amp; Apple Music library at any time through your device's iOS Settings (Privacy &amp; Security > Media &amp; Apple Music).</li>
+                        <li><strong>Clipboard:</strong> The app's access to suggest URLs from the clipboard is based on your interaction (e.g., when the app becomes active). You are not required to use this feature.</li>
+                        <li><strong>Nearby Sharing:</strong> This feature is opt-in and requires you to explicitly start a sharing session. You can stop sharing at any time. Your "Train Name" for Nearby Sharing can be regenerated in the sharing details screen.</li>
+                    </ul>
+                </li>
+                <li><strong>Data Retention:</strong>
+                    <ul>
+                        <li><strong>Locally Stored Data:</strong> Conversion history and saved transfers are stored on your device until you choose to delete them.</li>
+                        <li><strong>Keychain Data:</strong> API keys and tokens are stored until you disconnect services (e.g., Spotify logout) or the app is uninstalled.</li>
+                        <li><strong>CloudKit Data:</strong> Daily usage counts are typically reset daily as per the feature's logic. Retention of these records within your private CloudKit database is subject to Apple's policies.</li>
+                        <li><strong>Backend Logs:</strong> Logs on our backend server containing device identifiers for API key requests are retained for a limited period for security and operational analysis.</li>
+                    </ul>
+                </li>
             </ul>
 
             <h2>6. Changes to This Privacy Policy</h2>
-            <p>We may update this Privacy Policy from time to time. We will notify you of any changes by posting the new Privacy Policy within the App. You are advised to review this Privacy Policy periodically for any changes.</p>
+            <p>We may update this Privacy Policy from time to time. We will notify you of any significant changes by posting the new Privacy Policy within the App and updating the "Effective Date" at the top. You are advised to review this Privacy Policy periodically for any changes.</p>
 
             <h2>7. Contact Us</h2>
-            <p>If you have any questions about this Privacy Policy, please contact us using the information below:</p>
+            <p>If you have any questions about this Privacy Policy or our data practices, please contact us:</p>
             <p>
                 Developer: Anthony Farino<br>
                 <a href="mailto:mail@tunetransit.app" class="hover:text-white transition duration-300">mail@tunetransit.app</a>
@@ -197,13 +287,13 @@
                 </div>
 
                 <div class="flex-1 flex justify-center md:justify-end">
-                    <a href="https://apps.apple.com/us/app/tunetransit/id6743822790" aria-label="Download on the App Store" class="inline-block opacity-80 hover:opacity-100 transition duration-300">
-                         <img src="images/appstorelogo.png" alt="Download on the App Store" class="h-10" onerror="this.src='https://placehold.co/120x40/cccccc/333333?text=App+Store+Error'">
+                    <a href="https://apps.apple.com/us/app/tunetransit/id6479403631" aria-label="Download on the App Store" class="inline-block opacity-80 hover:opacity-100 transition duration-300">
+                         <img src="images/appstorelogo.png" alt="Download on the App Store" class="h-10" onerror="this.src='https://placehold.co/120x40/cccccc/333333?text=App+Store+Error'; this.onerror=null;">
                     </a>
                 </div>
             </div>
             <p class="mt-8">&copy; 2025 Anthony Farino. All rights reserved.</p>
-            <p class="mt-1 text-xs opacity-70">Spotify is a trademark of Spotify AB. Apple Music is a trademark of Apple Inc.</p>
+            <p class="mt-1 text-xs opacity-70">Spotify is a trademark of Spotify AB. Apple Music is a trademark of Apple Inc. YouTube is a trademark of Google LLC.</p>
             <p class="mt-2 text-xs opacity-80">Created with ❤️ in Chicago</p>
         </div>
     </footer>
