@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TuneTransit — Share Music Across Apps</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+    <link rel="shortcut icon" href="images/favicon.ico">
+    <link rel="manifest" href="/images/site.manifest">
+    <style>
+        /* Apply Inter font globally */
+        body {
+            font-family: 'Inter', sans-serif;
+            overflow-x: hidden; /* Prevent horizontal scroll */
+        }
+
+        /* Animated Gradient Background */
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        .bg-tunetransit-gradient-animated {
+            background: linear-gradient(270deg, #8A2BE2, #4169E1, #FF69B4, #FFA500); /* Purple, Blue, Pink, Orange */
+            background-size: 400% 400%;
+            animation: gradientShift 15s ease infinite;
+        }
+
+        /* Subtle Transit Map Lines Background Pattern */
+        .bg-transit-lines {
+            background-image:
+                linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+                linear-gradient(45deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+                linear-gradient(-45deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+            background-size: 50px 50px, 50px 50px, 70px 70px, 70px 70px;
+        }
+
+        /* Custom gradient for premium section */
+        .bg-premium-gradient {
+            background: linear-gradient(to right, rgba(138, 43, 226, 0.2), rgba(65, 105, 225, 0.2)); /* Subtle Purple/Blue */
+        }
+
+        /* Smooth scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Playful Button Hover/Active States */
+        .btn-playful {
+            transition: transform 0.2s ease-out, box-shadow 0.2s ease-out;
+        }
+        .btn-playful:hover {
+            transform: translateY(-3px) scale(1.03);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+         .btn-playful:active {
+            transform: translateY(-1px) scale(0.98);
+            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Entrance Animations */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Feature Card Hover */
+         .feature-card {
+            transition: transform 0.3s ease-out, box-shadow 0.3s ease-out;
+         }
+        .feature-card:hover {
+            transform: translateY(-6px) scale(1.02);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        /* Transit Line for "How it Works" */
+        .transit-line-step::before {
+            content: '';
+            position: absolute;
+            left: 20px; /* Adjust based on icon size/padding */
+            top: 45px; /* Start below the number circle */
+            bottom: -15px; /* Extend below the element */
+            width: 3px;
+            background-color: rgba(255, 255, 255, 0.3);
+            z-index: -1;
+        }
+        .transit-line-step:last-child::before {
+            display: none; /* Don't draw line below the last step */
+        }
+
+        /* iPhone mockup */
+        .iphone {
+            position: relative;
+            background: linear-gradient(160deg, #0d0d10, #17171d);
+            border: 2px solid #1f1f26;
+            border-radius: 48px; /* closer to iPhone 16 Pro Max curvature */
+            padding: 12px;
+            box-shadow: 0 18px 40px rgba(0,0,0,0.35);
+        }
+        .iphone::after {
+            content: '';
+            position: absolute;
+            inset: 6px;
+            border-radius: 42px;
+            border: 1px solid rgba(255,255,255,0.06);
+            pointer-events: none;
+        }
+        /* iPhone 16 Pro inspired frame highlight */
+        .iphone::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: 42px;
+            pointer-events: none;
+            background: radial-gradient(120% 80% at 10% 0%, rgba(255,255,255,0.18) 0%, rgba(255,255,255,0) 55%),
+                        radial-gradient(120% 100% at 90% 100%, rgba(0,0,0,0.2) 0%, rgba(0,0,0,0) 60%);
+            mix-blend-mode: screen;
+        }
+
+        /* Optional Dynamic Island overlay (use class 'with-island' on .iphone to enable) */
+        .iphone.with-island .screen::before {
+            content: '';
+            position: absolute;
+            top: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 118px;
+            height: 34px;
+            background: rgba(0,0,0,0.9);
+            border-radius: 18px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.35);
+        }
+        .iphone .screen {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            border-radius: 40px;
+            overflow: hidden;
+            background: #0b0b0b;
+        }
+        .iphone .screen img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain; /* ensure full screenshot is visible */
+            display: block;
+            background: #000; /* letterbox fill for slight aspect mismatches */
+        }
+
+        /* Responsive widths to keep screenshots readable (1320x2868 assets) */
+        .iphone.responsive { width: clamp(300px, 38vw, 460px); }
+        .iphone.responsive-sm { width: clamp(260px, 32vw, 400px); }
+
+        /* iOS home indicator */
+        .iphone .screen::after {
+            content: '';
+            position: absolute;
+            bottom: 8px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 90px;
+            height: 4px;
+            background: rgba(255,255,255,0.6);
+            border-radius: 2px;
+        }
+
+        /* iPhone 16 Pro Max device using overlay frames */
+        .device { position: relative; aspect-ratio: 9 / 19.5; }
+        .device.responsive { width: clamp(300px, 38vw, 460px); }
+        .device.responsive-sm { width: clamp(260px, 32vw, 400px); }
+        .device .device-frame,
+        .device .device-screen { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
+        .device .device-frame { object-fit: contain; z-index: 2; pointer-events: none; }
+        /* Precise portrait screen insets for this frame (1470x3000) vs screenshots (1320x2868) */
+        .device-portrait .device-screen { 
+            position: absolute; 
+            left: 5.1%; right: 5.1%; 
+            top: 2.2%; bottom: 2.2%; 
+            overflow: hidden; background: #000; z-index: 1; 
+        }
+        .device-portrait .device-screen img { width: 100%; height: 100%; object-fit: fill; display: block; }
+
+        /* iPhone 16 Pro Max inspired CSS device (no external frame image) */
+        .iphone16 {
+            --frame-radius: 56px;
+            --rim-radius: 50px;
+            --glass-radius: 44px;
+            --inset: 16px;
+            position: relative;
+            aspect-ratio: 9 / 19.5;
+            display: block;
+        }
+        .iphone16.responsive { width: clamp(300px, 38vw, 480px); }
+        .iphone16.responsive-sm { width: clamp(260px, 32vw, 420px); }
+        .iphone16::before { /* titanium frame body */
+            content: '';
+            position: absolute; inset: 0;
+            border-radius: var(--frame-radius);
+            background: linear-gradient(160deg, #0e1014, #1b1e24);
+            box-shadow:
+                0 22px 44px rgba(0,0,0,0.38),
+                inset 0 1px 0 rgba(255,255,255,0.07),
+                inset 0 -1px 0 rgba(0,0,0,0.45),
+                inset 0 0 0 1px rgba(255,255,255,0.02);
+        }
+        .iphone16::after { /* outer rim highlight */
+            content: '';
+            position: absolute; inset: 6px;
+            border-radius: var(--rim-radius);
+            box-shadow:
+                inset 0 0 0 1px rgba(255,255,255,0.08),
+                inset 0 14px 28px rgba(255,255,255,0.04),
+                inset 0 -14px 28px rgba(0,0,0,0.35);
+            pointer-events: none;
+        }
+        .iphone16 .glass {
+            position: absolute; inset: var(--inset);
+            border-radius: var(--glass-radius);
+            overflow: hidden; background: #000;
+            box-shadow:
+                inset 0 0 0 2px #000,
+                inset 0 18px 26px rgba(255,255,255,0.05),
+                inset 0 -18px 26px rgba(0,0,0,0.45);
+        }
+        .iphone16 .glass img { width: 100%; height: 100%; object-fit: contain; display: block; background: #000; }
+        /* Keep crisp scaling for hero/HIW variant to avoid blur */
+        .iphone16.short .glass img { object-fit: contain; image-rendering: -webkit-optimize-contrast; image-rendering: auto; }
+        .iphone16 .glass::after { /* home indicator */
+            content: '';
+            position: absolute; left: 50%; bottom: 10px; transform: translateX(-50%);
+            width: 92px; height: 4px; border-radius: 2px; background: rgba(255,255,255,0.65);
+        }
+
+        /* Slightly shorter variant for hero/HIW to avoid looking overly tall at large sizes */
+        .iphone16.short { --frame-radius: 54px; --rim-radius: 48px; --glass-radius: 42px; --inset: 14px; aspect-ratio: 9 / 19.5; }
+        /* Align hero/HIW glass to screenshot ratio (1320x2868) to remove bars without blur */
+        .iphone16.short .glass { inset: auto; top: 3%; bottom: 3%; left: 3.07%; right: 3.07%; border-radius: var(--glass-radius); }
+        .iphone16.short .glass img { object-fit: contain; }
+        .iphone16.short.responsive { width: clamp(260px, 30vw, 400px); }
+
+    </style>
+</head>
+<body class="bg-tunetransit-gradient-animated text-gray-100 antialiased">
+
+    <nav class="sticky top-0 z-50 bg-black/40 backdrop-blur-lg p-4 shadow-lg border-b border-white/10">
+        <div class="container mx-auto flex justify-between items-center">
+            <a href="#hero" class="flex items-center space-x-2 cursor-pointer">
+                <img src="images/tt-logo.png" alt="TuneTransit Logo" class="w-8 h-8 rounded">
+                <span class="text-xl font-bold text-white">TuneTransit</span>
+            </a>
+            <div class="hidden md:flex space-x-6">
+                <a href="#features" class="text-white hover:text-pink-300 transition duration-300">Features</a>
+                <a href="#how-it-works" class="text-white hover:text-blue-300 transition duration-300">How It Works</a>
+                <a href="#smart-links" class="text-white hover:text-green-300 transition duration-300">Smart Links & Story Cards</a>
+                <a href="#premium" class="text-white hover:text-orange-300 transition duration-300">Premium</a>
+            </div>
+            <a href="https://apps.apple.com/us/app/tunetransit/id6743822790" class="btn-playful bg-white text-purple-700 font-semibold px-4 py-2 rounded-full hover:bg-gray-200 text-sm shadow-md">Download</a>
+        </div>
+    </nav>
+
+    <section id="hero" class="relative py-24 md:py-40 bg-transit-lines overflow-hidden">
+         <div class="absolute top-10 left-10 w-16 h-16 bg-pink-500/30 rounded-full filter blur-xl opacity-70 animate-pulse"></div>
+         <div class="absolute bottom-10 right-10 w-20 h-20 bg-blue-500/30 rounded-full filter blur-xl opacity-70 animate-pulse animation-delay-2000"></div>
+
+        <div class="container mx-auto px-6 relative z-10">
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div class="text-center md:text-left">
+                    <h1 class="text-4xl md:text-6xl font-extrabold text-white mb-4 leading-tight drop-shadow-lg reveal">
+                        One link. <span class="block md:inline">Any music app.</span>
+                    </h1>
+                    <p class="text-lg md:text-xl text-white/80 mb-8 max-w-xl md:max-w-none reveal" style="transition-delay: 0.1s;">
+                        Share songs, albums, and playlists that open in Spotify or Apple Music. Make Smart Links, post Story Cards, and never worry about where you listen to music ever again. 
+                    </p>
+                    <a href="https://apps.apple.com/us/app/tunetransit/id6743822790" class="btn-playful inline-block bg-white text-purple-700 font-bold px-8 py-4 rounded-full shadow-lg hover:bg-gray-200 reveal" style="transition-delay: 0.2s;">
+                        Get TuneTransit Free on the App Store
+                    </a>
+                </div>
+                <div class="mx-auto w-full reveal" style="transition-delay: 0.3s;">
+                    <div class="iphone16 short responsive mx-auto">
+                        <div class="glass">
+                            <img src="images/Now Playing.png" alt="TuneTransit Now Playing screenshot" onerror="this.src='https://placehold.co/900x1800/222/EEE?text=Now+Playing'">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="features" class="py-20 bg-black/20">
+        <div class="container mx-auto px-6">
+            <h2 class="text-3xl md:text-4xl font-bold text-center text-white mb-16 reveal">Everything You Need to Share Music</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+                <div class="feature-card bg-white/10 p-6 rounded-xl shadow-lg backdrop-blur-sm border border-white/10 reveal">
+                    <div class="flex items-center mb-4">
+                        <svg class="w-8 h-8 text-pink-400 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4"></path></svg>
+                        <h3 class="text-xl font-semibold text-white">Cross-Platform Search</h3>
+                    </div>
+                    <p class="text-white/80">Find any song or album and open it in Spotify or Apple Music — instantly.</p>
+                </div>
+                <div class="feature-card bg-white/10 p-6 rounded-xl shadow-lg backdrop-blur-sm border border-white/10 reveal" style="transition-delay: 0.1s;">
+                    <div class="flex items-center mb-4">
+                        <svg class="w-8 h-8 text-purple-400 mr-3" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 256 256"><path d="M216,40H88a8,8,0,0,0-8,8V80H40a8,8,0,0,0-8,8V216a8,8,0,0,0,8,8H168a8,8,0,0,0,8-8V184h40a8,8,0,0,0,8-8V48A8,8,0,0,0,216,40Zm-8,136H176V96h32Zm-48,32H48V96H160Z"></path></svg>
+                        <h3 class="text-xl font-semibold text-white">Playlists Unlocked <span class="text-xs bg-purple-500 px-2 py-0.5 rounded-full ml-1">Premium</span></h3>
+                    </div>
+                    <p class="text-white/80">Create, manage, and share playlists that work with Spotify and Apple Music.</p>
+                </div>
+                <div class="feature-card bg-white/10 p-6 rounded-xl shadow-lg backdrop-blur-sm border border-white/10 reveal" style="transition-delay: 0.1s;">
+                    <div class="flex items-center mb-4">
+                        <svg class="w-8 h-8 text-pink-400 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8m-18 8h18"></path></svg>
+                        <h3 class="text-xl font-semibold text-white">Smart Links</h3>
+                    </div>
+                    <p class="text-white/80">Share one link that opens your song on the right service. Works on the web with buttons for both platforms.</p>
+                </div>
+                <div class="feature-card bg-white/10 p-6 rounded-xl shadow-lg backdrop-blur-sm border border-white/10 reveal">
+                    <div class="flex items-center mb-4">
+                         <svg class="w-8 h-8 text-blue-400 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path></svg>
+                        <h3 class="text-xl font-semibold text-white">Story Cards <span class="text-xs bg-purple-500 px-2 py-0.5 rounded-full ml-1">Premium</span></h3>
+                    </div>
+                    <p class="text-white/80">Create beautiful, share‑ready images with a QR that opens in Spotify or Apple Music.</p>
+                </div>
+                <div class="feature-card bg-white/10 p-6 rounded-xl shadow-lg backdrop-blur-sm border border-white/10 reveal" style="transition-delay: 0.1s;">
+                    <div class="flex items-center mb-4">
+                        <svg class="w-8 h-8 text-green-400 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path></svg>
+                        <h3 class="text-xl font-semibold text-white">Messages Support <span class="text-xs bg-purple-500 px-2 py-0.5 rounded-full ml-1">Premium</span></h3>
+                    </div>
+                    <p class="text-white/80">Use TuneTransit within Messages to set the beat for active conversations.</p>
+                </div>
+                 <div class="feature-card bg-white/10 p-6 rounded-xl shadow-lg backdrop-blur-sm border border-white/10 reveal" style="transition-delay: 0.2s;">
+                    <div class="flex items-center mb-4">
+                        <svg class="w-8 h-8 text-yellow-400 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                        <h3 class="text-xl font-semibold text-white">Live Now Playing</h3>
+                    </div>
+                    <p class="text-white/80">See what’s playing and open instantly — Apple Music built‑in; Spotify via optional Last.fm integration.</p>
+                    
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="how-it-works" class="py-20 bg-transit-lines">
+        <div class="container mx-auto px-6">
+            <h2 class="text-3xl md:text-4xl font-bold text-center text-white mb-16 reveal">How It Works</h2>
+            <div class="flex flex-col md:flex-row items-start md:items-center justify-center gap-12 md:gap-16">
+                <div class="md:w-1/2 reveal">
+                    <div class="iphone16 short responsive mx-auto">
+                        <div class="glass">
+                            <img src="images/Find Results.png" alt="Find results preview" onerror="this.src='https://placehold.co/900x1800/222/EEE?text=Find+Results'">
+                        </div>
+                    </div>
+                </div>
+                <div class="md:w-1/2 space-y-8 relative">
+                    <div class="flex items-start space-x-4 reveal transit-line-step" style="transition-delay: 0.1s;">
+                        <div class="flex-shrink-0 w-10 h-10 bg-pink-500/70 rounded-full flex items-center justify-center font-bold text-white ring-2 ring-white/30">1</div>
+                        <div>
+                            <h4 class="text-lg font-semibold text-white">Depart</h4>
+                            <p class="text-white/80">Start your journey by navigating to the Home tab. If a song isn't currently playing, paste a link in the Find Music tab or share a music link into TuneTransit (Spotify or Apple Music).</p>
+                        </div>
+                    </div>
+                     <div class="flex items-start space-x-4 reveal transit-line-step" style="transition-delay: 0.2s;">
+                        <div class="flex-shrink-0 w-10 h-10 bg-orange-500/70 rounded-full flex items-center justify-center font-bold text-white ring-2 ring-white/30">2</div>
+                        <div>
+                            <h4 class="text-lg font-semibold text-white">Open Anywhere</h4>
+                            <p class="text-white/80">Tap Spotify or Apple Music. Or create a Smart Link to share.</p>
+                        </div>
+                    </div>
+                     <div class="flex items-start space-x-4 reveal transit-line-step" style="transition-delay: 0.3s;">
+                        <div class="flex-shrink-0 w-10 h-10 bg-purple-500/70 rounded-full flex items-center justify-center font-bold text-white ring-2 ring-white/30">3</div>
+                        <div>
+                            <h4 class="text-lg font-semibold text-white">Share</h4>
+                            <p class="text-white/80">Send a link, drop a Story Card, or share in Messages.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="smart-links" class="py-20 bg-black/20">
+        <div class="container mx-auto px-6">
+            <div class="max-w-4xl mx-auto text-center">
+                <h2 class="text-3xl md:text-4xl font-bold text-white mb-4 reveal">Smart Links & Story Cards</h2>
+                <p class="text-white/80 mb-8 reveal" style="transition-delay: 0.1s;">Share one link that works for everyone, plus create gorgeous story‑ready cards with QR that open in Spotify or Apple Music.</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+                <div class="bg-white/10 p-6 rounded-xl shadow-lg backdrop-blur-sm border border-white/10 reveal">
+                    <h3 class="text-xl font-semibold text-white mb-2">Smart Links</h3>
+                    <p class="text-white/80 mb-4">TuneTransit mints a lightweight web page with buttons for both platforms so friends can open your song on their service.</p>
+                    <div class="iphone16 responsive-sm mx-auto">
+                        <div class="glass">
+                            <img src="images/Smart Link.png" alt="Smart Link example" onerror="this.src='https://placehold.co/900x1800/222/EEE?text=Smart+Link'">
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-white/10 p-6 rounded-xl shadow-lg backdrop-blur-sm border border-white/10 reveal" style="transition-delay: 0.1s;">
+                    <h3 class="text-xl font-semibold text-white mb-2">Story Cards</h3>
+                    <p class="text-white/80 mb-4">Design a shareable image with artwork, titles, and a scannable QR. Great for Instagram, Snapchat, and anywhere you post.</p>
+                    <div class="iphone16 responsive-sm mx-auto">
+                        <div class="glass">
+                            <img src="images/Story Card.PNG" alt="Story Card example" onerror="this.src='https://placehold.co/900x1800/222/EEE?text=Story+Card'">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="premium" class="py-20 bg-black/20">
+        <div class="container mx-auto px-6 text-center">
+            <h2 class="text-3xl md:text-4xl font-bold text-white mb-4 reveal">TuneTransit Premium</h2>
+            <p class="text-lg text-white/80 mb-12 max-w-2xl mx-auto reveal" style="transition-delay: 0.1s;">Unlock more ways to share and discover — and support ongoing development.</p>
+
+            <div class="max-w-4xl mx-auto bg-premium-gradient p-8 md:p-12 rounded-2xl shadow-xl border border-white/10 reveal" style="transition-delay: 0.2s;">
+                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6 text-left mb-8">
+                    <div class="space-y-4">
+                        <div class="flex items-center space-x-3">
+                            <svg class="w-6 h-6 text-green-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                            <span class="text-white font-medium">Unlimited Searches</span>
+                        </div>
+                         <div class="flex items-center space-x-3">
+                            <svg class="w-6 h-6 text-green-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                            <span class="text-white font-medium">Playlists Unlocked</span>
+                        </div>
+                         <div class="flex items-center space-x-3">
+                            <svg class="w-6 h-6 text-green-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                            <span class="text-white font-medium">Messages Support</span>
+                        </div>
+                    </div>
+                     <div class="space-y-4">
+                        
+                         <div class="flex items-center space-x-3">
+                            <svg class="w-6 h-6 text-green-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                            <span class="text-white font-medium">Nearby Sharing</span>
+                        </div>
+                         <div class="flex items-center space-x-3">
+                            <svg class="w-6 h-6 text-green-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                            <span class="text-white font-medium">Story Cards</span>
+                        </div>
+                    </div>
+                </div>
+
+                <p class="mt-8 text-white/80 text-sm">Choose a monthly plan or a one‑time lifetime unlock. Upgrade anytime in the app.</p>
+                <a href="#" class="btn-playful mt-6 inline-block bg-gradient-to-r from-pink-500 to-orange-500 text-white font-bold px-8 py-3 rounded-full shadow-lg hover:opacity-90">
+                    Upgrade In App
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-black/50 py-10 mt-16 border-t border-white/10">
+        <div class="container mx-auto px-6 text-center text-white/70 text-sm">
+            <div class="flex flex-col md:flex-row justify-between items-center space-y-6 md:space-y-0 mb-8">
+                <div class="flex-1 flex justify-center md:justify-start space-x-6">
+                    <a href="privacy.html" class="hover:text-white transition duration-300">Privacy Policy</a>
+                    <a href="mailto:mail@tunetransit.app" class="hover:text-white transition duration-300">Contact Support</a>
+                </div>
+
+                <div class="flex-1 flex justify-center items-center">
+                    <a href="https://instagram.com/tunetransit" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-x-2 text-white/70 hover:text-pink-300 transition duration-300 group" aria-label="Connect with TuneTransit on Instagram">
+                        <span>Connect with TuneTransit on</span>
+                        <svg class="w-6 h-6 fill-current group-hover:fill-pink-400 transition duration-300" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919A48.904 48.904 0 0112 2.163zm0 1.628c-3.14 0-3.499.01-4.716.065-2.68.122-3.811 1.224-3.938 3.938C3.31 9.095 3.3 9.474 3.3 12c0 2.525.01 2.9.065 4.117.127 2.714 1.258 3.816 3.938 3.938 1.217.055 1.576.065 4.716.065 3.14 0 3.499-.01 4.716-.065 2.68-.122 3.811-1.224 3.938-3.938.055-1.217.065-1.592.065-4.117 0-2.525-.01-2.9-.065-4.117-.127-2.714-1.258-3.816-3.938-3.938C15.5 3.801 15.14 3.79 12 3.79zm0 2.99c-3.406 0-6.171 2.765-6.171 6.171s2.765 6.171 6.171 6.171 6.171-2.765 6.171-6.171S15.406 6.78 12 6.78zm0 10.002c-2.13 0-3.831-1.701-3.831-3.831s1.701-3.831 3.831-3.831 3.831 1.701 3.831 3.831-1.701 3.831-3.831 3.831zm5.235-10.06c-.78 0-1.412-.633-1.412-1.413s.633-1.413 1.412-1.413 1.413.633 1.413 1.413-.633 1.413-1.413 1.413z"></path>
+                        </svg>
+                    </a>
+                </div>
+
+                <div class="flex-1 flex justify-center md:justify-end">
+                    <a href="https://apps.apple.com/us/app/tunetransit/id6743822790" aria-label="Download on the App Store" class="inline-block opacity-80 hover:opacity-100 transition duration-300">
+                         <img src="images/appstorelogo.png" alt="Download on the App Store" class="h-10" onerror="this.src='https://placehold.co/120x40/cccccc/333333?text=App+Store+Error'">
+                    </a>
+                </div>
+            </div>
+            <p class="mt-8">&copy; 2025 Anthony Farino. All rights reserved.</p>
+            <p class="mt-1 text-xs opacity-70">Spotify is a trademark of Spotify AB. Apple Music is a trademark of Apple Inc. YouTube is a trademark of Google LLC. Last.fm is a trademark of CBS Interactive.</p>
+            <p class="mt-2 text-xs opacity-80">Created with ❤️ in Chicago</p>
+        </div>
+    </footer>
+    </footer>
+
+    <script>
+        // Simple Intersection Observer for reveal animations
+        const revealElements = document.querySelectorAll('.reveal');
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    // Optional: Unobserve after revealing to save resources
+                    // observer.unobserve(entry.target);
+                }
+                 // Optional: Remove 'visible' class if element scrolls out of view
+                 // else {
+                 //    entry.target.classList.remove('visible');
+                 // }
+            });
+        }, {
+            threshold: 0.1 // Trigger when 10% of the element is visible
+        });
+
+        revealElements.forEach(el => {
+            observer.observe(el);
+        });
+    </script>
+
+</body>
+</html>
