@@ -7,250 +7,297 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="apple-touch-icon" sizes="180x180" href="images/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="images/favicon-16x16.png">
     <link rel="shortcut icon" href="images/favicon.ico">
-    <link rel="manifest" href="images/site.manifest">
     <style>
-        /* Apply Inter font globally */
         body {
-            font-family: 'Inter', sans-serif;
-            overflow-x: hidden; /* Prevent horizontal scroll */
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
         }
-
-        /* Animated Gradient Background */
-        @keyframes gradientShift {
-            0% { background-position: 0% 50%; }
+        
+        @keyframes gradientFlow {
+            0%, 100% { background-position: 0% 50%; }
             50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
         }
-        .bg-tunetransit-gradient-animated {
-            background: linear-gradient(270deg, #8A2BE2, #4169E1, #FF69B4, #FFA500); /* Purple, Blue, Pink, Orange */
+        
+        .gradient-animated {
+            background: linear-gradient(-45deg, #8A2BE2, #4169E1, #FF1493, #FF6B35);
             background-size: 400% 400%;
-            animation: gradientShift 15s ease infinite;
+            animation: gradientFlow 20s ease infinite;
         }
-
-        /* Subtle Transit Map Lines Background Pattern */
-        .bg-transit-lines {
-            background-image:
-                linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
-                linear-gradient(45deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px),
-                linear-gradient(-45deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
-            background-size: 50px 50px, 50px 50px, 70px 70px, 70px 70px;
+        
+        .glass-dark {
+            background: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
         }
-
-        /* Smooth scrolling */
-        html {
-            scroll-behavior: smooth;
+        
+        .btn-primary {
+            background: linear-gradient(135deg, #8A2BE2, #FF1493);
+            transition: all 0.3s ease;
         }
-
-        /* Added style for policy content */
-        .policy-content h2 {
-            font-size: 1.5rem; /* text-2xl */
-            font-weight: 600; /* font-semibold */
-            margin-top: 1.5rem; /* mt-6 */
-            margin-bottom: 0.75rem; /* mb-3 */
-            color: #FFFFFF;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.2); /* Add subtle separator */
-            padding-bottom: 0.5rem; /* pb-2 */
+        
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 40px rgba(138, 43, 226, 0.4);
         }
-        .policy-content h3 { /* For potential subheadings if needed */
-            font-size: 1.25rem; /* text-xl */
-            font-weight: 600; /* font-semibold */
-            margin-top: 1rem; /* mt-4 */
-            margin-bottom: 0.5rem; /* mb-2 */
-            color: #FFFFFF;
+        
+        .policy-section {
+            margin-bottom: 2rem;
         }
-        .policy-content p {
-            margin-bottom: 1rem; /* mb-4 */
-            line-height: 1.6; /* leading-relaxed */
-            color: rgba(255, 255, 255, 0.85); /* text-white/85 - slightly less transparent */
+        
+        .policy-section h2 {
+            font-weight: 700;
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: white;
         }
-        .policy-content ul {
-            list-style-type: disc;
-            margin-left: 1.5rem; /* ml-6 */
-            margin-bottom: 1rem; /* mb-4 */
-            color: rgba(255, 255, 255, 0.85); /* text-white/85 */
-            padding-left: 0.5rem; /* pl-2 */
+        
+        .policy-section p, .policy-section ul {
+            color: rgba(255, 255, 255, 0.9);
+            line-height: 1.75;
         }
-        .policy-content li {
-            margin-bottom: 0.75rem; /* mb-3 */
-            line-height: 1.6; /* leading-relaxed */
+        
+        .policy-section ul {
+            list-style: none;
+            padding-left: 0;
         }
-        .policy-content strong { /* Style bold text within list items or paragraphs */
-            font-weight: 600; /* font-semibold */
-            color: #FFFFFF;
+        
+        .policy-section li {
+            margin-bottom: 0.75rem;
+            padding-left: 1.5rem;
+            position: relative;
         }
-        .policy-content a {
-            color: #FFA500; /* text-orange-400 */
-            text-decoration: underline;
+        
+        .policy-section li::before {
+            content: "•";
+            position: absolute;
+            left: 0;
         }
-        .policy-content a:hover {
-            color: #FFC04D; /* Lighter orange on hover */
+        
+        .policy-section li strong {
+            font-weight: 700;
         }
-        .btn-playful { /* Copied from your index.html for consistency if needed */
-            transition: transform 0.2s ease-out, box-shadow 0.2s ease-out;
-        }
-        .btn-playful:hover {
-            transform: translateY(-3px) scale(1.03);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
-        }
-         .btn-playful:active {
-            transform: translateY(-1px) scale(0.98);
-            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
-        }
-
     </style>
 </head>
-<body class="bg-tunetransit-gradient-animated text-gray-100 antialiased">
+<body class="bg-black text-white antialiased">
 
-    <nav class="sticky top-0 z-50 bg-black/40 backdrop-blur-lg p-4 shadow-lg border-b border-white/10">
-        <div class="container mx-auto flex justify-between items-center">
-            <a href="index.html" class="flex items-center space-x-2 cursor-pointer">
-                <img src="images/tt-logo.png" alt="TuneTransit Logo" class="w-8 h-8 rounded" onerror="this.src='https://placehold.co/32x32/cccccc/333333?text=Logo'; this.onerror=null;">
-                <span class="text-xl font-bold text-white">TuneTransit</span>
-            </a>
-            <div class="hidden md:flex space-x-6">
-                <a href="index.html#features" class="text-white hover:text-pink-300 transition duration-300">Features</a>
-                <a href="index.html#how-it-works" class="text-white hover:text-blue-300 transition duration-300">How It Works</a>
-                <a href="index.html#smart-links" class="text-white hover:text-green-300 transition duration-300">Smart Links &amp; Story Cards</a>
-                <a href="index.html#premium" class="text-white hover:text-orange-300 transition duration-300">Premium</a>
+    <!-- Navigation -->
+    <nav class="fixed top-0 left-0 right-0 z-50 glass-dark border-b border-white/10">
+        <div class="max-w-7xl mx-auto px-6 py-4">
+            <div class="flex items-center justify-between">
+                <a href="index.html" class="flex items-center space-x-3 group">
+                    <img src="images/tt-logo.png" alt="TuneTransit" class="w-10 h-10 rounded-xl group-hover:scale-110 transition-transform duration-300">
+                    <span class="text-xl font-bold">TuneTransit</span>
+                </a>
+                
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="index.html#platforms" class="text-white/80 hover:text-white transition-colors duration-300">Find Music</a>
+                    <a href="index.html#features" class="text-white/80 hover:text-white transition-colors duration-300">Features</a>
+                    <a href="index.html#social" class="text-white/80 hover:text-white transition-colors duration-300">Social</a>
+                    <a href="index.html#premium" class="text-white/80 hover:text-white transition-colors duration-300">Premium</a>
+                </div>
+
+                <a href="https://apps.apple.com/us/app/tunetransit/id6743822790" class="btn-primary px-6 py-3 rounded-full font-semibold text-white shadow-lg">
+                    Download
+                </a>
             </div>
-            <a href="https://apps.apple.com/us/app/tunetransit/id6743822790" class="btn-playful bg-white text-purple-700 font-semibold px-4 py-2 rounded-full hover:bg-gray-200 text-sm shadow-md">Download</a>
         </div>
     </nav>
 
-    <main class="container mx-auto px-6 py-16 md:py-24">
-        <div class="max-w-4xl mx-auto bg-black/20 p-8 md:p-12 rounded-2xl shadow-xl border border-white/10 policy-content">
-            <h1 class="text-3xl md:text-4xl font-bold text-center text-white mb-2">Privacy Policy for TuneTransit</h1>
-            <p class="text-center text-white/70 text-sm mb-8">Effective Date: October 9, 2025</p>
-            <p>This Privacy Policy explains how Anthony Farino ("Developer", "we", "us", or "our") collects, uses, and protects information when you use TuneTransit, including the mobile app, related extensions, widgets, and associated services (such as share.tunetransit.app and core.tunetransit.app). By using TuneTransit, you agree to this Policy.</p>
-
-            <h2>1. Information We Collect</h2>
-            <p>We collect and process information needed to operate the App and deliver its features. Categories include:</p>
-            <ul>
-                <li><strong>Account &amp; Permissions (optional):</strong> If you connect supported music services (Spotify, Apple Music, Tidal, YouTube Music) or grant media library access, we use the resulting tokens/permissions to perform actions you request. We never receive your service passwords.</li>
-                <li><strong>Content You Provide:</strong> Music links you share with the App; optional playlist names and descriptions; and other information you submit while using features.</li>
-                <li><strong>In‑App Usage:</strong> Items you convert or save, your local conversion history, saved playlists, and preferences you configure. This information is primarily stored on your device and in your private iCloud space (if enabled).</li>
-                <li><strong>Purchase Information:</strong> If you buy Premium, Apple's StoreKit provides purchase status we need to unlock features. We do not receive or store your payment details.</li>
-                <li><strong>Device/Technical Information:</strong> Limited device identifiers and app information may be used to maintain security, prevent abuse, deliver push notifications, and operate certain features (for example, validating API requests or applying fair‑use limits).</li>
-                <li><strong>Clipboard Access:</strong> When you return to the App, we may check locally if your clipboard contains a music link to help you start faster. You can ignore the suggestion. This check happens entirely on your device.</li>
-                <li><strong>Last.fm (optional):</strong> If you opt in to "Now Playing" detection (for Spotify and Tidal), the App uses your Last.fm username to read your public now‑playing status and basic track metadata from Last.fm. We do not collect your Last.fm password.</li>
-                <li><strong>Nearby Sharing (Premium, optional):</strong> If you enable nearby sharing, the App uses local peer-to-peer networking to discover and share music with nearby TuneTransit users. No data is sent to our servers during this process.</li>
-                <li><strong>Push Notifications (optional):</strong> If you enable notifications, we may send you updates about features, song matches, or other relevant information. You can disable notifications at any time in iOS Settings.</li>
-            </ul>
-            <p><strong>Sources:</strong> We collect information directly from you (when you use features), from your device/OS (subject to permissions), and from third‑party services you choose to connect.</p>
-
-            <h2>2. Purposes and Legal Bases</h2>
-            <p>We use information to:</p>
-            <ul>
-                <li>Provide core features you request (finding and opening music across different streaming services, creating and managing playlists, sharing music with others).</li>
-                <li>Operate the App, widgets, extensions, and related services, including saving your history locally and enabling sharing features you choose to use.</li>
-                <li>Verify and manage purchases (via Apple's StoreKit) and determine access to Premium features.</li>
-                <li>Maintain security, prevent fraud/abuse, and ensure fair use of free features.</li>
-                <li>Send push notifications (if enabled) about app features, updates, or music-related information.</li>
-                <li>Communicate with third‑party services only as needed to fulfill your requests in the App.</li>
-                <li>Comply with legal obligations and enforce our terms.</li>
-            </ul>
-            <p><strong>Last.fm (optional):</strong> When enabled, we request your now‑playing status and basic track details from Last.fm solely to display in the App and widget, and to improve music detection for Spotify and Tidal users. We do not use this data for advertising, profiling, or unrelated analytics.</p>
-            <p><strong>Smart Links:</strong> When you create a shareable link, we generate a short URL that displays an attractive card with album artwork and direct links to multiple streaming services. This allows easy sharing across platforms.</p>
-            <p><strong>Legal bases (where applicable):</strong> performance of a contract (core features you request), legitimate interests (security, fraud/abuse prevention, fair use), and consent (optional features like Last.fm, nearby sharing, push notifications, and clipboard checks).</p>
-            <p><strong>Global Privacy Control/Do Not Track:</strong> We do not use your information for cross‑context behavioral advertising and honor applicable opt‑out rights under local law.</p>
-
-            <h2>3. Sharing and Disclosures</h2>
-            <p>We do not sell or "share" your personal information for cross‑context behavioral advertising. We share information only as needed to operate the App, with:</p>
-            <ul>
-                <li>Third‑party services you connect or request we use (Spotify, Apple Music, Tidal, YouTube Music, Last.fm), to carry out actions you initiate in the App.</li>
-                <li>Apple services and frameworks (for example, In‑App Purchases, iCloud, on-device storage, widgets, and push notifications) to deliver functionality and securely store data.</li>
-                <li>Service providers that support secure operation (for example, to validate requests, prevent abuse, or deliver push notifications via Firebase Cloud Messaging).</li>
-                <li>Authorities, if required by law, or to protect the rights, property, or safety of users and the public.</li>
-            </ul>
-            <p><strong>Smart Links (share.tunetransit.app):</strong> When you choose to generate a shareable link, a public URL is created so others can open your content in supported services. We include only the minimum details you provide (e.g., title, artist, optional artwork, streaming service links). Anyone with the URL can view the card. We may retain the link and minimal metadata for operations and abuse‑prevention. You can request removal of a specific link.</p>
-            <p><strong>Last.fm (optional):</strong> If you enable the integration, we send read‑only requests to Last.fm to read your now‑playing status and related track metadata. We do not post to or modify your Last.fm account.</p>
-            <p><strong>Nearby Sharing (Premium, optional):</strong> Uses local peer-to-peer networking; no data is sent to our servers. Only users you explicitly choose to share with can receive the music links you send.</p>
-            <p><strong>Push Notifications:</strong> We use Firebase Cloud Messaging to deliver push notifications. Firebase may process limited device information to deliver notifications. We do not share your personal data with Firebase beyond what's necessary for notification delivery.</p>
-
-            <h2>4. Data Storage and Security</h2>
-            <p>We prioritize security and privacy by design:</p>
-            <ul>
-                <li><strong>On‑Device Storage:</strong> Most app data (including conversion history, saved items, playlists, and preferences) is stored on your device. Sensitive values are secured using system‑level secure storage (Keychain). You can delete local data in the App and by uninstalling the App.</li>
-                <li><strong>Cloud/Sync Features:</strong> If you enable features that rely on iCloud, limited data (for example, playlists and usage counters) may be stored within your private iCloud space and is handled under Apple's terms.</li>
-                <li><strong>Network Security:</strong> Data exchanged with third‑party services is transmitted over encrypted connections (HTTPS/TLS). We request only what is needed to perform the actions you ask for.</li>
-                <li><strong>Last.fm Data:</strong> Your Last.fm username is stored securely on your device. We do not store your Last.fm password, and we do not maintain a server‑side copy of your listening history.</li>
-                <li><strong>Push Notification Tokens:</strong> Device tokens for push notifications are stored securely and used only to send notifications you've opted into.</li>
-                <li><strong>API Keys:</strong> Sensitive API credentials are never exposed to users and are stored securely on our backend servers with appropriate access controls.</li>
-            </ul>
-
-            <h2>5. Retention</h2>
-            <p>We keep information only as long as necessary for the purposes described:</p>
-            <ul>
-                <li><strong>On‑device data:</strong> Remains until you delete it in the App or uninstall the App.</li>
-                <li><strong>Smart links:</strong> Persist while the link remains active; minimal metadata may be retained to prevent abuse. You can request removal of a specific link.</li>
-                <li><strong>Optional integrations:</strong> Disabling Last.fm or removing your username stops requests; associated local data can be removed in Settings.</li>
-                <li><strong>Security/abuse‑prevention logs:</strong> Retained for a limited period (typically no more than 30 days) and then deleted or anonymized.</li>
-            </ul>
-
-            <h2>6. International Transfers</h2>
-            <p>We may process information in locations where we and our service providers operate. Where transfer safeguards are required, we rely on appropriate mechanisms provided by our vendors (for example, standard contractual clauses) and implement additional measures as appropriate.</p>
-
-            <h2>7. Your Rights and Choices</h2>
-            <ul>
-                <li><strong>Permissions:</strong> Grant or revoke permissions (such as media library access, notifications, or local network access) at any time in iOS Settings.</li>
-                <li><strong>Local Data:</strong> Clear history, saved items, and playlists within the App. Deleting the App removes local data on your device.</li>
-                <li><strong>Purchases:</strong> Manage subscriptions in your Apple ID settings. Use in‑app options to restore purchases.</li>
-                <li><strong>Push Notifications:</strong> Enable or disable notifications in iOS Settings → TuneTransit → Notifications, or in the app Settings.</li>
-                <li><strong>Last.fm Controls:</strong> Enable/disable the integration in Settings or revoke access from your Last.fm account.</li>
-                <li><strong>Nearby Sharing:</strong> Enable/disable nearby sharing in the app Settings (Premium feature).</li>
-                <li><strong>Marketing:</strong> We do not use your information for unrelated marketing communications beyond optional app-related notifications.</li>
-            </ul>
-            <p>Depending on your region, you may have additional rights (for example, access, deletion, correction, portability, restriction, and objection). You can exercise rights by contacting us; we may need to verify your request.</p>
-
-            <h2>8. California Residents (CCPA/CPRA)</h2>
-            <p>We do not sell or share personal information as defined by California law. You have the right to know, delete, and correct personal information, and to not be discriminated against for exercising these rights. To submit a request, contact us using the information below and include "California Privacy Request" in the subject.</p>
-
-            <h2>9. EEA/UK Residents (GDPR)</h2>
-            <p>Where GDPR/UK GDPR applies, you have rights to access, rectify, erase, restrict, and port your data, and to object to processing based on legitimate interests. You may also withdraw consent at any time for optional features (e.g., Last.fm). You can lodge a complaint with your local supervisory authority.</p>
-
-            <h2>10. Changes to This Policy</h2>
-            <p>We may update this Privacy Policy from time to time. Material changes will be reflected by updating the Effective Date and, where appropriate, by providing in‑app notice.</p>
-
-            <h2>11. Contact Us</h2>
-            <p>For questions or privacy requests, contact: <a href="mailto:mail@tunetransit.app" class="hover:text-white transition duration-300">mail@tunetransit.app</a></p>
-
+    <div class="gradient-animated min-h-screen pt-24">
+    <div class="max-w-4xl mx-auto px-6 py-12">
+        <!-- Header -->
+        <div class="mb-12">
+            <h1 class="text-4xl md:text-5xl font-black text-white mb-4">Privacy Policy for TuneTransit</h1>
+            <p class="text-white/60">Effective Date: October 31, 2025</p>
         </div>
-    </main>
 
-    <footer class="bg-black/50 py-10 mt-16 border-t border-white/10">
-        <div class="container mx-auto px-6 text-center text-white/70 text-sm">
-            <div class="flex flex-col md:flex-row justify-between items-center space-y-6 md:space-y-0 mb-8">
-                <div class="flex-1 flex justify-center md:justify-start space-x-6">
-                    <a href="privacy.html" class="hover:text-white transition duration-300">Privacy Policy</a>
-                    <a href="mailto:mail@tunetransit.app" class="hover:text-white transition duration-300">Contact Support</a>
+        <!-- Content -->
+        <div class="space-y-8">
+            <div class="policy-section">
+                <p>
+                    This Privacy Policy explains how Anthony Farino ("Developer", "we", "us", or "our") collects, uses, and protects information when you use TuneTransit, including the mobile app, related extensions, widgets, and associated services (such as share.tunetransit.app and core.tunetransit.app). By using TuneTransit, you agree to this Policy.
+                </p>
+            </div>
+
+            <div class="policy-section">
+                <h2>1. Information We Collect</h2>
+                <p>We collect and process information needed to operate the App and deliver its features. Categories include:</p>
+                <ul>
+                    <li><strong>Account & Permissions (optional):</strong> If you connect supported music services (Spotify, Apple Music, Tidal, YouTube Music) or grant media library access, we use the resulting tokens/permissions to perform actions you request. We never receive your service passwords.</li>
+                    
+                    <li><strong>Content You Provide:</strong> Music links you share with the App; optional playlist names and descriptions; and other information you submit while using features.</li>
+                    
+                    <li><strong>In-App Usage:</strong> Items you convert or save, your local conversion history, saved playlists, and preferences you configure. This information is primarily stored on your device and in your private iCloud space (if enabled).</li>
+                    
+                    <li><strong>Purchase Information:</strong> If you buy Premium, Apple's StoreKit provides purchase status we need to unlock features. We do not receive or store your payment details.</li>
+                    
+                    <li><strong>Device/Technical Information:</strong> Limited device identifiers and app information may be used to maintain security, prevent abuse, deliver push notifications, and operate certain features (for example, validating API requests or applying fair-use limits).</li>
+                    
+                    <li><strong>Clipboard Access:</strong> When you return to the App, we may check locally if your clipboard contains a music link to help you start faster. You can ignore the suggestion. This check happens entirely on your device.</li>
+                    
+                    <li><strong>Last.fm (optional):</strong> If you opt in to "Now Playing" detection (for Spotify and Tidal), the App uses your Last.fm username to read your public now-playing status and basic track metadata from Last.fm. We do not collect your Last.fm password.</li>
+                    
+                    <li><strong>Social Feed (Premium, enabled by default):</strong> If you are a Premium user, the Social Feed feature is enabled by default. Your listening activity may be shared with friends you add within the app. This includes song title, artist, album, artwork, streaming platform, and timestamp. Data is stored in CloudKit (Apple's cloud service) and is subject to Apple's iCloud terms. You control who can see your activity through friend management and privacy settings. You can disable the Social Feed at any time in Settings.</li>
+                    
+                    <li><strong>User Profile (Premium, enabled by default):</strong> If you are a Premium user with Social Feed enabled, you create a profile with a display name, avatar emoji, and optional bio. This information is visible to your friends and stored in CloudKit. Your profile includes statistics like total listens and friend count.</li>
+                    
+                    <li><strong>Push Notifications (optional):</strong> If you enable notifications, we may send you updates about features, song matches, friend activity, or other relevant information. You can disable notifications at any time in iOS Settings.</li>
+                </ul>
+                <p>Sources: We collect information directly from you (when you use features), from your device/OS (subject to permissions), and from third-party services you choose to connect.</p>
+            </div>
+
+            <div class="policy-section">
+                <h2>2. Purposes and Legal Bases</h2>
+                <p>We use information to:</p>
+                <ul>
+                    <li>Provide core features you request (finding and opening music across different streaming services, creating and managing playlists, sharing music with others).</li>
+                    <li>Operate the App, widgets, extensions, and related services, including saving your history locally and enabling sharing features you choose to use.</li>
+                    <li>Verify and manage purchases (via Apple's StoreKit) and determine access to Premium features.</li>
+                    <li>Maintain security, prevent fraud/abuse, and ensure fair use of free features.</li>
+                    <li>Enable Social Feed features (Premium, enabled by default): Share your listening activity with friends you add, display friend activity in your feed, and facilitate social music discovery. You can disable this feature at any time in Settings.</li>
+                    <li>Send push notifications (if enabled) about app features, updates, music-related information, or friend activity.</li>
+                    <li>Communicate with third-party services only as needed to fulfill your requests in the App.</li>
+                    <li>Comply with legal obligations and enforce our terms.</li>
+                </ul>
+                <p><strong>Last.fm (optional):</strong> When enabled, we request your now-playing status and basic track details from Last.fm solely to display in the App and widget, to improve music detection for Spotify and Tidal users, and optionally to share with your Social Feed friends. We do not use this data for advertising, profiling, or unrelated analytics.</p>
+                <p><strong>Social Feed (Premium, enabled by default):</strong> When you become a Premium user, your listening activity is automatically stored in CloudKit and shared with friends you explicitly add. You control privacy settings and can disable the feature at any time in Settings. Friend connections are mutual—both users must approve the friendship.</p>
+                <p><strong>Smart Links:</strong> When you create a shareable link, we generate a short URL that displays an attractive card with album artwork and direct links to multiple streaming services. This allows easy sharing across platforms.</p>
+                <p>Legal bases (where applicable): performance of a contract (core features you request), legitimate interests (security, fraud/abuse prevention, fair use), and consent (optional features like Last.fm, Social Feed, push notifications, and clipboard checks).</p>
+                <p>Global Privacy Control/Do Not Track: We do not use your information for cross-context behavioral advertising and honor applicable opt-out rights under local law.</p>
+            </div>
+
+            <div class="policy-section">
+                <h2>3. Sharing and Disclosures</h2>
+                <p>We do not sell or "share" your personal information for cross-context behavioral advertising. We share information only as needed to operate the App, with:</p>
+                <ul>
+                    <li>Third-party services you connect or request we use (Spotify, Apple Music, Tidal, YouTube Music, Last.fm), to carry out actions you initiate in the App.</li>
+                    <li>Apple services and frameworks (for example, In-App Purchases, iCloud, CloudKit, on-device storage, widgets, and push notifications) to deliver functionality and securely store data.</li>
+                    <li><strong>Your Social Feed friends (Premium, enabled by default):</strong> When you are a Premium user, your listening activity is visible to friends you add. Friend connections are mutual and you control who can see your activity. You can disable Social Feed at any time in Settings.</li>
+                    <li>Service providers that support secure operation (for example, to validate requests, prevent abuse, or deliver push notifications via Firebase Cloud Messaging).</li>
+                    <li>Authorities, if required by law, or to protect the rights, property, or safety of users and the public.</li>
+                </ul>
+                <p><strong>Smart Links (share.tunetransit.app):</strong> When you choose to generate a shareable link, a public URL is created so others can open your content in supported services. We include only the minimum details you provide (e.g., title, artist, optional artwork, streaming service links). Anyone with the URL can view the card. We may retain the link and minimal metadata for operations and abuse-prevention. You can request removal of a specific link.</p>
+                <p><strong>Last.fm (optional):</strong> If you enable the integration, we send read-only requests to Last.fm to read your now-playing status and related track metadata. We do not post to or modify your Last.fm account.</p>
+                <p><strong>Social Feed (Premium, enabled by default):</strong> Your listening activities are stored in CloudKit (Apple's cloud service) and visible to friends you explicitly add and approve. You can remove friends, disable the feed, or delete your profile at any time. CloudKit data is subject to Apple's iCloud terms and privacy policy.</p>
+                <p><strong>Push Notifications:</strong> We use Firebase Cloud Messaging to deliver push notifications. Firebase may process limited device information to deliver notifications. We do not share your personal data with Firebase beyond what's necessary for notification delivery.</p>
+            </div>
+
+            <div class="policy-section">
+                <h2>4. Data Storage and Security</h2>
+                <p>We prioritize security and privacy by design:</p>
+                <ul>
+                    <li><strong>On-Device Storage:</strong> Most app data (including conversion history, saved items, playlists, and preferences) is stored on your device. Sensitive values are secured using system-level secure storage (Keychain). You can delete local data in the App and by uninstalling the App.</li>
+                    <li><strong>Cloud/Sync Features:</strong> If you enable features that rely on iCloud, limited data (for example, playlists and usage counters) may be stored within your private iCloud space and is handled under Apple's terms.</li>
+                    <li><strong>CloudKit (Social Feed):</strong> Social Feed data (activities, profiles, friendships) is stored in CloudKit, Apple's cloud database service. This data is encrypted in transit and at rest. You control access through friend management and can delete your data at any time.</li>
+                    <li><strong>Network Security:</strong> Data exchanged with third-party services is transmitted over encrypted connections (HTTPS/TLS). We request only what is needed to perform the actions you ask for.</li>
+                    <li><strong>Last.fm Data:</strong> Your Last.fm username is stored securely on your device. We do not store your Last.fm password, and we do not maintain a server-side copy of your listening history.</li>
+                    <li><strong>Push Notification Tokens:</strong> Device tokens for push notifications are stored securely and used only to send notifications you've opted into.</li>
+                    <li><strong>API Keys:</strong> Sensitive API credentials are never exposed to users and are stored securely on our backend servers with appropriate access controls.</li>
+                </ul>
+            </div>
+
+            <div class="policy-section">
+                <h2>5. Retention</h2>
+                <p>We keep information only as long as necessary for the purposes described:</p>
+                <ul>
+                    <li>On-device data: Remains until you delete it in the App or uninstall the App.</li>
+                    <li>Social Feed data: Activities and profile information are retained in CloudKit while you use the feature. You can delete individual activities, your entire profile, or disable the Social Feed at any time. Deleting your profile removes your activities from friends' feeds.</li>
+                    <li>Smart links: Persist while the link remains active; minimal metadata may be retained to prevent abuse. You can request removal of a specific link.</li>
+                    <li>Optional integrations: Disabling Last.fm or removing your username stops requests; associated local data can be removed in Settings.</li>
+                    <li>Security/abuse-prevention logs: Retained for a limited period (typically no more than 30 days) and then deleted or anonymized.</li>
+                </ul>
+            </div>
+
+            <div class="policy-section">
+                <h2>6. International Transfers</h2>
+                <p>We may process information in locations where we and our service providers operate. Where transfer safeguards are required, we rely on appropriate mechanisms provided by our vendors (for example, standard contractual clauses) and implement additional measures as appropriate.</p>
+            </div>
+
+            <div class="policy-section">
+                <h2>7. Your Rights and Choices</h2>
+                <ul>
+                    <li><strong>Permissions:</strong> Grant or revoke permissions (such as media library access, notifications, or iCloud access) at any time in iOS Settings.</li>
+                    <li><strong>Local Data:</strong> Clear history, saved items, and playlists within the App. Deleting the App removes local data on your device.</li>
+                    <li><strong>Purchases:</strong> Manage subscriptions in your Apple ID settings. Use in-app options to restore purchases.</li>
+                    <li><strong>Push Notifications:</strong> Enable or disable notifications in iOS Settings → TuneTransit → Notifications, or in the app Settings.</li>
+                    <li><strong>Last.fm Controls:</strong> Enable/disable the integration in Settings or revoke access from your Last.fm account.</li>
+                    <li><strong>Social Feed Controls (Premium, enabled by default):</strong> Social Feed is enabled by default for Premium users. You can disable it at any time in Settings. Manage your profile, add/remove friends, view/delete your activities, and control privacy settings within the app. Disabling the Social Feed stops sharing your activity and hides friends' activities from your view.</li>
+                    <li><strong>CloudKit/iCloud:</strong> Social Feed data is stored in CloudKit. You can delete your profile and all associated data at any time. Disabling iCloud for TuneTransit in iOS Settings may affect Social Feed functionality.</li>
+                    <li><strong>Marketing:</strong> We do not use your information for unrelated marketing communications beyond optional app-related notifications.</li>
+                </ul>
+                <p>Depending on your region, you may have additional rights (for example, access, deletion, correction, portability, restriction, and objection). You can exercise rights by contacting us; we may need to verify your request.</p>
+            </div>
+
+            <div class="policy-section">
+                <h2>8. California Residents (CCPA/CPRA)</h2>
+                <p>We do not sell or share personal information as defined by California law. You have the right to know, delete, and correct personal information, and to not be discriminated against for exercising these rights. To submit a request, contact us using the information below and include "California Privacy Request" in the subject.</p>
+            </div>
+
+            <div class="policy-section">
+                <h2>9. EEA/UK Residents (GDPR)</h2>
+                <p>Where GDPR/UK GDPR applies, you have rights to access, rectify, erase, restrict, and port your data, and to object to processing based on legitimate interests. You may also withdraw consent at any time for optional features (e.g., Last.fm). You can lodge a complaint with your local supervisory authority.</p>
+            </div>
+
+            <div class="policy-section">
+                <h2>10. Changes to This Policy</h2>
+                <p>We may update this Privacy Policy from time to time. Material changes will be reflected by updating the Effective Date and, where appropriate, by providing in-app notice.</p>
+            </div>
+
+            <div class="policy-section">
+                <h2>11. Contact Us</h2>
+                <p>For questions or privacy requests, contact:<br>
+                Email: <a href="mailto:mail@tunetransit.app" class="text-white font-bold underline">mail@tunetransit.app</a></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-black/50 border-t border-white/10 py-12">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="grid md:grid-cols-3 gap-12 mb-12">
+                <div>
+                    <div class="flex items-center space-x-3 mb-4">
+                        <img src="images/tt-logo.png" alt="TuneTransit" class="w-10 h-10 rounded-xl">
+                        <span class="text-xl font-bold">TuneTransit</span>
+                    </div>
+                    <p class="text-white/60">
+                        Your music, everywhere. The ultimate music sharing app for Spotify, Apple Music, Tidal & YouTube Music.
+                    </p>
                 </div>
 
-                <div class="flex-1 flex justify-center items-center"> 
-                    <a href="https://instagram.com/tunetransit" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-x-2 text-white/70 hover:text-pink-300 transition duration-300 group" aria-label="Connect with TuneTransit on Instagram">
-                        <span>Connect with TuneTransit on</span> 
-                        <svg class="w-6 h-6 fill-current group-hover:fill-pink-400 transition duration-300" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919A48.904 48.904 0 0112 2.163zm0 1.628c-3.14 0-3.499.01-4.716.065-2.68.122-3.811 1.224-3.938 3.938C3.31 9.095 3.3 9.474 3.3 12c0 2.525.01 2.9.065 4.117.127 2.714 1.258 3.816 3.938 3.938 1.217.055 1.576.065 4.716.065 3.14 0 3.499-.01 4.716-.065 2.68-.122 3.811-1.224 3.938-3.938.055-1.217.065-1.592.065-4.117 0-2.525-.01-2.9-.065-4.117-.127-2.714-1.258-3.816-3.938-3.938C15.5 3.801 15.14 3.79 12 3.79zm0 2.99c-3.406 0-6.171 2.765-6.171 6.171s2.765 6.171 6.171 6.171 6.171-2.765 6.171-6.171S15.406 6.78 12 6.78zm0 10.002c-2.13 0-3.831-1.701-3.831-3.831s1.701-3.831 3.831-3.831 3.831 1.701 3.831 3.831-1.701 3.831-3.831 3.831zm5.235-10.06c-.78 0-1.412-.633-1.412-1.413s.633-1.413 1.412-1.413 1.413.633 1.413 1.413-.633 1.413-1.413 1.413z"></path>
+                <div>
+                    <h3 class="font-bold text-lg mb-4">Links</h3>
+                    <ul class="space-y-2 text-white/60">
+                        <li><a href="index.html#features" class="hover:text-white transition-colors">Features</a></li>
+                        <li><a href="index.html#premium" class="hover:text-white transition-colors">Premium</a></li>
+                        <li><a href="privacy.html" class="hover:text-white transition-colors">Privacy Policy</a></li>
+                        <li><a href="mailto:mail@tunetransit.app" class="hover:text-white transition-colors">Contact Support</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h3 class="font-bold text-lg mb-4">Connect</h3>
+                    <a href="https://instagram.com/tunetransit" target="_blank" class="inline-flex items-center space-x-2 text-white/60 hover:text-pink-400 transition-colors">
+                        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
                         </svg>
-                    </a>
-                </div>
-
-                <div class="flex-1 flex justify-center md:justify-end">
-                    <a href="https://apps.apple.com/us/app/tunetransit/id6743822790" aria-label="Download on the App Store" class="inline-block opacity-80 hover:opacity-100 transition duration-300">
-                         <img src="images/appstorelogo.png" alt="Download on the App Store" class="h-10" onerror="this.src='https://placehold.co/120x40/cccccc/333333?text=App+Store+Error'; this.onerror=null;">
+                        <span>@tunetransit</span>
                     </a>
                 </div>
             </div>
-            <p class="mt-8">&copy; 2025 Anthony Farino. All rights reserved.</p>
-            <p class="mt-1 text-xs opacity-70">Spotify is a trademark of Spotify AB. Apple Music is a trademark of Apple Inc. Tidal is a trademark of Tidal Music AS. YouTube Music is a trademark of Google LLC. Last.fm is a trademark of CBS Interactive. Instagram is a trademark of Instagram LLC.</p>
-            <p class="mt-2 text-xs opacity-80">Created with ❤️ in Chicago</p>
+
+            <div class="border-t border-white/10 pt-8 text-center text-white/60 text-sm">
+                <p>&copy; 2025 Anthony Farino. All rights reserved.</p>
+                <p class="mt-2 text-xs opacity-70">
+                    Spotify, Apple Music, Tidal, and YouTube Music are trademarks of their respective owners.
+                </p>
+                <p class="mt-2 text-xs opacity-80">Created with ❤️ in Chicago</p>
+            </div>
         </div>
     </footer>
-
 </body>
 </html>
