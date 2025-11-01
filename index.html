@@ -3,514 +3,874 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TuneTransit — Share Music Across Apps</title>
+    <title>TuneTransit — Your Music, Everywhere</title>
+    <meta name="description" content="Share music between Spotify, Apple Music, Tidal & YouTube Music instantly. Create smart links, discover what friends are listening to, and enjoy your music everywhere.">
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
     <link rel="shortcut icon" href="images/favicon.ico">
-    <link rel="manifest" href="/images/site.manifest">
     <style>
-        /* Apply Inter font globally */
         body {
-            font-family: 'Inter', sans-serif;
-            overflow-x: hidden; /* Prevent horizontal scroll */
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            overflow-x: hidden;
         }
 
-        /* Animated Gradient Background */
-        @keyframes gradientShift {
-            0% { background-position: 0% 50%; }
+        /* Dynamic gradient background */
+        @keyframes gradientFlow {
+            0%, 100% { background-position: 0% 50%; }
             50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
         }
-        .bg-tunetransit-gradient-animated {
-            background: linear-gradient(270deg, #8A2BE2, #4169E1, #FF69B4, #FFA500); /* Purple, Blue, Pink, Orange */
+        
+        .gradient-animated {
+            background: linear-gradient(-45deg, #8A2BE2, #4169E1, #FF1493, #FF6B35, #8A2BE2);
             background-size: 400% 400%;
-            animation: gradientShift 15s ease infinite;
+            animation: gradientFlow 20s ease infinite;
         }
 
-        /* Subtle Transit Map Lines Background Pattern */
-        .bg-transit-lines {
-            background-image:
-                linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
-                linear-gradient(45deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px),
-                linear-gradient(-45deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
-            background-size: 50px 50px, 50px 50px, 70px 70px, 70px 70px;
+        /* Glass morphism */
+        .glass {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
         }
 
-        /* Custom gradient for premium section */
-        .bg-premium-gradient {
-            background: linear-gradient(to right, rgba(138, 43, 226, 0.2), rgba(65, 105, 225, 0.2)); /* Subtle Purple/Blue */
+        .glass-dark {
+            background: rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
         }
 
-        /* Smooth scrolling */
+        /* Smooth scroll */
         html {
             scroll-behavior: smooth;
         }
 
-        /* Playful Button Hover/Active States */
-        .btn-playful {
-            transition: transform 0.2s ease-out, box-shadow 0.2s ease-out;
+        /* Button animations */
+        .btn-primary {
+            background: linear-gradient(135deg, #FF1493, #FF6B35);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
-        .btn-playful:hover {
-            transform: translateY(-3px) scale(1.03);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
-        }
-         .btn-playful:active {
-            transform: translateY(-1px) scale(0.98);
-            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+        
+        .btn-primary:hover {
+            transform: translateY(-2px) scale(1.02);
+            box-shadow: 0 20px 40px rgba(255, 20, 147, 0.4);
         }
 
-        /* Entrance Animations */
+        .btn-primary:active {
+            transform: translateY(0) scale(0.98);
+        }
+
+        /* Reveal animations */
         .reveal {
             opacity: 0;
-            transform: translateY(30px);
-            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+            transform: translateY(40px);
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
         }
-        .reveal.visible {
+        
+        .reveal.active {
             opacity: 1;
             transform: translateY(0);
         }
 
-        /* Feature Card Hover */
-         .feature-card {
-            transition: transform 0.3s ease-out, box-shadow 0.3s ease-out;
-         }
+        /* Feature card hover */
+        .feature-card {
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
         .feature-card:hover {
-            transform: translateY(-6px) scale(1.02);
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+            transform: translateY(-8px);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
         }
 
-        /* Transit Line for "How it Works" */
-        .transit-line-step::before {
-            content: '';
-            position: absolute;
-            left: 20px; /* Adjust based on icon size/padding */
-            top: 45px; /* Start below the number circle */
-            bottom: -15px; /* Extend below the element */
-            width: 3px;
-            background-color: rgba(255, 255, 255, 0.3);
-            z-index: -1;
+        /* Platform icon animation */
+        .platform-icon {
+            transition: all 0.3s ease;
         }
-        .transit-line-step:last-child::before {
-            display: none; /* Don't draw line below the last step */
+        
+        .platform-icon:hover {
+            transform: scale(1.1) rotate(5deg);
+        }
+
+        /* Gradient text - improved readability with stronger colors */
+        .gradient-text {
+            background: linear-gradient(135deg, #FFD700, #FFA500, #FF8C00);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            filter: brightness(1.2);
+        }
+        
+        /* Text shadows for better readability on gradients */
+        .text-shadow {
+            text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+        }
+        
+        .text-shadow-strong {
+            text-shadow: 0 2px 20px rgba(0,0,0,0.5), 0 4px 30px rgba(0,0,0,0.3);
+        }
+
+        /* Floating animation */
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+        
+        .float {
+            animation: float 6s ease-in-out infinite;
+        }
+
+        /* Premium badge */
+        .premium-badge {
+            background: linear-gradient(135deg, #FFD700, #FFA500);
+            box-shadow: 0 4px 15px rgba(255, 215, 0, 0.4);
         }
 
         /* iPhone mockup */
-        .iphone {
+        .iphone-frame {
             position: relative;
-            background: linear-gradient(160deg, #0d0d10, #17171d);
-            border: 2px solid #1f1f26;
-            border-radius: 48px; /* closer to iPhone 16 Pro Max curvature */
+            width: 100%;
+            max-width: 320px;
+            aspect-ratio: 9 / 19.5;
+            background: linear-gradient(145deg, #1a1a1a, #0a0a0a);
+            border-radius: 48px;
             padding: 12px;
-            box-shadow: 0 18px 40px rgba(0,0,0,0.35);
+            box-shadow: 
+                0 30px 80px rgba(0,0,0,0.5),
+                inset 0 0 0 1px rgba(255,255,255,0.1);
         }
-        .iphone::after {
-            content: '';
-            position: absolute;
-            inset: 6px;
-            border-radius: 42px;
-            border: 1px solid rgba(255,255,255,0.06);
-            pointer-events: none;
-        }
-        /* iPhone 16 Pro inspired frame highlight */
-        .iphone::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            border-radius: 42px;
-            pointer-events: none;
-            background: radial-gradient(120% 80% at 10% 0%, rgba(255,255,255,0.18) 0%, rgba(255,255,255,0) 55%),
-                        radial-gradient(120% 100% at 90% 100%, rgba(0,0,0,0.2) 0%, rgba(0,0,0,0) 60%);
-            mix-blend-mode: screen;
-        }
-
-        /* Optional Dynamic Island overlay (use class 'with-island' on .iphone to enable) */
-        .iphone.with-island .screen::before {
-            content: '';
-            position: absolute;
-            top: 10px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 118px;
-            height: 34px;
-            background: rgba(0,0,0,0.9);
-            border-radius: 18px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.35);
-        }
-        .iphone .screen {
-            position: relative;
+        
+        .iphone-screen {
             width: 100%;
             height: 100%;
             border-radius: 40px;
             overflow: hidden;
-            background: #0b0b0b;
+            background: #000;
+            position: relative;
         }
-        .iphone .screen img {
+        
+        .iphone-screen img {
             width: 100%;
             height: 100%;
-            object-fit: contain; /* ensure full screenshot is visible */
-            display: block;
-            background: #000; /* letterbox fill for slight aspect mismatches */
+            object-fit: cover;
         }
 
-        /* Responsive widths to keep screenshots readable (1320x2868 assets) */
-        .iphone.responsive { width: clamp(300px, 38vw, 460px); }
-        .iphone.responsive-sm { width: clamp(260px, 32vw, 400px); }
-
-        /* iOS home indicator */
-        .iphone .screen::after {
-            content: '';
-            position: absolute;
-            bottom: 8px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 90px;
-            height: 4px;
-            background: rgba(255,255,255,0.6);
-            border-radius: 2px;
+        /* Stat counter animation */
+        @keyframes countUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
-        /* iPhone 16 Pro Max device using overlay frames */
-        .device { position: relative; aspect-ratio: 9 / 19.5; }
-        .device.responsive { width: clamp(300px, 38vw, 460px); }
-        .device.responsive-sm { width: clamp(260px, 32vw, 400px); }
-        .device .device-frame,
-        .device .device-screen { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
-        .device .device-frame { object-fit: contain; z-index: 2; pointer-events: none; }
-        /* Precise portrait screen insets for this frame (1470x3000) vs screenshots (1320x2868) */
-        .device-portrait .device-screen { 
-            position: absolute; 
-            left: 5.1%; right: 5.1%; 
-            top: 2.2%; bottom: 2.2%; 
-            overflow: hidden; background: #000; z-index: 1; 
-        }
-        .device-portrait .device-screen img { width: 100%; height: 100%; object-fit: fill; display: block; }
-
-        /* iPhone 16 Pro Max inspired CSS device (no external frame image) */
-        .iphone16 {
-            --frame-radius: 56px;
-            --rim-radius: 50px;
-            --glass-radius: 44px;
-            --inset: 16px;
-            position: relative;
-            aspect-ratio: 9 / 19.5;
-            display: block;
-        }
-        .iphone16.responsive { width: clamp(300px, 38vw, 480px); }
-        .iphone16.responsive-sm { width: clamp(260px, 32vw, 420px); }
-        .iphone16::before { /* titanium frame body */
-            content: '';
-            position: absolute; inset: 0;
-            border-radius: var(--frame-radius);
-            background: linear-gradient(160deg, #0e1014, #1b1e24);
-            box-shadow:
-                0 22px 44px rgba(0,0,0,0.38),
-                inset 0 1px 0 rgba(255,255,255,0.07),
-                inset 0 -1px 0 rgba(0,0,0,0.45),
-                inset 0 0 0 1px rgba(255,255,255,0.02);
-        }
-        .iphone16::after { /* outer rim highlight */
-            content: '';
-            position: absolute; inset: 6px;
-            border-radius: var(--rim-radius);
-            box-shadow:
-                inset 0 0 0 1px rgba(255,255,255,0.08),
-                inset 0 14px 28px rgba(255,255,255,0.04),
-                inset 0 -14px 28px rgba(0,0,0,0.35);
-            pointer-events: none;
-        }
-        .iphone16 .glass {
-            position: absolute; inset: var(--inset);
-            border-radius: var(--glass-radius);
-            overflow: hidden; background: #000;
-            box-shadow:
-                inset 0 0 0 2px #000,
-                inset 0 18px 26px rgba(255,255,255,0.05),
-                inset 0 -18px 26px rgba(0,0,0,0.45);
-        }
-        .iphone16 .glass img { width: 100%; height: 100%; object-fit: contain; display: block; background: #000; }
-        /* Keep crisp scaling for hero/HIW variant to avoid blur */
-        .iphone16.short .glass img { object-fit: contain; image-rendering: -webkit-optimize-contrast; image-rendering: auto; }
-        .iphone16 .glass::after { /* home indicator */
-            content: '';
-            position: absolute; left: 50%; bottom: 10px; transform: translateX(-50%);
-            width: 92px; height: 4px; border-radius: 2px; background: rgba(255,255,255,0.65);
+        /* Grid pattern background */
+        .grid-bg {
+            background-image: 
+                linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+            background-size: 50px 50px;
         }
 
-        /* Slightly shorter variant for hero/HIW to avoid looking overly tall at large sizes */
-        .iphone16.short { --frame-radius: 54px; --rim-radius: 48px; --glass-radius: 42px; --inset: 14px; aspect-ratio: 9 / 19.5; }
-        /* Align hero/HIW glass to screenshot ratio (1320x2868) to remove bars without blur */
-        .iphone16.short .glass { inset: auto; top: 3%; bottom: 3%; left: 3.07%; right: 3.07%; border-radius: var(--glass-radius); }
-        .iphone16.short .glass img { object-fit: contain; }
-        .iphone16.short.responsive { width: clamp(260px, 30vw, 400px); }
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+        
+        ::-webkit-scrollbar-track {
+            background: #1a1a1a;
+        }
+        
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(135deg, #8A2BE2, #FF1493);
+            border-radius: 10px;
+        }
 
+        /* Pulse animation for badges */
+        @keyframes pulse {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.8; transform: scale(1.05); }
+        }
+        
+        .pulse {
+            animation: pulse 3s ease-in-out infinite;
+        }
     </style>
 </head>
-<body class="bg-tunetransit-gradient-animated text-gray-100 antialiased">
+<body class="bg-black text-white antialiased">
 
-    <nav class="sticky top-0 z-50 bg-black/40 backdrop-blur-lg p-4 shadow-lg border-b border-white/10">
-        <div class="container mx-auto flex justify-between items-center">
-            <a href="#hero" class="flex items-center space-x-2 cursor-pointer">
-                <img src="images/tt-logo.png" alt="TuneTransit Logo" class="w-8 h-8 rounded">
-                <span class="text-xl font-bold text-white">TuneTransit</span>
-            </a>
-            <div class="hidden md:flex space-x-6">
-                <a href="#features" class="text-white hover:text-pink-300 transition duration-300">Features</a>
-                <a href="#how-it-works" class="text-white hover:text-blue-300 transition duration-300">How It Works</a>
-                <a href="#smart-links" class="text-white hover:text-green-300 transition duration-300">Smart Links & Story Cards</a>
-                <a href="#premium" class="text-white hover:text-orange-300 transition duration-300">Premium</a>
-            </div>
-            <a href="https://apps.apple.com/us/app/tunetransit/id6743822790" class="btn-playful bg-white text-purple-700 font-semibold px-4 py-2 rounded-full hover:bg-gray-200 text-sm shadow-md">Download</a>
-        </div>
-    </nav>
-
-    <section id="hero" class="relative py-24 md:py-40 bg-transit-lines overflow-hidden">
-         <div class="absolute top-10 left-10 w-16 h-16 bg-pink-500/30 rounded-full filter blur-xl opacity-70 animate-pulse"></div>
-         <div class="absolute bottom-10 right-10 w-20 h-20 bg-blue-500/30 rounded-full filter blur-xl opacity-70 animate-pulse animation-delay-2000"></div>
-
-        <div class="container mx-auto px-6 relative z-10">
-            <div class="grid md:grid-cols-2 gap-12 items-center">
-                <div class="text-center md:text-left">
-                    <h1 class="text-4xl md:text-6xl font-extrabold text-white mb-4 leading-tight drop-shadow-lg reveal">
-                        One link. <span class="block md:inline">Any music app.</span>
-                    </h1>
-                    <p class="text-lg md:text-xl text-white/80 mb-8 max-w-xl md:max-w-none reveal" style="transition-delay: 0.1s;">
-                        Share songs, albums, and playlists that open in Spotify, Apple Music, Tidal, and YouTube Music. Make Smart Links, post Story Cards, and never worry about where you listen to music ever again. 
-                    </p>
-                    <a href="https://apps.apple.com/us/app/tunetransit/id6743822790" class="btn-playful inline-block bg-white text-purple-700 font-bold px-8 py-4 rounded-full shadow-lg hover:bg-gray-200 reveal" style="transition-delay: 0.2s;">
-                        Get TuneTransit Free on the App Store
-                    </a>
-                </div>
-                <div class="mx-auto w-full reveal" style="transition-delay: 0.3s;">
-                    <div class="iphone16 short responsive mx-auto">
-                        <div class="glass">
-                            <img src="images/now-playing.png" alt="TuneTransit Now Playing screenshot" onerror="this.src='https://placehold.co/900x1800/222/EEE?text=Now+Playing'">
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="features" class="py-20 bg-black/20">
-        <div class="container mx-auto px-6">
-            <h2 class="text-3xl md:text-4xl font-bold text-center text-white mb-16 reveal">Everything You Need to Share Music</h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
-                <div class="feature-card bg-white/10 p-6 rounded-xl shadow-lg backdrop-blur-sm border border-white/10 reveal">
-                    <div class="flex items-center mb-4">
-                        <svg class="w-8 h-8 text-pink-400 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4"></path></svg>
-                        <h3 class="text-xl font-semibold text-white">Cross-Platform Search</h3>
-                    </div>
-                    <p class="text-white/80">Find any song or album and open it in Spotify, Apple Music, Tidal or YouTube Music — instantly.</p>
-                </div>
-                <div class="feature-card bg-white/10 p-6 rounded-xl shadow-lg backdrop-blur-sm border border-white/10 reveal" style="transition-delay: 0.1s;">
-                    <div class="flex items-center mb-4">
-                        <svg class="w-8 h-8 text-purple-400 mr-3" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 256 256"><path d="M216,40H88a8,8,0,0,0-8,8V80H40a8,8,0,0,0-8,8V216a8,8,0,0,0,8,8H168a8,8,0,0,0,8-8V184h40a8,8,0,0,0,8-8V48A8,8,0,0,0,216,40Zm-8,136H176V96h32Zm-48,32H48V96H160Z"></path></svg>
-                        <h3 class="text-xl font-semibold text-white">Playlists Unlocked <span class="text-xs bg-purple-500 px-2 py-0.5 rounded-full ml-1">Premium</span></h3>
-                    </div>
-                    <p class="text-white/80">Create, manage, and share playlists that work with all platforms.</p>
-                </div>
-                <div class="feature-card bg-white/10 p-6 rounded-xl shadow-lg backdrop-blur-sm border border-white/10 reveal" style="transition-delay: 0.1s;">
-                    <div class="flex items-center mb-4">
-                        <svg class="w-8 h-8 text-pink-400 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8m-18 8h18"></path></svg>
-                        <h3 class="text-xl font-semibold text-white">Smart Links</h3>
-                    </div>
-                    <p class="text-white/80">Share one link that opens your song on the right service. Works on the web with buttons for both platforms.</p>
-                </div>
-                <div class="feature-card bg-white/10 p-6 rounded-xl shadow-lg backdrop-blur-sm border border-white/10 reveal">
-                    <div class="flex items-center mb-4">
-                         <svg class="w-8 h-8 text-blue-400 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path></svg>
-                        <h3 class="text-xl font-semibold text-white">Story Cards <span class="text-xs bg-purple-500 px-2 py-0.5 rounded-full ml-1">Premium</span></h3>
-                    </div>
-                    <p class="text-white/80">Create beautiful, share‑ready images with a QR code that opens a TuneTransit Smart Link to all platforms.</p>
-                </div>
-                <div class="feature-card bg-white/10 p-6 rounded-xl shadow-lg backdrop-blur-sm border border-white/10 reveal" style="transition-delay: 0.1s;">
-                    <div class="flex items-center mb-4">
-                        <svg class="w-8 h-8 text-green-400 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path></svg>
-                        <h3 class="text-xl font-semibold text-white">Messages Support <span class="text-xs bg-purple-500 px-2 py-0.5 rounded-full ml-1">Premium</span></h3>
-                    </div>
-                    <p class="text-white/80">Use TuneTransit within Messages to set the beat for active conversations.</p>
-                </div>
-                 <div class="feature-card bg-white/10 p-6 rounded-xl shadow-lg backdrop-blur-sm border border-white/10 reveal" style="transition-delay: 0.2s;">
-                    <div class="flex items-center mb-4">
-                        <svg class="w-8 h-8 text-yellow-400 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-                        <h3 class="text-xl font-semibold text-white">Live Now Playing</h3>
-                    </div>
-                    <p class="text-white/80">See what’s playing and open instantly — Apple Music built‑in; Spotify and Tidal via optional Last.fm integration.</p>
-                    
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="how-it-works" class="py-20 bg-transit-lines">
-        <div class="container mx-auto px-6">
-            <h2 class="text-3xl md:text-4xl font-bold text-center text-white mb-16 reveal">How It Works</h2>
-            <div class="flex flex-col md:flex-row items-start md:items-center justify-center gap-12 md:gap-16">
-                <div class="md:w-1/2 reveal">
-                    <div class="iphone16 short responsive mx-auto">
-                        <div class="glass">
-                            <img src="images/find-results.png" alt="Find results preview" onerror="this.src='https://placehold.co/900x1800/222/EEE?text=Find+Results'">
-                        </div>
-                    </div>
-                </div>
-                <div class="md:w-1/2 space-y-8 relative">
-                    <div class="flex items-start space-x-4 reveal transit-line-step" style="transition-delay: 0.1s;">
-                        <div class="flex-shrink-0 w-10 h-10 bg-pink-500/70 rounded-full flex items-center justify-center font-bold text-white ring-2 ring-white/30">1</div>
-                        <div>
-                            <h4 class="text-lg font-semibold text-white">Depart</h4>
-                            <p class="text-white/80">Start your journey by navigating to the Home tab. If a song isn't currently playing, paste a link in the Find Music tab or share a music link into TuneTransit (Spotify, Apple Music, Tidal or YouTube Music).</p>
-                        </div>
-                    </div>
-                     <div class="flex items-start space-x-4 reveal transit-line-step" style="transition-delay: 0.2s;">
-                        <div class="flex-shrink-0 w-10 h-10 bg-orange-500/70 rounded-full flex items-center justify-center font-bold text-white ring-2 ring-white/30">2</div>
-                        <div>
-                            <h4 class="text-lg font-semibold text-white">Open Anywhere</h4>
-                            <p class="text-white/80">Tap the platform you want to open the track in. Or create a Smart Link to share.</p>
-                        </div>
-                    </div>
-                     <div class="flex items-start space-x-4 reveal transit-line-step" style="transition-delay: 0.3s;">
-                        <div class="flex-shrink-0 w-10 h-10 bg-purple-500/70 rounded-full flex items-center justify-center font-bold text-white ring-2 ring-white/30">3</div>
-                        <div>
-                            <h4 class="text-lg font-semibold text-white">Share</h4>
-                            <p class="text-white/80">Send a link, drop a Story Card, or share in Messages.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="smart-links" class="py-20 bg-black/20">
-        <div class="container mx-auto px-6">
-            <div class="max-w-4xl mx-auto text-center">
-                <h2 class="text-3xl md:text-4xl font-bold text-white mb-4 reveal">Smart Links & Story Cards</h2>
-                <p class="text-white/80 mb-8 reveal" style="transition-delay: 0.1s;">Share one link that works for everyone, plus create gorgeous story‑ready cards with QR that open a TuneTransit Smart Link to all platforms.</p>
-            </div>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
-                <div class="bg-white/10 p-6 rounded-xl shadow-lg backdrop-blur-sm border border-white/10 reveal">
-                    <h3 class="text-xl font-semibold text-white mb-2">Smart Links</h3>
-                    <p class="text-white/80 mb-4">TuneTransit mints a lightweight web page with buttons for both platforms so friends can open your song on their service.</p>
-                    <div class="iphone16 responsive-sm mx-auto">
-                        <div class="glass">
-                            <img src="images/smart-link.png" alt="Smart Link example" onerror="this.src='https://placehold.co/900x1800/222/EEE?text=Smart+Link'">
-                        </div>
-                    </div>
-                </div>
-                <div class="bg-white/10 p-6 rounded-xl shadow-lg backdrop-blur-sm border border-white/10 reveal" style="transition-delay: 0.1s;">
-                    <h3 class="text-xl font-semibold text-white mb-2">Story Cards</h3>
-                    <p class="text-white/80 mb-4">Design a shareable image with artwork, titles, and a scannable QR. Great for Instagram, Snapchat, and anywhere you post.</p>
-                    <div class="iphone16 responsive-sm mx-auto">
-                        <div class="glass">
-                            <img src="images/story-card.png" alt="Story Card example" onerror="this.src='https://placehold.co/900x1800/222/EEE?text=Story+Card'">
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="premium" class="py-20 bg-black/20">
-        <div class="container mx-auto px-6 text-center">
-            <h2 class="text-3xl md:text-4xl font-bold text-white mb-4 reveal">TuneTransit Premium</h2>
-            <p class="text-lg text-white/80 mb-12 max-w-2xl mx-auto reveal" style="transition-delay: 0.1s;">Unlock more ways to share and discover — and support ongoing development.</p>
-
-            <div class="max-w-4xl mx-auto bg-premium-gradient p-8 md:p-12 rounded-2xl shadow-xl border border-white/10 reveal" style="transition-delay: 0.2s;">
-                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6 text-left mb-8">
-                    <div class="space-y-4">
-                        <div class="flex items-center space-x-3">
-                            <svg class="w-6 h-6 text-green-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
-                            <span class="text-white font-medium">Unlimited Searches</span>
-                        </div>
-                         <div class="flex items-center space-x-3">
-                            <svg class="w-6 h-6 text-green-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
-                            <span class="text-white font-medium">Playlists Unlocked</span>
-                        </div>
-                         <div class="flex items-center space-x-3">
-                            <svg class="w-6 h-6 text-green-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
-                            <span class="text-white font-medium">Messages Support</span>
-                        </div>
-                    </div>
-                     <div class="space-y-4">
-                        
-                         <div class="flex items-center space-x-3">
-                            <svg class="w-6 h-6 text-green-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
-                            <span class="text-white font-medium">Nearby Sharing</span>
-                        </div>
-                         <div class="flex items-center space-x-3">
-                            <svg class="w-6 h-6 text-green-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
-                            <span class="text-white font-medium">Story Cards</span>
-                        </div>
-                    </div>
+    <!-- Navigation -->
+    <nav class="fixed top-0 left-0 right-0 z-50 glass-dark border-b border-white/10">
+        <div class="max-w-7xl mx-auto px-6 py-4">
+            <div class="flex items-center justify-between">
+                <a href="#hero" class="flex items-center space-x-3 group">
+                    <img src="images/tt-logo.png" alt="TuneTransit" class="w-10 h-10 rounded-xl group-hover:scale-110 transition-transform duration-300">
+                    <span class="text-xl font-bold">TuneTransit</span>
+                </a>
+                
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#platforms" class="text-white/80 hover:text-white transition-colors duration-300">Find Music</a>
+                    <a href="#features" class="text-white/80 hover:text-white transition-colors duration-300">Features</a>
+                    <a href="#social" class="text-white/80 hover:text-white transition-colors duration-300">Social</a>
+                    <a href="#premium" class="text-white/80 hover:text-white transition-colors duration-300">Premium</a>
                 </div>
 
-                <p class="mt-8 text-white/80 text-sm">Choose a monthly plan or a one‑time lifetime unlock. Upgrade anytime in the app.</p>
-                <a href="#" class="btn-playful mt-6 inline-block bg-gradient-to-r from-pink-500 to-orange-500 text-white font-bold px-8 py-3 rounded-full shadow-lg hover:opacity-90">
-                    Upgrade In App
+                <a href="https://apps.apple.com/us/app/tunetransit/id6743822790" class="btn-primary px-6 py-3 rounded-full font-semibold text-white shadow-lg">
+                    Download
                 </a>
             </div>
         </div>
-    </section>
+    </nav>
 
-    <footer class="bg-black/50 py-10 mt-16 border-t border-white/10">
-        <div class="container mx-auto px-6 text-center text-white/70 text-sm">
-            <div class="flex flex-col md:flex-row justify-between items-center space-y-6 md:space-y-0 mb-8">
-                <div class="flex-1 flex justify-center md:justify-start space-x-6">
-                    <a href="privacy.html" class="hover:text-white transition duration-300">Privacy Policy</a>
-                    <a href="mailto:mail@tunetransit.app" class="hover:text-white transition duration-300">Contact Support</a>
+    <!-- Hero Section -->
+    <section id="hero" class="relative min-h-screen flex items-center justify-center gradient-animated overflow-hidden pt-16">
+        <!-- Animated background elements -->
+        <div class="absolute inset-0 grid-bg opacity-30"></div>
+        <div class="absolute top-20 left-10 w-72 h-72 bg-pink-500/20 rounded-full filter blur-3xl animate-pulse"></div>
+        <div class="absolute bottom-20 right-10 w-96 h-96 bg-purple-500/20 rounded-full filter blur-3xl animate-pulse" style="animation-delay: 1s;"></div>
+        
+        <div class="max-w-7xl mx-auto px-6 py-12 relative z-10">
+            <div class="grid lg:grid-cols-5 gap-8 items-center">
+                <!-- Hero Content -->
+                <div class="lg:col-span-3 text-center lg:text-left space-y-8 reveal">
+                    <h1 class="text-5xl md:text-7xl font-black leading-tight text-shadow-strong">
+                        Your Music,
+                        <span class="block gradient-text">Everywhere</span>
+                    </h1>
+                    
+                    <p class="text-xl md:text-2xl text-white max-w-2xl text-shadow">
+                        Share songs and albums between Spotify, Apple Music, Tidal & YouTube Music instantly. Never worry about where you listen to music ever again.
+                    </p>
+
+                    <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+                        <a href="https://apps.apple.com/us/app/tunetransit/id6743822790" class="btn-primary px-8 py-4 rounded-full font-bold text-lg text-white shadow-2xl inline-flex items-center justify-center space-x-2">
+                            <span>Download</span>
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"/>
+                            </svg>
+                        </a>
+                        <a href="#platforms" class="glass px-8 py-4 rounded-full font-bold text-lg inline-flex items-center justify-center hover:bg-white/10 transition-all duration-300">
+                            Learn More
+                        </a>
+                    </div>
+
+                    <!-- Social proof -->
+                    <div class="flex items-center justify-center lg:justify-start pt-8">
+                        <div>
+                            <div class="text-3xl font-bold gradient-text">5.0★</div>
+                            <div class="text-sm text-white/60">App Store Rating</div>
+                        </div>
+                    </div>
                 </div>
 
-                <div class="flex-1 flex justify-center items-center">
-                    <a href="https://instagram.com/tunetransit" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-x-2 text-white/70 hover:text-pink-300 transition duration-300 group" aria-label="Connect with TuneTransit on Instagram">
-                        <span>Connect with TuneTransit on</span>
-                        <svg class="w-6 h-6 fill-current group-hover:fill-pink-400 transition duration-300" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919A48.904 48.904 0 0112 2.163zm0 1.628c-3.14 0-3.499.01-4.716.065-2.68.122-3.811 1.224-3.938 3.938C3.31 9.095 3.3 9.474 3.3 12c0 2.525.01 2.9.065 4.117.127 2.714 1.258 3.816 3.938 3.938 1.217.055 1.576.065 4.716.065 3.14 0 3.499-.01 4.716-.065 2.68-.122 3.811-1.224 3.938-3.938.055-1.217.065-1.592.065-4.117 0-2.525-.01-2.9-.065-4.117-.127-2.714-1.258-3.816-3.938-3.938C15.5 3.801 15.14 3.79 12 3.79zm0 2.99c-3.406 0-6.171 2.765-6.171 6.171s2.765 6.171 6.171 6.171 6.171-2.765 6.171-6.171S15.406 6.78 12 6.78zm0 10.002c-2.13 0-3.831-1.701-3.831-3.831s1.701-3.831 3.831-3.831 3.831 1.701 3.831 3.831-1.701 3.831-3.831 3.831zm5.235-10.06c-.78 0-1.412-.633-1.412-1.413s.633-1.413 1.412-1.413 1.413.633 1.413 1.413-.633 1.413-1.413 1.413z"></path>
+                <!-- Hero Image - Crisp Screenshot Display -->
+                <div class="lg:col-span-2 reveal" style="transition-delay: 0.2s;">
+                    <div class="relative mx-auto" style="max-width: 400px;">
+                        <!-- Device frame -->
+                        <div class="relative p-4 bg-gradient-to-br from-gray-800 to-gray-900 rounded-[3.5rem] shadow-2xl">
+                            <!-- Inner bezel -->
+                            <div class="relative p-2 bg-black rounded-[3rem]">
+                                <!-- Screenshot container -->
+                                <div class="relative bg-black rounded-[2.5rem] overflow-hidden" style="aspect-ratio: 375/812;">
+                                    <img src="images/now-playing.png" 
+                                         alt="TuneTransit App Screenshot" 
+                                         class="w-full h-full"
+                                         style="object-fit: contain; object-position: center;">
+                                </div>
+                            </div>
+                            <!-- iPhone button placement -->
+                            <!-- Left side: Mute switch and volume buttons -->
+                            <div class="absolute top-28 left-0 w-1 h-8 bg-gray-700 rounded-r-full"></div>
+                            <div class="absolute top-40 left-0 w-1 h-14 bg-gray-700 rounded-r-full"></div>
+                            <div class="absolute top-56 left-0 w-1 h-14 bg-gray-700 rounded-r-full"></div>
+                            <!-- Right side: Power button -->
+                            <div class="absolute top-36 right-0 w-1 h-20 bg-gray-700 rounded-l-full"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Platforms Section -->
+    <section id="platforms" class="py-32 bg-black/90 relative overflow-hidden">
+        <div class="absolute inset-0 grid-bg opacity-20"></div>
+        
+        <div class="max-w-7xl mx-auto px-6 relative z-10">
+            <div class="text-center mb-20 reveal">
+                <h2 class="text-4xl md:text-6xl font-black mb-6 text-shadow">
+                    Find Music <span class="gradient-text">Everywhere</span>
+                </h2>
+                <p class="text-xl text-white max-w-3xl mx-auto text-shadow">
+                    Seamlessly search and share music across all major streaming platforms
+                </p>
+            </div>
+
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-8 mb-16">
+                <div class="glass p-8 rounded-3xl text-center hover:bg-white/10 transition-all duration-300 reveal platform-icon">
+                    <div class="w-20 h-20 mx-auto mb-4 bg-green-500 rounded-2xl flex items-center justify-center">
+                        <svg class="w-12 h-12 text-white" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold">Spotify</h3>
+                </div>
+
+                <div class="glass p-8 rounded-3xl text-center hover:bg-white/10 transition-all duration-300 reveal platform-icon" style="transition-delay: 0.1s;">
+                    <div class="w-20 h-20 mx-auto mb-4 bg-gradient-to-br from-pink-500 to-red-500 rounded-2xl flex items-center justify-center">
+                        <!-- Apple Logo -->
+                        <svg class="w-12 h-12 text-white" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M17.05 20.28c-.98.95-2.05.8-3.08.35-1.09-.46-2.09-.48-3.24 0-1.44.62-2.2.44-3.06-.35C2.79 15.25 3.51 7.59 9.05 7.31c1.35.07 2.29.74 3.08.8 1.18-.24 2.31-.93 3.57-.84 1.51.12 2.65.72 3.4 1.8-3.12 1.87-2.38 5.98.48 7.13-.57 1.5-1.31 2.99-2.54 4.09l.01-.01zM12.03 7.25c-.15-2.23 1.66-4.07 3.74-4.25.29 2.58-2.34 4.5-3.74 4.25z"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold">Apple Music</h3>
+                </div>
+
+                <div class="glass p-8 rounded-3xl text-center hover:bg-white/10 transition-all duration-300 reveal platform-icon" style="transition-delay: 0.2s;">
+                    <div class="w-20 h-20 mx-auto mb-4 bg-black rounded-2xl flex items-center justify-center border-2 border-white p-3">
+                        <img src="images/tidal-logo-white.png" alt="Tidal" class="w-full h-full object-contain">
+                    </div>
+                    <h3 class="text-xl font-bold">Tidal</h3>
+                </div>
+
+                <div class="glass p-8 rounded-3xl text-center hover:bg-white/10 transition-all duration-300 reveal platform-icon" style="transition-delay: 0.3s;">
+                    <div class="w-20 h-20 mx-auto mb-4 bg-red-600 rounded-2xl flex items-center justify-center">
+                        <svg class="w-12 h-12 text-white" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold">YouTube Music</h3>
+                </div>
+            </div>
+
+            <!-- Product Demo Video - Clean Display -->
+            <div class="reveal mx-auto px-6" style="transition-delay: 0.4s;">
+                <div class="relative mx-auto" style="max-width: 500px;">
+                    <!-- Device frame -->
+                    <div class="relative p-4 bg-gradient-to-br from-gray-800 to-gray-900 rounded-[3.5rem] shadow-2xl">
+                        <!-- Inner bezel -->
+                        <div class="relative p-2 bg-black rounded-[3rem]">
+                            <!-- Video container -->
+                            <div class="relative bg-black rounded-[2.5rem] overflow-hidden">
+                                <video 
+                                    id="demo-video"
+                                    muted 
+                                    playsinline
+                                    width="660"
+                                    height="1434"
+                                    style="display: block; width: 100%; height: auto; max-width: 660px; margin: 0 auto;">
+                                    <source src="videos/tt-demo.mp4" type="video/mp4">
+                                    Your browser does not support the video tag.
+                                </video>
+                                
+                                <!-- Replay Overlay -->
+                                <div id="replay-overlay" class="hidden absolute inset-0 bg-black/60 flex items-center justify-center cursor-pointer">
+                                    <div class="text-center">
+                                        <div class="w-20 h-20 mx-auto mb-4 bg-white/20 rounded-full flex items-center justify-center backdrop-blur-sm">
+                                            <svg class="w-10 h-10 text-white" fill="currentColor" viewBox="0 0 24 24">
+                                                <path d="M8 5v14l11-7z"/>
+                                            </svg>
+                                        </div>
+                                        <p class="text-white font-bold text-lg">Replay Demo</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- iPhone button placement -->
+                        <div class="absolute top-28 left-0 w-1 h-8 bg-gray-700 rounded-r-full"></div>
+                        <div class="absolute top-40 left-0 w-1 h-14 bg-gray-700 rounded-r-full"></div>
+                        <div class="absolute top-56 left-0 w-1 h-14 bg-gray-700 rounded-r-full"></div>
+                        <div class="absolute top-36 right-0 w-1 h-20 bg-gray-700 rounded-l-full"></div>
+                    </div>
+                </div>
+                
+                <p class="text-center text-white/60 mt-6 text-sm">Watch TuneTransit in action - finding songs across all platforms</p>
+                
+                <!-- Scroll Down Indicator -->
+                <div class="flex justify-center mt-8">
+                    <a id="scroll-indicator" href="#features" class="flex flex-col items-center gap-2 text-white/20 hover:text-white transition-all duration-500">
+                        <span class="text-sm">See all features</span>
+                        <svg class="w-6 h-6 animate-bounce" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"/>
                         </svg>
                     </a>
                 </div>
+            </div>
 
-                <div class="flex-1 flex justify-center md:justify-end">
-                    <a href="https://apps.apple.com/us/app/tunetransit/id6743822790" aria-label="Download on the App Store" class="inline-block opacity-80 hover:opacity-100 transition duration-300">
-                         <img src="images/appstorelogo.png" alt="Download on the App Store" class="h-10" onerror="this.src='https://placehold.co/120x40/cccccc/333333?text=App+Store+Error'">
+            <script>
+                const video = document.getElementById('demo-video');
+                const replayOverlay = document.getElementById('replay-overlay');
+                const scrollIndicator = document.getElementById('scroll-indicator');
+                
+                // Auto-play video once on load
+                video.play();
+                
+                // Show replay overlay when video ends
+                video.addEventListener('ended', () => {
+                    replayOverlay.classList.remove('hidden');
+                    // Make scroll indicator vibrant
+                    scrollIndicator.classList.remove('text-white/20');
+                    scrollIndicator.classList.add('text-white/80');
+                });
+                
+                // Replay video when overlay is clicked
+                replayOverlay.addEventListener('click', () => {
+                    replayOverlay.classList.add('hidden');
+                    video.currentTime = 0;
+                    video.play();
+                    // Dim scroll indicator again
+                    scrollIndicator.classList.remove('text-white/80');
+                    scrollIndicator.classList.add('text-white/20');
+                });
+            </script>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="py-32 gradient-animated relative overflow-hidden">
+        <div class="absolute inset-0 grid-bg opacity-20"></div>
+        
+        <div class="max-w-7xl mx-auto px-6 relative z-10">
+            <div class="text-center mb-20 reveal">
+                <h2 class="text-4xl md:text-6xl font-black mb-6 text-shadow">
+                    Everything You Need to
+                    <span class="block gradient-text">Share Music</span>
+                </h2>
+                <p class="text-xl text-white max-w-3xl mx-auto text-shadow">
+                    From instant conversions to social discovery, TuneTransit has you covered
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Instant Music Conversion - CENTERPIECE -->
+                <div class="feature-card glass p-8 rounded-3xl reveal md:col-span-2 lg:col-span-3 border-2 border-pink-500/30">
+                    <div class="flex flex-col md:flex-row items-center gap-8">
+                        <div class="w-20 h-20 bg-gradient-to-br from-purple-500 to-pink-500 rounded-2xl flex items-center justify-center flex-shrink-0">
+                            <svg class="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4"/>
+                            </svg>
+                        </div>
+                        <div class="flex-1 text-center md:text-left">
+                            <h3 class="text-3xl font-bold mb-3 text-white">Instant Music Searches</h3>
+                            <p class="text-white/90 text-lg">Paste any Spotify, Apple Music, Tidal, or YouTube Music link and instantly find it on all platforms. No searching, no typing - just paste and go.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Smart Links -->
+                <div class="feature-card glass p-8 rounded-3xl reveal">
+                    <div class="w-16 h-16 bg-gradient-to-br from-pink-500 to-orange-500 rounded-2xl flex items-center justify-center mb-6">
+                        <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-3 text-white">Universal Smart Links</h3>
+                    <p class="text-white/90">Share a smart link that opens in your friend's preferred music app. Works on web, iOS, and Android.</p>
+                </div>
+
+                <!-- Now Playing Detection -->
+                <div class="feature-card glass p-8 rounded-3xl reveal" style="transition-delay: 0.1s;">
+                    <div class="w-16 h-16 bg-gradient-to-br from-green-500 to-emerald-500 rounded-2xl flex items-center justify-center mb-6">
+                        <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19V6l12-3v13M9 19c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zm12-3c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zM9 10l12-3"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-3 text-white">Now Playing Detection</h3>
+                    <p class="text-white/90">Automatically detect what's playing on Apple Music, Spotify, or Tidal and find it instantly.</p>
+                </div>
+
+                <!-- Story Cards -->
+                <div class="feature-card glass p-8 rounded-3xl reveal" style="transition-delay: 0.2s;">
+                    <div class="w-16 h-16 bg-gradient-to-br from-purple-500 to-pink-500 rounded-2xl flex items-center justify-center mb-6">
+                        <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-3 text-white">Story Cards</h3>
+                    <p class="text-white/90">Create beautiful shareable images with album art and QR codes. Perfect for Instagram and Snapchat stories.</p>
+                    <span class="premium-badge text-black text-xs font-bold px-3 py-1 rounded-full inline-block mt-3">PREMIUM</span>
+                </div>
+
+                <!-- Social Feed -->
+                <div class="feature-card glass p-8 rounded-3xl reveal" style="transition-delay: 0.3s;">
+                    <div class="w-16 h-16 bg-gradient-to-br from-blue-500 to-cyan-500 rounded-2xl flex items-center justify-center mb-6">
+                        <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-3 text-white">Social Music Feed</h3>
+                    <p class="text-white/90">See what your friends are listening to in real-time. Discover new music together.</p>
+                    <span class="premium-badge text-black text-xs font-bold px-3 py-1 rounded-full inline-block mt-3">PREMIUM</span>
+                </div>
+
+                <!-- Widgets -->
+                <div class="feature-card glass p-8 rounded-3xl reveal" style="transition-delay: 0.4s;">
+                    <div class="w-16 h-16 bg-gradient-to-br from-yellow-500 to-orange-500 rounded-2xl flex items-center justify-center mb-6">
+                        <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-3 text-white">Home & Lock Screen Widgets</h3>
+                    <p class="text-white/90">Quick access to your currently playing song. Tap to instantly open it in TuneTransit.</p>
+                    <span class="premium-badge text-black text-xs font-bold px-3 py-1 rounded-full inline-block mt-3">PREMIUM</span>
+                </div>
+
+                <!-- iMessage -->
+                <div class="feature-card glass p-8 rounded-3xl reveal" style="transition-delay: 0.5s;">
+                    <div class="w-16 h-16 bg-gradient-to-br from-blue-400 to-blue-600 rounded-2xl flex items-center justify-center mb-6">
+                        <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-3 text-white">iMessage Support</h3>
+                    <p class="text-white/90">Share music directly in Messages conversations. Send songs from Apple Music or Spotify without leaving your chat.</p>
+                    <span class="premium-badge text-black text-xs font-bold px-3 py-1 rounded-full inline-block mt-3">PREMIUM</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Social Section -->
+    <section id="social" class="py-32 bg-black relative overflow-hidden">
+        <div class="absolute inset-0 grid-bg opacity-20"></div>
+        
+        <div class="max-w-7xl mx-auto px-6 relative z-10">
+            <div class="grid lg:grid-cols-2 gap-16 items-center">
+                <div class="reveal">
+                    <span class="premium-badge text-black text-sm font-bold px-4 py-2 rounded-full inline-block mb-6 pulse">
+                        ⭐ PREMIUM FEATURE
+                    </span>
+                    <h2 class="text-4xl md:text-6xl font-black mb-6 text-shadow">
+                        Discover Music
+                        <span class="block gradient-text">Together </span>
+                    </h2>
+                    <p class="text-xl text-white mb-8 text-shadow">
+                        With TuneTransit's new Music Feed, connect with friends and see what they're listening to in real-time. Build your own private music social network with full privacy controls.
+                    </p>
+                    <ul class="space-y-4">
+                        <li class="flex items-center space-x-3">
+                            <div class="w-8 h-8 bg-green-500/20 rounded-lg flex items-center justify-center">
+                                <svg class="w-5 h-5 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                                </svg>
+                            </div>
+                            <span class="text-lg text-white">Real-time listening activity</span>
+                        </li>
+                        <li class="flex items-center space-x-3">
+                            <div class="w-8 h-8 bg-green-500/20 rounded-lg flex items-center justify-center">
+                                <svg class="w-5 h-5 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                                </svg>
+                            </div>
+                            <span class="text-lg text-white">Search friends by username</span>
+                        </li>
+                        <li class="flex items-center space-x-3">
+                            <div class="w-8 h-8 bg-green-500/20 rounded-lg flex items-center justify-center">
+                                <svg class="w-5 h-5 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                                </svg>
+                            </div>
+                            <span class="text-lg text-white">React with emojis & share songs</span>
+                        </li>
+                        <li class="flex items-center space-x-3">
+                            <div class="w-8 h-8 bg-green-500/20 rounded-lg flex items-center justify-center">
+                                <svg class="w-5 h-5 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                                </svg>
+                            </div>
+                            <span class="text-lg text-white">Full privacy controls (On/Off/Unfriend)</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="reveal" style="transition-delay: 0.2s;">
+                    <!-- Interactive Live Feed Demo -->
+                    <div class="glass-dark p-6 rounded-3xl max-w-md mx-auto">
+                        <div class="text-center mb-4">
+                            <h3 class="text-xl font-bold mb-1">Live Activity Feed</h3>
+                            <p class="text-sm text-white/60">Watch music flow in real-time</p>
+                        </div>
+                        
+                        <div id="live-feed" class="space-y-3 max-h-80 overflow-hidden">
+                            <!-- Feed items will be dynamically added here -->
+                        </div>
+
+                        <div class="mt-4 text-center">
+                            <button id="add-friend-btn" class="btn-primary px-6 py-2 rounded-full text-sm font-bold text-white shadow-lg">
+                                Start Sharing Music
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script>
+            const songs = [
+                { title: "Blinding Lights", artist: "The Weeknd", platform: "Spotify", color: "#1DB954", user: "Alex" },
+                { title: "Levitating", artist: "Dua Lipa", platform: "Apple Music", color: "#FA586A", user: "Sarah" },
+                { title: "Starboy", artist: "The Weeknd", platform: "Tidal", color: "#000000", user: "Mike" },
+                { title: "Heat Waves", artist: "Glass Animals", platform: "YouTube Music", color: "#FF0000", user: "Jordan" },
+                { title: "Save Your Tears", artist: "The Weeknd", platform: "Spotify", color: "#1DB954", user: "Emma" },
+                { title: "Good 4 U", artist: "Olivia Rodrigo", platform: "Apple Music", color: "#FA586A", user: "Chris" },
+                { title: "Bohemian Rhapsody", artist: "Queen", platform: "Tidal", color: "#000000", user: "Taylor" },
+                { title: "Happier Than Ever", artist: "Billie Eilish", platform: "Spotify", color: "#1DB954", user: "Riley" }
+            ];
+
+            let currentIndex = 0;
+            const feedContainer = document.getElementById('live-feed');
+
+            function createFeedItem(song) {
+                const div = document.createElement('div');
+                div.className = 'glass p-3 rounded-xl flex items-center space-x-3 opacity-0 transform translate-y-4 transition-all duration-500';
+                div.innerHTML = `
+                    <div class="w-10 h-10 rounded-lg flex items-center justify-center flex-shrink-0" style="background-color: ${song.color}">
+                        <svg class="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z"/>
+                        </svg>
+                    </div>
+                    <div class="flex-1 min-w-0">
+                        <p class="font-bold text-white text-sm truncate">${song.title}</p>
+                        <p class="text-xs text-white/60 truncate">${song.artist}</p>
+                    </div>
+                    <div class="text-right flex-shrink-0">
+                        <p class="text-xs text-white/60">${song.user}</p>
+                        <p class="text-xs text-white/40">${song.platform}</p>
+                    </div>
+                `;
+                return div;
+            }
+
+            function addFeedItem() {
+                if (feedContainer.children.length >= 4) {
+                    feedContainer.removeChild(feedContainer.lastChild);
+                }
+
+                const song = songs[currentIndex % songs.length];
+                const item = createFeedItem(song);
+                
+                feedContainer.insertBefore(item, feedContainer.firstChild);
+                
+                setTimeout(() => {
+                    item.classList.remove('opacity-0', 'translate-y-4');
+                    item.classList.add('opacity-100', 'translate-y-0');
+                }, 50);
+
+                currentIndex++;
+            }
+
+            // Add initial items
+            for (let i = 0; i < 3; i++) {
+                addFeedItem();
+            }
+
+            // Add new items every 3 seconds
+            setInterval(addFeedItem, 3000);
+
+            // Button interaction
+            document.getElementById('add-friend-btn').addEventListener('click', () => {
+                window.location.href = '#download';
+            });
+        </script>
+    </section>
+
+    <!-- Premium Section -->
+    <section id="premium" class="py-32 gradient-animated relative overflow-hidden">
+        <div class="absolute inset-0 grid-bg opacity-20"></div>
+        
+        <div class="max-w-5xl mx-auto px-6 relative z-10 text-center">
+            <div class="reveal">
+                <div class="inline-block mb-6">
+                    <span class="premium-badge text-black text-sm font-bold px-6 py-3 rounded-full pulse">
+                        👑 TUNETRANSIT PREMIUM
+                    </span>
+                </div>
+                
+                <h2 class="text-4xl md:text-6xl font-black mb-6 text-shadow">
+                    Unlock the Full
+                    <span class="block gradient-text">Experience</span>
+                </h2>
+                
+                <p class="text-xl text-white mb-12 max-w-3xl mx-auto text-shadow">
+                    Go premium for unlimited searches, social features, story cards, widgets, and more. Support indie development!
+                </p>
+
+                <div class="glass-dark p-12 rounded-3xl mb-12">
+                    <div class="grid md:grid-cols-2 gap-8 mb-12">
+                        <div class="space-y-4">
+                            <div class="flex items-center space-x-3">
+                                <svg class="w-6 h-6 text-green-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                                </svg>
+                                <span class="text-lg font-medium text-left text-white">Unlimited music searches</span>
+                            </div>
+                            <div class="flex items-center space-x-3">
+                                <svg class="w-6 h-6 text-green-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                                </svg>
+                                <span class="text-lg font-medium text-left text-white">Social music feed & friends</span>
+                            </div>
+                            <div class="flex items-center space-x-3">
+                                <svg class="w-6 h-6 text-green-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                                </svg>
+                                <span class="text-lg font-medium text-left text-white">Story cards to share on socials</span>
+                            </div>
+                            <div class="flex items-center space-x-3">
+                                <svg class="w-6 h-6 text-green-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                                </svg>
+                                <span class="text-lg font-medium text-left text-white">Home & lock screen widgets</span>
+                            </div>
+                        </div>
+                        <div class="space-y-4">
+                            <div class="flex items-center space-x-3">
+                                <svg class="w-6 h-6 text-green-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                                </svg>
+                                <span class="text-lg font-medium text-left text-white">iMessage support</span>
+                            </div>
+                            <div class="flex items-center space-x-3">
+                                <svg class="w-6 h-6 text-green-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                                </svg>
+                                <span class="text-lg font-medium text-left text-white">Early access to new features</span>
+                            </div>
+                            <div class="flex items-center space-x-3">
+                                <svg class="w-6 h-6 text-green-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                                </svg>
+                                <span class="text-lg font-medium text-left text-white">Support indie development</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="border-t border-white/10 pt-8">
+                        <p class="text-white/60 mb-6">Choose monthly subscription or lifetime unlock</p>
+                        <a href="https://apps.apple.com/us/app/tunetransit/id6743822790" class="btn-primary px-12 py-4 rounded-full font-bold text-lg text-white shadow-2xl inline-flex items-center space-x-2">
+                            <span>Upgrade Now</span>
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+
+                <p class="text-white/60 text-sm">
+                    Free version includes 3 searches per day • Upgrade anytime in the app
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-32 bg-black relative overflow-hidden">
+        <div class="absolute inset-0">
+            <div class="absolute top-0 left-0 w-96 h-96 bg-purple-500/20 rounded-full filter blur-3xl"></div>
+            <div class="absolute bottom-0 right-0 w-96 h-96 bg-pink-500/20 rounded-full filter blur-3xl"></div>
+        </div>
+        
+        <div class="max-w-4xl mx-auto px-6 text-center relative z-10">
+            <div class="reveal">
+                <h2 class="text-4xl md:text-6xl font-black mb-6 text-shadow">
+                    Ready to Share Music
+                    <span class="block gradient-text">Your Way?</span>
+                </h2>
+                <p class="text-xl text-white mb-12 text-shadow">
+                    Download TuneTransit for free and start sharing music across all platforms today.
+                </p>
+                
+                <div class="flex flex-col sm:flex-row gap-6 justify-center items-center">
+                    <a href="https://apps.apple.com/us/app/tunetransit/id6743822790">
+                        <img src="images/appstorelogo.png" alt="Download on App Store" class="h-14 hover:scale-105 transition-transform duration-300">
+                    </a>
+                    <div>
+                        <div class="text-3xl font-bold gradient-text text-center">5.0★</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-black/50 border-t border-white/10 py-12">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="grid md:grid-cols-3 gap-12 mb-12">
+                <div>
+                    <div class="flex items-center space-x-3 mb-4">
+                        <img src="images/tt-logo.png" alt="TuneTransit" class="w-10 h-10 rounded-xl">
+                        <span class="text-xl font-bold">TuneTransit</span>
+                    </div>
+                    <p class="text-white/60">
+                        Your music, everywhere. The ultimate music sharing app for Spotify, Apple Music, Tidal & YouTube Music.
+                    </p>
+                </div>
+
+                <div>
+                    <h3 class="font-bold text-lg mb-4">Links</h3>
+                    <ul class="space-y-2 text-white/60">
+                        <li><a href="#features" class="hover:text-white transition-colors">Features</a></li>
+                        <li><a href="#premium" class="hover:text-white transition-colors">Premium</a></li>
+                        <li><a href="privacy.html" class="hover:text-white transition-colors">Privacy Policy</a></li>
+                        <li><a href="mailto:mail@tunetransit.app" class="hover:text-white transition-colors">Contact Support</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h3 class="font-bold text-lg mb-4">Connect</h3>
+                    <a href="https://instagram.com/tunetransit" target="_blank" class="inline-flex items-center space-x-2 text-white/60 hover:text-pink-400 transition-colors">
+                        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                        </svg>
+                        <span>@tunetransit</span>
                     </a>
                 </div>
             </div>
-            <p class="mt-8">&copy; 2025 Anthony Farino. All rights reserved.</p>
-            <p class="mt-1 text-xs opacity-70">Spotify is a trademark of Spotify AB. Apple Music is a trademark of Apple Inc. Tidal is a trademark of Tidal Music AS. YouTube Music is a trademark of Google LLC. Last.fm is a trademark of CBS Interactive. Instagram is a trademark of Instagram LLC. </p>
-            <p class="mt-2 text-xs opacity-80">Created with ❤️ in Chicago</p>
+
+            <div class="border-t border-white/10 pt-8 text-center text-white/60 text-sm">
+                <p>&copy; 2025 Anthony Farino. All rights reserved.</p>
+                <p class="mt-2 text-xs opacity-70">
+                    Spotify, Apple Music, Tidal, and YouTube Music are trademarks of their respective owners.
+                </p>
+                <p class="mt-2 text-xs opacity-80">Created with ❤️ in Chicago</p>
+            </div>
         </div>
-    </footer>
     </footer>
 
     <script>
-        // Simple Intersection Observer for reveal animations
-        const revealElements = document.querySelectorAll('.reveal');
+        // Intersection Observer for reveal animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
 
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                    // Optional: Unobserve after revealing to save resources
-                    // observer.unobserve(entry.target);
+                    entry.target.classList.add('active');
                 }
-                 // Optional: Remove 'visible' class if element scrolls out of view
-                 // else {
-                 //    entry.target.classList.remove('visible');
-                 // }
             });
-        }, {
-            threshold: 0.1 // Trigger when 10% of the element is visible
-        });
+        }, observerOptions);
 
-        revealElements.forEach(el => {
+        document.querySelectorAll('.reveal').forEach(el => {
             observer.observe(el);
         });
-    </script>
 
+        // Smooth scroll for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
 </body>
 </html>
