@@ -1,11 +1,35 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth antialiased">
+<html lang="en" class="scroll-smooth antialiased overflow-x-hidden">
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>TuneTransit — The Universal Music Link</title>
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <title>TuneTransit — Find Music Everywhere</title>
     <meta name="theme-color" content="#000000">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://tunetransit.app/">
+    <meta property="og:title" content="TuneTransit — Find Music Everywhere">
+    <meta property="og:description"
+        content="Share music seamlessly between Spotify, Apple Music, Tidal & YouTube Music.">
+    <meta property="og:image" content="https://tunetransit.app/images/tt-logo.png">
+
+    <!-- Twitter/X -->
+    <meta property="twitter:card" content="summary">
+    <meta property="twitter:url" content="https://tunetransit.app/">
+    <meta property="twitter:title" content="TuneTransit — Find Music Everywhere">
+    <meta property="twitter:description"
+        content="Share music seamlessly between Spotify, Apple Music, Tidal & YouTube Music.">
+    <meta property="twitter:image" content="https://tunetransit.app/images/tt-logo.png">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="images/favicon.ico">
+    <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="images/favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="images/apple-touch-icon.png">
+    <link rel="manifest" href="images/site.manifest">
 
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -147,14 +171,14 @@
     </style>
 </head>
 
-<body>
+<body class="overflow-x-hidden">
 
     <!-- NAV -->
     <nav class="fixed top-0 left-0 w-full z-50 transition-all duration-300 transform" id="navbar">
         <div class="max-w-7xl mx-auto px-6 py-6 flex justify-between items-center">
             <a href="#" class="flex items-center gap-3">
                 <img src="images/tt-logo.png" class="w-8 h-8 rounded-lg" alt="Logo">
-                <span class="font-display font-bold text-lg hidden sm:block">TuneTransit</span>
+                <span class="font-display font-bold text-lg">TuneTransit</span>
             </a>
             <a href="https://apps.apple.com/us/app/tunetransit/id6743822790"
                 class="bg-white text-black text-xs font-bold px-4 py-2 rounded-full hover:scale-105 transition-transform">
@@ -165,7 +189,7 @@
 
 
     <!-- HERO: THE HOOK -->
-    <section class="chapter-section text-center pt-48 lg:pt-56 pb-20">
+    <section class="chapter-section text-center pt-32 lg:pt-56 pb-20">
         <div class="aurora-spotlight bg-indigo-600 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 opacity-30"></div>
 
         <div class="relative z-10 max-w-5xl mx-auto mb-16">
@@ -186,11 +210,23 @@
         </div>
 
         <div class="reveal-device relative z-20">
-            <div class="iphone-frame">
+            <div class="iphone-frame relative group cursor-pointer" id="video-container">
                 <div class="iphone-island"></div>
-                <video autoplay loop muted playsinline class="iphone-screen">
+                <video autoplay muted playsinline class="iphone-screen" id="hero-video">
                     <source src="videos/tt-demo.mp4" type="video/mp4">
                 </video>
+                <!-- Replay Overlay -->
+                <div id="replay-overlay"
+                    class="absolute inset-0 z-20 flex items-center justify-center bg-black/40 backdrop-blur-sm opacity-0 pointer-events-none transition-opacity duration-500">
+                    <div
+                        class="bg-white/10 border border-white/20 rounded-full px-6 py-3 flex items-center gap-3 hover:scale-105 transition-transform">
+                        <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+                        </svg>
+                        <span class="font-bold text-sm">Replay Demo</span>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
@@ -245,7 +281,7 @@
         <div class="lg:w-1/2 flex justify-center lg:justify-end reveal-device relative z-10">
             <div class="iphone-frame">
 
-                <img src="images/find-results.png" class="iphone-screen" alt="Search Results UI">
+                <img src="images/find-results.png" class="iphone-screen" alt="Search Results UI" loading="lazy">
             </div>
         </div>
     </section>
@@ -274,7 +310,7 @@
             <div class="iphone-frame">
 
                 <!-- Note: Using Smart Link screenshot -->
-                <img src="images/smart-link.png" class="iphone-screen" alt="Smart Link UI">
+                <img src="images/smart-link.png" class="iphone-screen" alt="Smart Link UI" loading="lazy">
             </div>
         </div>
     </section>
@@ -299,7 +335,7 @@
             <div class="iphone-frame">
 
                 <!-- Note: Using Story Card screenshot as visual proxy for 'beautiful social' -->
-                <img src="images/story-card.png" class="iphone-screen" alt="Story Card UI">
+                <img src="images/story-card.png" class="iphone-screen" alt="Story Card UI" loading="lazy">
             </div>
         </div>
     </section>
@@ -577,6 +613,25 @@
                 nav.classList.remove('backdrop-blur-xl', 'bg-black/50');
             }
         });
+
+        // --- VIDEO REPLAY LOGIC ---
+        const video = document.getElementById('hero-video');
+        const container = document.getElementById('video-container');
+        const overlay = document.getElementById('replay-overlay');
+
+        if (video && overlay && container) {
+            // Show overlay when video ends
+            video.addEventListener('ended', () => {
+                overlay.classList.remove('opacity-0', 'pointer-events-none');
+            });
+
+            // Replay on click
+            container.addEventListener('click', () => {
+                video.currentTime = 0;
+                video.play();
+                overlay.classList.add('opacity-0', 'pointer-events-none');
+            });
+        }
     </script>
 </body>
 
