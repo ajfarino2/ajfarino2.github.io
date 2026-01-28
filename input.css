@@ -1,0 +1,10 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Custom Aurora Layers that rely on Tailwind */
+@layer components {
+    .aurora-spotlight {
+        @apply absolute w-[600px] h-[600px] rounded-full blur-[120px] pointer-events-none z-0 opacity-40;
+    }
+}

@@ -31,34 +31,7 @@
     <link rel="apple-touch-icon" sizes="180x180" href="images/apple-touch-icon.png">
     <link rel="manifest" href="images/site.manifest">
 
-    <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        aurora: {
-                            bg: '#000000',
-                            card: 'rgba(255, 255, 255, 0.04)',
-                            border: 'rgba(255, 255, 255, 0.08)',
-                            primary: '#8A2BE2',
-                            secondary: '#00F5D4',
-                            accent: '#FF00FF'
-                        }
-                    },
-                    fontFamily: {
-                        sans: ['Inter', 'sans-serif'],
-                        display: ['Inter Tight', 'sans-serif'],
-                    },
-                    fontSize: {
-                        '7xl': '5rem',
-                        '8xl': '7rem',
-                    }
-                }
-            }
-        }
-    </script>
+
 
     <!-- Fonts -->
     <link
@@ -169,6 +142,7 @@
             overflow: hidden;
         }
     </style>
+    <link href="styles.css" rel="stylesheet">
 </head>
 
 <body class="overflow-x-hidden">
@@ -212,7 +186,8 @@
         <div class="reveal-device relative z-20">
             <div class="iphone-frame relative group cursor-pointer" id="video-container">
                 <div class="iphone-island"></div>
-                <video autoplay muted playsinline class="iphone-screen" id="hero-video">
+                <video autoplay muted playsinline class="iphone-screen" id="hero-video" poster="videos/poster.jpg"
+                    preload="metadata">
                     <source src="videos/tt-demo.mp4" type="video/mp4">
                 </video>
                 <!-- Replay Overlay -->
