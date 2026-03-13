@@ -97,6 +97,7 @@
         .text-hero {
             background: linear-gradient(135deg, #FFF 0%, #a5b4fc 100%);
             -webkit-background-clip: text;
+            background-clip: text;
             -webkit-text-fill-color: transparent;
         }
 
@@ -172,13 +173,17 @@
                 <span class="text-hero">Everywhere.</span>
             </h1>
             <p class="reveal-text text-xl md:text-2xl text-white/60 max-w-2xl mx-auto mb-10 font-light">
-                Share music seamlessly between Spotify, Apple Music, Tidal & YouTube Music instantly.
+                Share music seamlessly between Spotify, Apple Music, Tidal & YouTube Music on iPhone, iPad, Mac, and Vision Pro.
             </p>
 
-            <div class="reveal-text">
+            <div class="reveal-text flex flex-wrap justify-center gap-4">
                 <a href="https://apps.apple.com/us/app/tunetransit/id6743822790"
-                    class="inline-block hover:opacity-80 transition-opacity">
+                    class="download-ios hover:opacity-80 transition-opacity">
                     <img src="images/appstorelogo.png" class="h-14 md:h-16 w-auto" alt="Download on the App Store">
+                </a>
+                <a href="https://apps.apple.com/us/app/tunetransit/id6743822790"
+                    class="download-mac hidden hover:opacity-80 transition-opacity">
+                    <img src="images/downloadOnMacAppStore.svg" class="h-14 md:h-16 w-auto" alt="Download on the Mac App Store">
                 </a>
             </div>
         </div>
@@ -321,7 +326,7 @@
         <div class="text-center mb-24 max-w-4xl mx-auto">
             <h2 class="reveal-text font-display font-bold text-5xl md:text-7xl mb-8">All Comes Together.</h2>
             <p class="reveal-text text-xl md:text-2xl text-white/60">
-                Widgets. iMessage. Now Playing. <br>The complete toolkit for music lovers.
+                Widgets. iMessage. Auto-Detect. <br>The complete toolkit for music lovers.
             </p>
         </div>
 
@@ -351,7 +356,7 @@
                 </div>
                 <h3 class="font-bold text-xl text-white mb-2">Universal Smart Links</h3>
                 <p class="text-white/60 leading-relaxed">Share a smart link that opens in your friend's preferred music
-                    app. Works on web, iOS, and Android.</p>
+                    app. Works on web, iOS, Mac, and Vision Pro.</p>
             </div>
 
             <!-- Now Playing Detection (Free) -->
@@ -363,9 +368,9 @@
                             d="M9 19V6l12-3v13M9 19c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zm12-3c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zM9 10l12-3" />
                     </svg>
                 </div>
-                <h3 class="font-bold text-xl text-white mb-2">Now Playing Detection</h3>
-                <p class="text-white/60 leading-relaxed">Automatically detect what's playing on Apple Music, Spotify, or
-                    Tidal and find it instantly.</p>
+                <h3 class="font-bold text-xl text-white mb-2">Smart Detection</h3>
+                <p class="text-white/60 leading-relaxed">Automatically detect what's playing (iOS/Vision Pro) or
+                    recently played (Mac) on Apple Music, Spotify, or Tidal.</p>
             </div>
 
             <!-- Story Cards (Premium) -->
@@ -422,8 +427,8 @@
                     <span
                         class="text-[10px] font-bold uppercase tracking-wider bg-yellow-400 text-black px-2 py-0.5 rounded-full">Premium</span>
                 </div>
-                <p class="text-white/60 leading-relaxed">Quick access to your currently playing song from your Home or
-                    Lock Screen.</p>
+                <p class="text-white/60 leading-relaxed">Quick access to your music from your Home or
+                    Lock Screen on iPhone, iPad, and Mac.</p>
             </div>
 
             <!-- iMessage Support (Premium) -->
@@ -439,7 +444,7 @@
                     <span
                         class="text-[10px] font-bold uppercase tracking-wider bg-yellow-400 text-black px-2 py-0.5 rounded-full">Premium</span>
                 </div>
-                <p class="text-white/60 leading-relaxed">Share music directly in Messages conversations. Send songs from
+                <p class="text-white/60 leading-relaxed">Share music directly in Messages on iPhone and iPad. Send songs from
                     any platform without leaving your chat.</p>
             </div>
 
@@ -506,10 +511,16 @@
         <div class="mt-32 text-center reveal-text">
             <p class="text-white/40 mb-8 uppercase tracking-widest font-bold text-sm">Free to Start
             </p>
-            <a href="https://apps.apple.com/us/app/tunetransit/id6743822790"
-                class="inline-block hover:scale-105 transition-transform duration-300">
-                <img src="images/appstorelogo.png" class="h-16" alt="Download on the App Store">
-            </a>
+            <div class="flex flex-wrap justify-center gap-4">
+                <a href="https://apps.apple.com/us/app/tunetransit/id6743822790"
+                    class="download-ios hover:scale-105 transition-transform duration-300">
+                    <img src="images/appstorelogo.png" class="h-16" alt="Download on the App Store">
+                </a>
+                <a href="https://apps.apple.com/us/app/tunetransit/id6743822790"
+                    class="download-mac hidden hover:scale-105 transition-transform duration-300">
+                    <img src="images/downloadOnMacAppStore.svg" class="h-16" alt="Download on the Mac App Store">
+                </a>
+            </div>
         </div>
     </section>
 
@@ -606,6 +617,13 @@
                 video.play();
                 overlay.classList.add('opacity-0', 'pointer-events-none');
             });
+        }
+
+        // --- PLATFORM DETECTION ---
+        const isMac = navigator.platform.toUpperCase().indexOf('MAC') >= 0 || (navigator.userAgent.includes('Macintosh') && 'ontouchend' in document);
+        if (isMac) {
+            document.querySelectorAll('.download-ios').forEach(el => el.classList.add('hidden'));
+            document.querySelectorAll('.download-mac').forEach(el => el.classList.remove('hidden'));
         }
     </script>
 </body>
