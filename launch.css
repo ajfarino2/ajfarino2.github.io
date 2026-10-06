@@ -50,3 +50,5 @@ html body .liner :is(a, button).liner-side-b { display: inline-block !important;
 .noscript-note { margin: 0; padding: 14px 22px; background: #f3efe4; color: #23241f; font: 500 15px/1.5 var(--app-font, -apple-system, system-ui, sans-serif); position: relative; z-index: 100; }
 .noscript-note a { color: inherit; }
 .not-found { min-height: 56svh; }
+.not-found-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 18px 28px; margin-top: 28px; }
+.not-found-actions > * { margin: 0 !important; }
