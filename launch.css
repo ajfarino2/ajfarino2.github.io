@@ -70,3 +70,7 @@ html[data-site-theme=dark] .track-player::backdrop { background: #11171d; }
 /* Safari tints the area around its toolbar with the page background, so the page takes the feature pages' colour while they're open. */
 body.modal-open { background: #eeeade; }
 html[data-site-theme=dark] body.modal-open { background: #11171d; }
+@media (max-width: 700px) {
+  /* The dock sits just above the browser toolbar on phones; a tight shadow keeps a dark glow from pooling there. */
+  .track-player[open] .transport { box-shadow: 0 2px 8px rgba(0, 0, 0, .14) !important; }
+}
