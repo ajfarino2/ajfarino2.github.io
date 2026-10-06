@@ -799,7 +799,13 @@ html[data-site-theme=dark] .transport>div button[aria-current=true] {
  .track-player .native-display figcaption,.track-player .screen-label{flex-shrink:0}
 
  .last-page[hidden],.track-player .last-page[hidden],.track-player[open] .last-page[hidden]{display:none!important}
- .track-player[open] .last-page:not([hidden]){position:absolute!important;inset:0!important;width:min(1200px,92%)!important;margin:0 auto!important;height:100%!important;padding:76px 0 96px!important;display:grid!important;grid-template-columns:minmax(320px,420px) minmax(0,1fr)!important;gap:48px!important;align-items:start!important;overflow-y:auto!important;box-sizing:border-box!important}
+ /* Keep the scrollbar at the window edge and center the content with padding. */
+ .track-player[open] .last-page:not([hidden]){
+  position:absolute!important;inset:0!important;width:100%!important;margin:0!important;height:100%!important;
+  padding:76px max(4%,calc((100% - 1200px)/2)) 96px!important;
+  display:grid!important;grid-template-columns:minmax(320px,420px) minmax(0,1fr)!important;gap:48px!important;
+  align-items:start!important;overflow-y:auto!important;box-sizing:border-box!important;
+ }
  .track-player.zoomed .player-layout{overflow:auto;display:block}
  .track-player.zoomed .native-display{height:auto;max-height:none;margin:auto}
  .track-player.zoomed .native-display>button,.track-player.zoomed .native-display img{height:auto;max-height:none;width:100%}
