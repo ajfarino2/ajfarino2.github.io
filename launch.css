@@ -52,3 +52,18 @@ html body .liner :is(a, button).liner-side-b { display: inline-block !important;
 .not-found { min-height: 56svh; }
 .not-found-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 18px 28px; margin-top: 28px; }
 .not-found-actions > * { margin: 0 !important; }
+
+@media (max-width: 700px) {
+  /* The tour fills the visible screen, so nothing bare shows under the footer when the browser toolbar collapses. */
+  body.has-layers { display: flex; flex-direction: column; min-height: 100svh; min-height: 100dvh; }
+  body.has-layers > .desk { flex: 1 0 auto; }
+  body.has-layers:not([data-stage=out]) > .desk { height: calc(100svh - 116px); }
+  /* Premium and Privacy follow the device appearance on phones, like the tour. */
+  .premium-header :is(.website-appearance, [data-theme-toggle]) { display: none !important; }
+}
+
+/* Feature pages stretch to every edge of the screen instead of a fixed viewport height, so no strip is left
+   uncovered under them when the phone's browser toolbar collapses. The backdrop matches the page in case one is. */
+.track-player[open] { height: auto !important; max-height: none !important; }
+.track-player::backdrop { background: #eeeade; backdrop-filter: none; -webkit-backdrop-filter: none; }
+html[data-site-theme=dark] .track-player::backdrop { background: #11171d; }
