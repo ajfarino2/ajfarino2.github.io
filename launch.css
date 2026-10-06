@@ -67,3 +67,6 @@ html body .liner :is(a, button).liner-side-b { display: inline-block !important;
 .track-player[open] { height: auto !important; max-height: none !important; }
 .track-player::backdrop { background: #eeeade; backdrop-filter: none; -webkit-backdrop-filter: none; }
 html[data-site-theme=dark] .track-player::backdrop { background: #11171d; }
+/* Safari tints the area around its toolbar with the page background, so the page takes the feature pages' colour while they're open. */
+body.modal-open { background: #eeeade; }
+html[data-site-theme=dark] body.modal-open { background: #11171d; }
