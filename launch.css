@@ -74,3 +74,46 @@ html[data-site-theme=dark] body.modal-open { background: #11171d; }
   /* The dock sits just above the browser toolbar on phones; a tight shadow keeps a dark glow from pooling there. */
   .track-player[open] .transport { box-shadow: 0 2px 8px rgba(0, 0, 0, .14) !important; }
 }
+
+/* Press kit. */
+.press-inline { color: var(--gold); text-decoration: underline; text-underline-offset: 3px; }
+.press-facts { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0 40px; margin-bottom: 30px !important; }
+.premium-includes .press-facts > div { display: block; padding: 18px 0; }
+.press-facts dt { font-size: 13px; letter-spacing: 0; color: var(--secondary); margin-bottom: 6px; }
+.press-facts dd { font-size: 17px; line-height: 1.45; color: var(--print); overflow-wrap: anywhere; }
+.press-downloads { padding: 65px 0; border-bottom: 1px solid var(--rule); }
+.press-downloads > .press-note, .press-contact > p:not(.overline) { font-size: 17px; line-height: 1.6; color: var(--secondary); max-width: 640px; }
+.press-assets { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px; margin-top: 34px; }
+.press-asset { display: flex; flex-direction: column; align-items: flex-start; gap: 12px; padding: 20px; border: 1px solid var(--rule); border-radius: 24px; min-width: 0; }
+.press-asset > img { display: block; width: 100%; height: auto; border-radius: 14px; background: #0b0d10; }
+.press-asset h3 { font-size: 23px; letter-spacing: -.02em; margin: 6px 0 0; }
+.press-asset p { font-size: 15px; line-height: 1.55; color: var(--secondary); margin: 0; }
+.press-asset .press-meta { font-size: 13px; }
+.press-asset .neutral-button { margin-top: auto; }
+.press-wide, .press-icon { grid-column: 1 / -1; }
+.press-icon { flex-direction: row; align-items: center; gap: 24px; }
+.press-icon > img { width: 112px; flex: none; border-radius: 25px; }
+.press-icon > div { display: flex; flex-direction: column; align-items: flex-start; gap: 10px; }
+.press-icon p:last-child { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 20px; }
+.press-cards { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 14px; width: 100%; margin: 6px 0; }
+.press-cards a { display: flex; flex-direction: column; gap: 8px; font-size: 13px; text-align: center; color: var(--secondary); }
+.press-cards img { display: block; width: 100%; height: auto; aspect-ratio: 9 / 16; object-fit: cover; border-radius: 12px; box-shadow: 0 0 0 1px var(--rule); }
+.press-cards a:hover { color: var(--print); }
+.press-contact { border-bottom: 0; }
+/* Home footer links sit together on the right. */
+.desk-footer-links { display: flex; justify-content: flex-end; gap: 25px; min-width: 150px; }
+@media (max-width: 700px) {
+  .press-facts { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0 20px; }
+  .press-facts dd { font-size: 15px; }
+  .press-downloads { padding: 40px 0; }
+  .press-downloads > .press-note, .press-contact > p:not(.overline) { font-size: 16px; }
+  .press-assets { grid-template-columns: minmax(0, 1fr); gap: 18px; }
+  .press-asset { padding: 16px; border-radius: 20px; }
+  .press-icon > img { width: 84px; border-radius: 19px; }
+  .press-icon { gap: 16px; }
+  .press-cards { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
+  .desk-footer-links { gap: 22px; min-width: 0; }
+  /* Footers with a Press link keep their text links on one row. */
+  .premium-footer { column-gap: 14px; }
+}
+@media (max-width: 380px) { .premium-footer .neutral-button { padding-inline: 13px; } }
