@@ -1,12 +1,377 @@
 <!doctype html>
-<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>TuneTransit — Your song. Their music app.</title><meta name="description" content="Share songs across music apps, keep your recommendations, discover music, and make personal mixtapes with TuneTransit."><meta name="theme-color" content="#0b0d10"><meta property="og:title" content="TuneTransit — Your song. Their music app."><meta property="og:description" content="Share a song they can open in their own music app."><meta property="og:type" content="website"><meta property="og:url" content="https://tunetransit.app/"><meta property="og:image" content="https://tunetransit.app/assets/og.jpg"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:image" content="https://tunetransit.app/assets/og.jpg"><link rel="canonical" href="https://tunetransit.app/"><meta name="apple-itunes-app" content="app-id=6743822790"><link rel="icon" href="favicon.ico?v=2" sizes="32x32"><link rel="icon" href="assets/t-badge.svg" type="image/svg+xml"><link rel="manifest" href="site.webmanifest"><link rel="apple-touch-icon" href="assets/app-icon.png"><link rel="preload" as="image" href="assets/opening/cassette.webp"><script src="site-theme.js?v=27"></script><link rel="stylesheet" href="experience.css"><link rel="stylesheet" href="site-theme.css"><link rel="stylesheet" href="app-controls.css?v=28"><link rel="stylesheet" href="launch.css?v=32"><script src="experience.js?v=28" defer></script></head>
-<body data-stage="sealed" class="has-layers"><a class="skip-link" href="#mixtape">Skip to TuneTransit</a><noscript><p class="noscript-note">TuneTransit shares songs across Apple Music, Spotify, TIDAL, and YouTube Music. <a href="https://apps.apple.com/us/app/tunetransit/id6743822790">Get it on the App Store</a> · <a href="premium.html">Premium</a> · <a href="privacy.html">Privacy</a></p></noscript>
-<header class="site-header"><a class="wordmark" href="index.html" aria-label="TuneTransit home"><img src="assets/t-badge.svg" width="28" height="28" alt=""><span>TuneTransit</span></a><div class="header-actions"><a class="premium-nav premium-mini" href="premium.html" aria-label="TuneTransit Premium"><img src="assets/t-badge.svg" width="22" height="22" alt=""><span>Premium</span></a><button id="about-button">The small print</button><a class="download-link" href="https://apps.apple.com/us/app/tunetransit/id6743822790">Get the app</a></div></header>
-<main id="mixtape" class="desk"><div class="intro"><p class="overline">Music worth sharing.</p><h1>Your song.<br><em>Their app.</em></h1><p class="intro-note">Send a song they can open on Apple Music, Spotify, TIDAL, or YouTube Music.</p></div>
-<div class="object-area"><div class="object-tilt"><div class="case-object" id="case-object"><img class="case-tray" src="assets/opening/case-tray.webp" alt="" width="1586" height="992"><button class="tape-object" id="tape-object" aria-label="Open the mixtape case"><img src="assets/opening/cassette.webp" width="1572" height="1001" draggable="false" alt="Smoked-black cassette with a handwritten for you label and a strip of pink tape"></button><div class="case-lid" aria-hidden="true"><img src="assets/opening/case-lid.webp" width="1586" height="992" alt=""></div></div></div><span class="object-caption">One good song can say a lot.</span></div>
-<aside class="liner" id="liner" aria-label="Explore TuneTransit" hidden><p class="liner-kicker">Meet TuneTransit</p><h2>Good music.<br>More ways to share it.</h2><p class="liner-note">Send a song, keep a recommendation, or make something personal.</p><ol class="track-list"><li><button data-track="0"><span>01</span><strong>Share across music apps</strong><small>One link. Their choice of service.</small></button></li><li><button data-track="1"><span>02</span><strong>Find a song to send</strong><small>Search, paste a link, or capture.</small></button></li><li><button data-track="2"><span>03</span><strong>Keep your recommendations</strong><small>Sent songs, received songs, replies.</small></button></li><li><button data-track="3"><span>04</span><strong>Discover something new</strong><small>See what other listeners share.</small></button></li><li><button data-track="4"><span>05</span><strong>Make it personal</strong><small>Mixtapes with your own note.</small></button></li><li><button data-track="5"><span>06</span><strong>Share to your story</strong><small>Five Story Card designs · Premium</small></button></li></ol><p class="liner-signature">Start with a song you love.</p><a class="liner-side-b" href="premium.html">Explore TuneTransit Premium →</a><button class="liner-side-b" data-track="6">Get the app ↗</button><button class="liner-start" id="liner-start" data-track="0">Explore the app</button></aside>
-<div class="stage-controls"><p class="step-count" id="step-count">A little something for you</p><button class="open-button" id="open-button"><span id="open-label">Open the case</span><span class="button-dot" aria-hidden="true"></span></button><button class="tour-shortcut" data-track="0">Or see what TuneTransit does →</button><p class="gesture-note" id="gesture-note">Open it to explore TuneTransit.</p><p class="sr-only" id="stage-status" role="status" aria-live="polite"></p></div>
-</main><footer class="desk-footer"><div><button id="reset-button" hidden>Put it back</button><button id="sound-button" aria-pressed="false">Sound off</button></div><span>Music is better between people.</span><nav class="desk-footer-links" aria-label="Site"><a href="privacy.html">Privacy</a><a href="press.html">Press</a></nav></footer>
-<dialog class="track-player" id="track-player" tabindex="-1" aria-labelledby="track-title"><div class="player-top"><a class="player-get-app" href="https://apps.apple.com/us/app/tunetransit/id6743822790">Get TuneTransit ↗</a><span id="player-count">Track 1 of 6</span><button data-theme-toggle>Dark mode</button><button id="close-player">Guide</button></div><div class="booklet-ribbon" aria-hidden="true"><span id="ribbon-title">FIND</span><span></span></div><div class="player-layout"><section class="player-copy"><p class="chapter-number" id="chapter-number" aria-hidden="true">01</p><p class="overline" id="track-category">Search</p><h2 id="track-title">You know<br>the one.</h2><p class="track-description" id="track-description">Search a name. Paste a link. Capture what’s playing. Start with the song.</p><p class="feature-access" id="feature-access"></p><div class="appearance" id="appearance" role="group" aria-label="App screen appearance"><span>App screen</span><button data-appearance="dark" aria-pressed="true">Dark</button><button data-appearance="light" aria-pressed="false">Light</button></div><div class="story-choices" id="story-choices" role="group" aria-label="Story Card design" hidden><button data-design="subway" aria-pressed="true">Subway</button><button data-design="paper" aria-pressed="false">The Paper</button><button data-design="pulse" aria-pressed="false">Pulse</button><button data-design="sunset" aria-pressed="false">Sunset Club</button><button data-design="noir" aria-pressed="false">After Dark</button></div></section><figure class="native-display"><span class="screen-label" id="screen-label">Search</span><button id="zoom-screen" aria-label="Enlarge app screen" aria-pressed="false"><img id="native-image" src="assets/native/native-search-dark.jpg" width="1320" height="2868" alt="TuneTransit’s Search screen"></button><figcaption id="native-caption">TuneTransit 3.0 · example music · click to enlarge</figcaption></figure></div><section class="last-page" id="last-page" aria-labelledby="last-title" hidden><div class="last-letter"><p class="overline">Ready to share?</p><h2 id="last-title">Send the song.<br>Keep the connection.</h2><p>Start with a song. TuneTransit helps it reach the people you want to hear it.</p><a class="end-download" href="https://apps.apple.com/us/app/tunetransit/id6743822790"><img src="assets/app-icon.png" width="56" height="56" alt=""><span>Get TuneTransit<small>Download on the App Store ↗</small></span></a><p class="end-platforms">iPhone · iPad · Mac · Apple Vision Pro</p><p class="end-signature">Thanks for listening.</p></div><div class="release-notes"><p class="overline">Before you press send</p><details open><summary>Do they need the app?</summary><p>No. A Smart Link opens in their browser so they can choose a music service. They don’t need TuneTransit to listen.</p></details><details><summary>Which music services?</summary><p>Apple Music, Spotify, TIDAL, and YouTube Music. Availability of a song can vary between catalogs.</p></details><details><summary>What does it cost?</summary><p>Free includes 3 song/album searches per day and new mixtapes with up to 5 songs. Premium adds unlimited searches, mixtape designs, Story Cards, and more. <a href="premium.html">Compare Free and Premium →</a></p></details><details><summary>Are these the actual app screens?</summary><p>Yes. These are native renders from TuneTransit 3.0, using example songs and activity. The Story Cards are exported directly from the app.</p></details><div class="end-links"><a href="premium.html">Explore Premium →</a><a href="mailto:mail@tunetransit.app">Say hello ↗</a><a href="https://instagram.com/tunetransit">Instagram ↗</a><a href="privacy.html">Privacy</a></div></div></section><nav class="transport" aria-label="TuneTransit features"><button id="previous-track" class="neutral-button">Previous</button><div id="track-buttons"><button data-track="0" aria-label="Feature 1: Share across music apps">01</button><button data-track="1" aria-label="Feature 2: Find a song to send">02</button><button data-track="2" aria-label="Feature 3: Keep your recommendations">03</button><button data-track="3" aria-label="Feature 4: Discover something new">04</button><button data-track="4" aria-label="Feature 5: Make it personal">05</button><button data-track="5" aria-label="Feature 6: Share to your story">06</button><button data-track="6" aria-label="Get TuneTransit">↗</button></div><button id="next-track">Next feature</button></nav></dialog>
-<dialog class="about-dialog" id="about-dialog" aria-labelledby="about-title"><button id="close-about" class="close-about" autofocus>Close</button><p class="overline">The small print</p><h2 id="about-title">Different apps.<br>Same good music.</h2><p>TuneTransit connects songs across Apple Music, Spotify, TIDAL, and YouTube Music. Find a song, share a Smart Link, or put together a mixtape for someone.</p><details><summary>Does my friend need TuneTransit?</summary><p>They can open your Smart Link in a browser and choose their music service without installing the app.</p></details><details><summary>Where can I use it?</summary><p>On iPhone, iPad, Mac, and Apple Vision Pro. Smart Links open on other devices too.</p></details><details><summary>Is it free?</summary><p>TuneTransit is free to download, with optional Premium purchases. See current features and prices in the app.</p></details><details><summary>What am I seeing here?</summary><p>The screens come directly from TuneTransit’s iOS app. Songs, artwork, and sharing activity are examples. Story Cards are exports from the app.</p></details><a class="open-button" href="https://apps.apple.com/us/app/tunetransit/id6743822790">Get TuneTransit</a><div class="about-links"><a href="privacy.html">Privacy policy</a><a href="mailto:mail@tunetransit.app">Contact</a><a href="https://instagram.com/tunetransit">Instagram</a></div></dialog>
-</body></html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>TuneTransit — Your song. Their music app.</title>
+<meta name="description" content="Share a song once and your friend opens it in Apple Music, Spotify, TIDAL, or YouTube Music. They don’t need the app. Keep track of what you send, make mixtapes, and see what everyone’s sharing.">
+<meta name="theme-color" content="#11161C">
+<meta property="og:title" content="TuneTransit — Your song. Their music app.">
+<meta property="og:description" content="Share a song they can open in their own music app.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://tunetransit.app/">
+<meta property="og:image" content="https://tunetransit.app/assets/og.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://tunetransit.app/assets/og.jpg">
+<link rel="canonical" href="https://tunetransit.app/">
+<meta name="apple-itunes-app" content="app-id=6743822790">
+<link rel="icon" href="favicon.ico?v=2" sizes="32x32">
+<link rel="icon" href="assets/t-badge.svg" type="image/svg+xml">
+<link rel="manifest" href="site.webmanifest">
+<link rel="apple-touch-icon" href="assets/app-icon.png">
+<link rel="stylesheet" href="site.css?v=1">
+<link rel="stylesheet" href="home.css?v=4">
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <symbol id="tt-badge" viewBox="147 147 730 730"><circle cx="512" cy="512" r="365" fill="#E8177D"/><path d="M279 304H745V408H565V754H459V408H279Z" fill="#FFFFFF"/></symbol>
+  <symbol id="i-spotify" viewBox="0 0 168 168"><path d="M84 0C37.6 0 0 37.6 0 84s37.6 84 84 84 84-37.6 84-84S130.4 0 84 0zm38.5 121.2c-1.5 2.5-4.7 3.2-7.1 1.7-19.5-11.9-44-14.6-72.9-8-2.8.6-5.6-1.1-6.2-3.9-.6-2.8 1.1-5.6 3.9-6.2 31.6-7.2 58.7-4.1 80.6 9.3 2.5 1.5 3.2 4.7 1.7 7.1zm10.3-22.9c-1.9 3-5.9 4-8.9 2.1-22.3-13.7-56.3-17.7-82.7-9.7-3.3 1-6.8-.9-7.8-4.2-1-3.3.9-6.8 4.2-7.8 30.1-9.1 67.5-4.7 93 11.1 3 1.9 4 5.9 2.2 8.5zm.9-23.8c-26.8-15.9-71-17.4-96.6-9.6-4.1 1.3-8.4-1.1-9.6-5.2-1.3-4.1 1.1-8.4 5.2-9.6 29.4-8.9 78.3-7.2 109.2 11.1 3.7 2.2 4.9 6.9 2.7 10.6-2.2 3.7-6.9 4.9-10.6 2.7h-.3z"/></symbol>
+  <symbol id="i-apple" viewBox="0 0 24 24"><path d="M23.994 6.124a9.23 9.23 0 00-.24-2.19c-.317-1.31-1.062-2.31-2.18-3.043a5.022 5.022 0 00-1.877-.726 10.496 10.496 0 00-1.564-.15c-.04-.003-.083-.01-.124-.013H5.986c-.152.01-.303.017-.455.026-.747.043-1.49.123-2.193.4-1.336.53-2.3 1.452-2.865 2.78-.192.448-.292.925-.363 1.408-.056.392-.088.785-.1 1.18 0 .032-.007.062-.01.093v12.223c.01.14.017.283.027.424.05.815.154 1.624.497 2.373.65 1.42 1.738 2.353 3.234 2.801.42.127.856.187 1.293.228.555.053 1.11.06 1.667.06h11.03a12.5 12.5 0 001.57-.1c.822-.106 1.596-.35 2.295-.81a5.046 5.046 0 001.88-2.207c.186-.42.293-.87.37-1.324.113-.675.138-1.358.137-2.04-.002-3.8 0-7.595-.003-11.393zm-6.423 3.99v5.712c0 .417-.058.827-.244 1.206-.29.59-.76.962-1.388 1.14-.35.1-.706.157-1.07.173-.95.045-1.773-.6-1.943-1.536a1.88 1.88 0 011.038-2.022c.323-.16.67-.25 1.018-.324.378-.082.758-.153 1.134-.24.274-.063.457-.23.51-.516a.904.904 0 00.02-.193c0-1.815 0-3.63-.002-5.443a.725.725 0 00-.026-.185c-.04-.15-.15-.243-.304-.234-.16.01-.318.035-.475.066-.76.15-1.52.303-2.28.456l-2.325.47-1.374.278c-.016.003-.032.01-.048.013-.277.077-.377.203-.39.49-.002.042 0 .086 0 .13-.002 2.602 0 5.204-.003 7.805 0 .42-.047.836-.215 1.227-.278.64-.77 1.04-1.434 1.233-.35.1-.71.16-1.075.172-.96.036-1.755-.6-1.92-1.544-.14-.812.23-1.685 1.154-2.075.357-.15.73-.232 1.108-.31.287-.06.575-.116.86-.177.383-.083.583-.323.6-.714v-.15c0-2.96 0-5.922.002-8.882 0-.123.013-.25.042-.37.07-.285.273-.448.546-.518.255-.066.515-.112.774-.165.733-.15 1.466-.296 2.2-.444l2.27-.46c.67-.134 1.34-.27 2.01-.403.22-.043.442-.088.663-.106.31-.025.523.17.554.482.008.073.012.148.012.223.002 1.91.002 3.822 0 5.732z"/></symbol>
+  <symbol id="i-tidal" viewBox="4 3.5 24 24"><path d="M8 8l3.5 3.5L8 15l-3.5-3.5L8 8zM16 8l3.5 3.5L16 15l-3.5-3.5L16 8zM24 8l3.5 3.5L24 15l-3.5-3.5L24 8zM16 16l3.5 3.5L16 23l-3.5-3.5L16 16z"/></symbol>
+  <symbol id="i-youtube" viewBox="0 0 24 24"><path d="M12 0C5.376 0 0 5.376 0 12s5.376 12 12 12 12-5.376 12-12S18.624 0 12 0zm0 19.104c-3.924 0-7.104-3.18-7.104-7.104S8.076 4.896 12 4.896s7.104 3.18 7.104 7.104-3.18 7.104-7.104 7.104zm0-13.332c-3.432 0-6.228 2.796-6.228 6.228S8.568 18.228 12 18.228s6.228-2.796 6.228-6.228S15.432 5.772 12 5.772zM9.684 15.54V8.46L15.816 12l-6.132 3.54z"/></symbol>
+</svg>
+<a class="skip-link" href="#main">Skip to content</a>
+
+<header class="site-header">
+  <div class="header-inner wrap">
+    <a class="wordmark" href="./" aria-label="TuneTransit home"><svg aria-hidden="true"><use href="#tt-badge"/></svg>TuneTransit</a>
+    <nav class="site-nav" aria-label="Site">
+      <a class="nav-link" href="#how">How it works</a>
+      <a class="nav-link" href="#mixtapes">Mixtapes</a>
+      <a class="nav-link" href="#premium">Premium</a>
+      <a class="nav-link" href="#faq">FAQ</a>
+      <a class="pill pill-pink" href="https://apps.apple.com/us/app/tunetransit/id6743822790">GET THE APP</a>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+  <section class="hero wrap" aria-labelledby="hero-title">
+    <div class="hero-copy">
+      <p class="eyebrow">MUSIC SHARING FOR EVERY APP</p>
+      <h1 id="hero-title">Your song.<br><span>Their music app.</span></h1>
+      <p class="lede">You’re on Apple Music. They’re on Spotify. Send one TuneTransit link and the song opens in whichever app they use, with nothing for them to download.</p>
+      <div class="actions">
+        <a class="pill pill-pink" href="https://apps.apple.com/us/app/tunetransit/id6743822790">GET IT FREE</a>
+        <a class="pill pill-teal" href="#how">SEE HOW IT WORKS</a>
+      </div>
+      <p class="platforms">Free on iPhone, iPad, Mac, and Apple Vision Pro</p>
+    </div>
+    <div class="route-map">
+      <div class="map-frame">
+        <svg viewBox="0 0 640 600" role="img" aria-label="One song leaving the TuneTransit badge on four lines, to Spotify, Apple Music, TIDAL, and YouTube Music">
+          <defs>
+            <linearGradient id="apple-fill" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#FA245B"/><stop offset="1" stop-color="#FC3C44"/></linearGradient>
+          </defs>
+          <g fill="none" stroke-width="12" stroke-linecap="round" stroke-linejoin="round">
+            <path class="route" id="route-a" pathLength="1" d="M302 540 V490 L262 450 H100 V150" stroke="#6366F1"/>
+            <path class="route" id="route-b" pathLength="1" d="M314 540 V410 L274 370 H240 V110" stroke="#09B5D1"/>
+            <path class="route" id="route-c" pathLength="1" d="M326 540 V410 L366 370 H400 V110" stroke="#FFB800"/>
+            <path class="route" id="route-d" pathLength="1" d="M338 540 V490 L378 450 H540 V150" stroke="#10B981"/>
+          </g>
+          <g class="pulses" fill="#F5F7FA">
+            <circle r="7" opacity="0"><set attributeName="opacity" to="1" begin="1.7s"/><animateMotion dur="3s" begin="1.7s" repeatCount="indefinite"><mpath href="#route-a"/></animateMotion></circle>
+            <circle r="7" opacity="0"><set attributeName="opacity" to="1" begin="2.45s"/><animateMotion dur="3s" begin="2.45s" repeatCount="indefinite"><mpath href="#route-b"/></animateMotion></circle>
+            <circle r="7" opacity="0"><set attributeName="opacity" to="1" begin="3.2s"/><animateMotion dur="3s" begin="3.2s" repeatCount="indefinite"><mpath href="#route-c"/></animateMotion></circle>
+            <circle r="7" opacity="0"><set attributeName="opacity" to="1" begin="3.95s"/><animateMotion dur="3s" begin="3.95s" repeatCount="indefinite"><mpath href="#route-d"/></animateMotion></circle>
+          </g>
+          <g fill="#F5F7FA" font-size="18" font-weight="700" text-anchor="middle">
+            <g class="station station-1"><circle cx="100" cy="150" r="31" fill="#1DB954" stroke="#6366F1" stroke-width="6"/><use href="#i-spotify" x="85" y="135" width="30" height="30" fill="#FFFFFF"/><text x="100" y="96">Spotify</text></g>
+            <g class="station station-2"><circle cx="240" cy="110" r="31" fill="url(#apple-fill)" stroke="#09B5D1" stroke-width="6"/><use href="#i-apple" x="226" y="96" width="28" height="28" fill="#FFFFFF"/><text x="240" y="56">Apple Music</text></g>
+            <g class="station station-3"><circle cx="400" cy="110" r="31" fill="#000000" stroke="#FFB800" stroke-width="6"/><use href="#i-tidal" x="385" y="95" width="30" height="30" fill="#FFFFFF"/><text x="400" y="56">TIDAL</text></g>
+            <g class="station station-4"><circle cx="540" cy="150" r="31" fill="#FF0000" stroke="#10B981" stroke-width="6"/><use href="#i-youtube" x="525" y="135" width="30" height="30" fill="#FFFFFF"/><text x="540" y="96">YouTube Music</text></g>
+          </g>
+          <circle cx="320" cy="540" r="42" fill="#11161C"/>
+          <use href="#tt-badge" x="285" y="505" width="70" height="70"/>
+        </svg>
+        <div class="map-card map-card-out" aria-hidden="true">
+          <img src="assets/home/blue-hour.jpg" width="480" height="480" alt="">
+          <span><b class="map-card-label">NOW DEPARTING</b>Blue Hour<i>Northbound</i></span>
+        </div>
+        <div class="map-card map-card-in" aria-hidden="true">
+          <span class="map-card-check">✓</span>
+          <span><b class="map-card-label">ARRIVED</b>Sam opened it<i>in Spotify</i></span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="board" aria-labelledby="board-title">
+    <div class="wrap">
+      <div class="board-head">
+        <h2 id="board-title">Whatever you use.<br>Whatever they use.</h2>
+        <p>Any of the four apps to any of the four apps. The song you picked is the song they hear, down to the exact recording.</p>
+      </div>
+      <div class="board-panel">
+        <div class="board-top">
+          <span class="board-name">DEPARTURES</span>
+          <span class="board-note">EXAMPLE SONGS</span>
+        </div>
+        <div class="board-row board-labels" aria-hidden="true"><span class="b-time">TIME</span><span class="b-song">SONG</span><span class="b-from">FROM</span><span class="b-to">TO</span><span class="b-status">STATUS</span></div>
+        <ol class="board-rows">
+          <li class="board-row"><span class="b-time">9:41</span><span class="b-song">BLUE HOUR <i>NORTHBOUND</i></span><span class="b-from"><span class="visually-hidden">from </span>APPLE MUSIC</span><span class="b-to"><span class="visually-hidden">to </span><span class="flap" data-flap>SPOTIFY</span></span><span class="b-status"><span class="flap opened" data-flap>OPENED</span></span></li>
+          <li class="board-row"><span class="b-time">9:58</span><span class="b-song">AFTERGLOW <i>JUNIPER VALE</i></span><span class="b-from"><span class="visually-hidden">from </span>SPOTIFY</span><span class="b-to"><span class="visually-hidden">to </span><span class="flap" data-flap>APPLE MUSIC</span></span><span class="b-status"><span class="flap opened" data-flap>OPENED</span></span></li>
+          <li class="board-row"><span class="b-time">10:12</span><span class="b-song">STAY A LITTLE <i>THE DAYBREAKS</i></span><span class="b-from"><span class="visually-hidden">from </span>YOUTUBE MUSIC</span><span class="b-to"><span class="visually-hidden">to </span><span class="flap" data-flap>TIDAL</span></span><span class="b-status"><span class="flap opened" data-flap>OPENED</span></span></li>
+          <li class="board-row"><span class="b-time">10:30</span><span class="b-song">NIGHT BUS <i>KITE SEASON</i></span><span class="b-from"><span class="visually-hidden">from </span>TIDAL</span><span class="b-to"><span class="visually-hidden">to </span><span class="flap" data-flap>YOUTUBE MUSIC</span></span><span class="b-status"><span class="flap boarding" data-flap data-boarding>BOARDING</span></span></li>
+        </ol>
+      </div>
+    </div>
+  </section>
+
+  <section class="chats wrap" aria-labelledby="chats-title">
+    <div class="section-head">
+      <h2 id="chats-title">Every group chat has someone on a different app.</h2>
+      <p>A regular link only plays for people who use the same service you do. A TuneTransit link plays for everyone.</p>
+    </div>
+    <div class="chat-pair">
+      <figure class="chat chat-before">
+        <figcaption class="chat-label">A REGULAR LINK</figcaption>
+        <div class="bubbles">
+          <p class="bubble out bubble-url">open.spotify.com/track/4dV…</p>
+          <p class="bubble out">this one is so you</p>
+          <p class="bubble in">I don’t have Spotify 😭</p>
+          <p class="bubble in">what’s it called?</p>
+        </div>
+        <p class="chat-status status-lost">✕ LOST IN TRANSIT</p>
+      </figure>
+      <figure class="chat chat-after">
+        <figcaption class="chat-label">A TUNETRANSIT LINK</figcaption>
+        <div class="bubbles">
+          <div class="bubble out bubble-card">
+            <img src="assets/home/blue-hour.jpg" width="480" height="480" loading="lazy" alt="">
+            <span class="card-title">Blue Hour</span>
+            <span class="card-meta">Northbound · share.tunetransit.app</span>
+          </div>
+          <p class="bubble out">this one is so you</p>
+          <p class="bubble in">opened it in Apple Music. it’s on repeat</p>
+        </div>
+        <p class="chat-status status-arrived">✓ ARRIVED IN APPLE MUSIC</p>
+      </figure>
+    </div>
+    <ul class="perks">
+      <li style="--line: #6366F1"><h3>Nothing to install</h3><p>Links open in any browser, on iPhone, Android, or a computer. No account either.</p></li>
+      <li style="--line: #09B5D1"><h3>The exact recording</h3><p>Not a remix, a live take, or a “feat.” version that happened to match.</p></li>
+      <li style="--line: #FFB800"><h3>Know it landed</h3><p>Your Departures show when each link gets opened, so you’re not left wondering.</p></li>
+      <li style="--line: #10B981"><h3>Find songs any way</h3><p>Type a name, paste a link from another app, or capture what’s playing.</p></li>
+    </ul>
+  </section>
+
+  <section class="how" id="how" aria-labelledby="how-title">
+    <div class="wrap">
+      <div class="section-head">
+        <h2 id="how-title">How a song travels</h2>
+        <p>Three stops, start to finish. Only you need the app.</p>
+      </div>
+      <ol class="steps">
+        <li class="step">
+          <span class="step-number" aria-hidden="true">1</span>
+          <h3>Find it</h3>
+          <p>Search by name or artist, paste a link from any music app, or use Live Capture on whatever’s playing.</p>
+          <figure class="phone phone-small"><img src="assets/home/search-dark.jpg" width="600" height="1304" loading="lazy" alt="TuneTransit’s Search screen with Paste Link and Live Capture"></figure>
+        </li>
+        <li class="step">
+          <span class="step-number" aria-hidden="true">2</span>
+          <h3>Send one link</h3>
+          <p>Share a Smart Link in a text, a DM, or anywhere else. It’s saved in your Departures so you can see when it’s opened.</p>
+          <figure class="phone phone-small"><img src="assets/home/song-dark.jpg" width="600" height="1304" loading="lazy" alt="A song in TuneTransit with Share Smart Link and Create Story Card buttons"></figure>
+        </li>
+        <li class="step">
+          <span class="step-number" aria-hidden="true">3</span>
+          <h3>They play it their way</h3>
+          <p>The link opens in their browser. They tap their music app and the song is there. No account, no download.</p>
+          <figure class="phone phone-small" aria-label="The Smart Link page your friend sees">
+            <div class="link-screen">
+              <span class="link-address">share.tunetransit.app</span>
+              <img class="link-art" src="assets/home/blue-hour.jpg" width="480" height="480" loading="lazy" alt="Blue Hour cover art">
+              <div class="link-song">
+                <span class="link-from">Sam sent you a song</span>
+                <span class="link-title">Blue Hour</span>
+                <span class="link-artist">Northbound</span>
+              </div>
+              <span class="link-label">OPEN IN</span>
+              <ul class="services" aria-label="Music apps">
+                <li class="service service-spotify"><svg role="img" aria-label="Spotify"><use href="#i-spotify"/></svg></li>
+                <li class="service service-apple"><svg role="img" aria-label="Apple Music"><use href="#i-apple"/></svg></li>
+                <li class="service service-tidal"><svg role="img" aria-label="TIDAL"><use href="#i-tidal"/></svg></li>
+                <li class="service service-youtube"><svg role="img" aria-label="YouTube Music"><use href="#i-youtube"/></svg></li>
+              </ul>
+            </div>
+          </figure>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <div class="stops wrap">
+    <section class="stop" aria-labelledby="tracks-title">
+      <div class="stop-copy">
+        <p class="line-name line-tracks">TRACKS</p>
+        <h2 id="tracks-title">Every song you sent. Every one that came back.</h2>
+        <p>Departures are the songs you’ve shared, with how often each link was opened. Arrivals are songs friends sent you, ready to play in your app. Reply with a song and the thread stays together.</p>
+      </div>
+      <figure class="phone"><img src="assets/home/tracks-dark.jpg" width="600" height="1304" loading="lazy" alt="TuneTransit’s Tracks screen with an arrival from Sam and a departure"></figure>
+    </section>
+    <section class="stop stop-flip" id="mixtapes" aria-labelledby="mixtapes-title">
+      <figure class="phone"><img src="assets/home/mixtape-detail-dark.jpg" width="600" height="1304" loading="lazy" alt="A mixtape in TuneTransit with its cassette, note, and songs"></figure>
+      <div class="stop-copy">
+        <p class="line-name line-mixtapes">MIXTAPES</p>
+        <h2 id="mixtapes-title">Make someone a mixtape.</h2>
+        <p>Pick the songs, say why each one made the cut, and choose how the tape looks. They get a page that plays every preview and opens each song in their app.</p>
+        <p class="fine">Free: up to 5 songs · Premium: up to 500, plus every tape look</p>
+      </div>
+    </section>
+    <section class="stop" aria-labelledby="story-title">
+      <div class="stop-copy">
+        <p class="line-name line-story">STORY CARDS</p>
+        <h2 id="story-title">Post the song, not a screenshot.</h2>
+        <p>Turn any song into a Story Card for Instagram Stories and anywhere else you post. Pick from five designs: Subway, Sunset Club, After Dark, Paper, and Pulse.</p>
+        <p class="fine">Included with Premium</p>
+      </div>
+      <div class="story-fan" role="img" aria-label="The five Story Card designs, each showing Blue Hour by Northbound">
+        <img src="assets/home/story-paper.jpg" width="405" height="720" loading="lazy" alt="">
+        <img src="assets/home/story-sunset.jpg" width="405" height="720" loading="lazy" alt="">
+        <img src="assets/home/story-subway.jpg" width="405" height="720" loading="lazy" alt="">
+        <img src="assets/home/story-noir.jpg" width="405" height="720" loading="lazy" alt="">
+        <img src="assets/home/story-pulse.jpg" width="405" height="720" loading="lazy" alt="">
+      </div>
+    </section>
+    <section class="stop stop-flip" aria-labelledby="board-stop-title">
+      <figure class="phone"><img src="assets/home/station-board-dark.jpg" width="600" height="1304" loading="lazy" alt="TuneTransit’s Station Board with the week’s favorite song"></figure>
+      <div class="stop-copy">
+        <p class="line-name line-board">STATION BOARD</p>
+        <h2 id="board-stop-title">See what’s moving.</h2>
+        <p>The songs shared by the most people on TuneTransit this week, and the latest hops between listeners. A good place to find your next one.</p>
+      </div>
+    </section>
+  </div>
+
+  <section class="premium wrap" id="premium" aria-labelledby="premium-title">
+    <div class="section-head">
+      <h2 id="premium-title">Free to ride. Premium for the long way.</h2>
+      <p>Opening a link is always free for the person you send it to.</p>
+    </div>
+    <div class="tickets">
+      <div class="ticket">
+        <div class="ticket-main">
+          <p class="ticket-kind">TICKET · STANDARD</p>
+          <h3>Free</h3>
+          <ul>
+            <li>Smart Links to all four music apps</li>
+            <li>3 song or album searches a day</li>
+            <li>Mixtapes up to 5 songs, with a note</li>
+            <li>Tracks and Station Board</li>
+          </ul>
+        </div>
+        <div class="ticket-stub">
+          <span class="fare">$0</span>
+          <span class="fare-note">TO DOWNLOAD</span>
+        </div>
+      </div>
+      <div class="ticket ticket-premium">
+        <div class="ticket-main">
+          <p class="ticket-kind">TICKET · ALL LINES</p>
+          <h3><svg aria-hidden="true"><use href="#tt-badge"/></svg>Premium</h3>
+          <ul>
+            <li>Unlimited searches</li>
+            <li>Mixtapes up to 500 songs, in your own design</li>
+            <li>All five Story Card designs</li>
+            <li>TuneMessage and Now Playing widgets</li>
+          </ul>
+        </div>
+        <div class="ticket-stub">
+          <span class="fare">$1.99</span>
+          <span class="fare-note">A MONTH</span>
+          <span class="fare-or">or $9.99 once</span>
+        </div>
+      </div>
+    </div>
+    <p class="fine-print">Prices in US dollars. Your local price is shown in the app. <a href="premium.html">Compare Free and Premium →</a></p>
+  </section>
+
+  <section class="faq wrap" id="faq" aria-labelledby="faq-title">
+    <h2 id="faq-title">Before you board</h2>
+    <div class="faq-list">
+      <details>
+        <summary>Does my friend need TuneTransit?</summary>
+        <p>No. Your link opens in their browser, on iPhone, Android, or a computer. They tap the music app they use and the song is there. No download, no account.</p>
+      </details>
+      <details>
+        <summary>Which music apps does it work with?</summary>
+        <p>Apple Music, Spotify, TIDAL, and YouTube Music, in any direction. Catalogs differ a little between services, so a song can occasionally be missing from one of them.</p>
+      </details>
+      <details>
+        <summary>Will they hear the same version I sent?</summary>
+        <p>Yes. TuneTransit keeps the exact recording you shared instead of switching to a remix, a live take, or a “feat.” version on the other service.</p>
+      </details>
+      <details>
+        <summary>What does it cost?</summary>
+        <p>TuneTransit is free to download, with 3 song or album searches a day and mixtapes of up to 5 songs. Premium adds unlimited searches, bigger mixtapes, Story Cards, and more for $1.99 a month or $9.99 once.</p>
+      </details>
+      <details>
+        <summary>Where can I use it?</summary>
+        <p>On iPhone, iPad, Mac, and Apple Vision Pro. You can also ask Siri to find a song, and Premium adds TuneMessage for sending songs right inside Messages.</p>
+      </details>
+      <details>
+        <summary>Who makes TuneTransit?</summary>
+        <p>One developer. Questions, ideas, and bug reports go straight to the person who built it at <a href="mailto:mail@tunetransit.app">mail@tunetransit.app</a>.</p>
+      </details>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="footer-main wrap">
+    <h2>Send the first song.</h2>
+    <a class="pill pill-pink" href="https://apps.apple.com/us/app/tunetransit/id6743822790">GET TUNETRANSIT FREE</a>
+    <p>iPhone · iPad · Mac · Apple Vision Pro</p>
+    <nav class="footer-nav" aria-label="Footer">
+      <a href="premium.html">Premium</a>
+      <a href="press.html">Press kit</a>
+      <a href="privacy.html">Privacy</a>
+      <a href="mailto:mail@tunetransit.app">Contact</a>
+      <a href="https://instagram.com/tunetransit">Instagram</a>
+    </nav>
+  </div>
+  <div class="tab-lines" aria-hidden="true">
+    <span style="--line: #6366F1; --rise: 80px"></span>
+    <span style="--line: #09B5D1; --rise: 110px"></span>
+    <span style="--line: #E8177D; --rise: 60px"></span>
+    <span style="--line: #FFB800; --rise: 110px"></span>
+    <span style="--line: #10B981; --rise: 80px"></span>
+  </div>
+</footer>
+<script>
+// The departure board flips its letters into place once, like a split-flap sign.
+(() => {
+  const board = document.querySelector('.board-panel');
+  if (!board || !('IntersectionObserver' in window) || matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  const letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+  const flap = (cell, text, done) => {
+    // Hold the tile at the final word's width so the shuffling letters don't jiggle the row.
+    cell.textContent = text;
+    cell.style.width = cell.offsetWidth + 'px';
+    let frame = 0;
+    const tick = () => {
+      frame += 1;
+      cell.textContent = [...text].map((ch, i) => ch === ' ' || i < frame - 6 ? ch : letters[Math.random() * 26 | 0]).join('');
+      if (frame < text.length + 6) setTimeout(tick, 50);
+      else {
+        cell.style.width = '';
+        if (done) done();
+      }
+    };
+    tick();
+  };
+  new IntersectionObserver((entries, observer) => {
+    if (!entries.some(entry => entry.isIntersecting)) return;
+    observer.disconnect();
+    board.querySelectorAll('[data-flap]').forEach((cell, i) => setTimeout(() => flap(cell, cell.textContent), i * 90));
+    const boarding = board.querySelector('[data-boarding]');
+    setTimeout(() => flap(boarding, 'OPENED', () => boarding.classList.replace('boarding', 'opened')), 4200);
+  }, { threshold: 0.5 }).observe(board);
+})();
+</script>
+</body>
+</html>

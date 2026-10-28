@@ -1,0 +1,181 @@
+/* tunetransit.app: shared by every page. Colors and lines come from the app: the launch route map and the tab bar. */
+:root {
+  color-scheme: dark;
+  --ground: #11161C;
+  --band: #161C24;
+  --raised: #1A2129;
+  --footer: #0D1117;
+  --board: #0A0D11;
+  --text: #F5F7FA;
+  --secondary: #B9C3D0;
+  --muted: #8D98A6;
+  --pink: #E8177D;
+  --pink-pressed: #D10F6E;
+  --teal: #09B5D1;
+  --indigo: #6366F1;
+  --amber: #FFB800;
+  --green: #10B981;
+  --font: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", Roboto, "Helvetica Neue", sans-serif;
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; scroll-padding-top: 84px; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+body { margin: 0; background: var(--ground); color: var(--text); font-family: var(--font); -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+a { color: inherit; }
+img, svg { display: block; }
+h1, h2, h3, p { margin: 0; }
+a:focus-visible, button:focus-visible, summary:focus-visible { outline: 3px solid var(--teal); outline-offset: 3px; border-radius: 6px; }
+.visually-hidden { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+
+.skip-link { position: absolute; left: 16px; top: -60px; z-index: 20; background: var(--text); color: var(--ground); padding: 10px 16px; border-radius: 999px; font-weight: 700; text-decoration: none; }
+.skip-link:focus { top: 12px; }
+
+.wrap { width: min(100% - 80px, 1200px); margin-inline: auto; }
+
+/* Header */
+.site-header { position: sticky; top: 0; z-index: 10; background: rgba(17, 22, 28, .84); -webkit-backdrop-filter: saturate(160%) blur(16px); backdrop-filter: saturate(160%) blur(16px); }
+.header-inner { display: flex; align-items: center; justify-content: space-between; gap: 20px; padding-block: 14px; }
+.wordmark { display: flex; align-items: center; gap: 10px; font-size: 20px; font-weight: 800; letter-spacing: -0.3px; text-decoration: none; }
+.wordmark svg { width: 32px; height: 32px; }
+.site-nav { display: flex; align-items: center; gap: 28px; }
+.nav-link { color: var(--secondary); text-decoration: none; font-size: 15px; font-weight: 600; }
+.nav-link:hover, .nav-link[aria-current="page"] { color: var(--text); }
+
+/* Pill buttons, as in the app */
+.pill { display: inline-flex; align-items: center; justify-content: center; min-height: 48px; padding: 0 24px; border-radius: 999px; font-size: 14px; font-weight: 800; letter-spacing: 0.04em; text-decoration: none; white-space: nowrap; transition: background-color .15s; }
+.pill-pink { background: var(--pink); color: #FFFFFF; }
+.pill-pink:hover { background: var(--pink-pressed); }
+.pill-teal { background: var(--teal); color: #06222A; }
+.pill-teal:hover { background: #2BC3DC; }
+.pill-quiet { background: rgba(255, 255, 255, .08); color: var(--text); box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .1); }
+.pill-quiet:hover { background: rgba(255, 255, 255, .14); }
+.pill-small { min-height: 40px; padding: 0 18px; font-size: 13px; }
+.site-header .pill { min-height: 42px; padding: 0 20px; }
+
+/* Page openers */
+.eyebrow { font-size: 14px; font-weight: 800; letter-spacing: .08em; color: var(--teal); }
+.lede { max-width: 520px; font-size: 20px; line-height: 1.5; color: var(--secondary); }
+.actions { display: flex; flex-wrap: wrap; gap: 12px; }
+.section-head { display: flex; flex-direction: column; gap: 14px; max-width: 680px; margin-bottom: 48px; }
+.section-head h2 { font-size: 48px; line-height: 1.05; font-weight: 900; letter-spacing: -0.03em; }
+.section-head p { font-size: 19px; line-height: 1.5; color: var(--secondary); }
+
+/* Short points, each under a line-colored rule */
+.perks { list-style: none; margin: 56px 0 0; padding: 0; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 32px; }
+.perks li { display: flex; flex-direction: column; gap: 10px; padding-top: 18px; border-top: 6px solid var(--line); }
+.perks h3 { font-size: 19px; font-weight: 800; letter-spacing: -0.01em; }
+.perks p { font-size: 16px; line-height: 1.5; color: var(--secondary); }
+
+/* Service badges, the same circles the app uses */
+.services { display: flex; gap: 12px; list-style: none; margin: 0; padding: 0; }
+.service { width: 36px; height: 36px; border-radius: 50%; display: grid; place-items: center; box-shadow: 0 1.5px 3px rgba(0, 0, 0, .2); }
+.service svg { width: 19px; height: 19px; fill: #FFFFFF; }
+.service-spotify { background: #1DB954; }
+.service-apple { background: linear-gradient(135deg, #FA245B, #FC3C44); }
+.service-tidal { background: #000000; border: 1px solid rgba(255, 255, 255, .18); }
+.service-youtube { background: #FF0000; }
+
+/* Phone frames around real app screens */
+.phone { --w: 300px; flex: none; width: var(--w); aspect-ratio: 600 / 1304; padding: calc(var(--w) * .03); border-radius: calc(var(--w) * .15); background: #0A0D11; box-shadow: 0 0 0 1px rgba(255, 255, 255, .10), 0 34px 60px -34px rgba(8, 12, 18, .6); margin: 0; }
+.phone > img { width: 100%; height: 100%; object-fit: cover; border-radius: calc(var(--w) * .12); }
+.phone-small { --w: 260px; }
+
+/* Line names, as on the app's tab lines */
+.line-name { display: inline-flex; align-items: center; gap: 10px; font-size: 13px; font-weight: 800; letter-spacing: .1em; }
+.line-name::before { content: ""; width: 44px; height: 8px; border-radius: 4px; background: var(--line); }
+.line-tracks { --line: var(--teal); color: var(--teal); }
+.line-mixtapes { --line: var(--indigo); color: #A5A6FA; }
+.line-story { --line: var(--green); color: #34D399; }
+.line-board { --line: var(--amber); color: var(--amber); }
+
+/* Story Cards, fanned out like a hand of tickets */
+.story-fan { position: relative; flex: none; width: min(100%, 460px); aspect-ratio: 480 / 440; margin-right: 72px; }
+.story-fan img { position: absolute; top: 4%; width: 37%; height: auto; border-radius: 14px; box-shadow: 0 0 0 1px rgba(255, 255, 255, .08), 0 24px 40px -18px rgba(0, 0, 0, .75); transform-origin: 50% 110%; transition: transform .3s ease; }
+.story-fan img:nth-child(1) { left: 0; transform: rotate(-14deg); }
+.story-fan img:nth-child(2) { left: 15.75%; transform: rotate(-7deg); z-index: 1; }
+.story-fan img:nth-child(3) { left: 31.5%; z-index: 3; }
+.story-fan img:nth-child(4) { left: 47.25%; transform: rotate(7deg); z-index: 1; }
+.story-fan img:nth-child(5) { left: 63%; transform: rotate(14deg); }
+@media (hover: hover) and (prefers-reduced-motion: no-preference) {
+  .story-fan:hover img:nth-child(1) { transform: rotate(-20deg); }
+  .story-fan:hover img:nth-child(2) { transform: rotate(-10deg); }
+  .story-fan:hover img:nth-child(4) { transform: rotate(10deg); }
+  .story-fan:hover img:nth-child(5) { transform: rotate(20deg); }
+}
+
+/* Free and Premium, as tickets */
+.tickets { display: flex; flex-wrap: wrap; gap: 20px; }
+.ticket { --notch: var(--ground); flex: 1 1 460px; min-width: 0; display: flex; border-radius: 22px; background: var(--raised); border: 1px solid rgba(255, 255, 255, .07); }
+.ticket-premium { background: var(--pink); border-color: transparent; }
+.ticket-main { flex: 1; min-width: 0; padding: 30px 28px 30px 32px; display: flex; flex-direction: column; gap: 14px; }
+.ticket-kind { font-size: 11px; font-weight: 800; letter-spacing: .1em; color: var(--muted); }
+.ticket-premium .ticket-kind { color: rgba(255, 255, 255, .78); }
+.ticket h3 { display: flex; align-items: center; gap: 10px; font-size: 30px; font-weight: 900; letter-spacing: -0.02em; }
+.ticket h3 svg { width: 30px; height: 30px; border-radius: 50%; box-shadow: 0 0 0 2px #FFFFFF; }
+.ticket ul { margin: 0; padding-left: 20px; display: flex; flex-direction: column; gap: 9px; font-size: 16px; line-height: 1.45; color: var(--secondary); }
+.ticket-premium ul { color: rgba(255, 255, 255, .92); }
+.ticket-stub { position: relative; flex: none; width: 168px; padding: 24px 16px; border-left: 2px dashed rgba(255, 255, 255, .18); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; text-align: center; }
+.ticket-premium .ticket-stub { border-left-color: rgba(255, 255, 255, .5); }
+.ticket-stub::before, .ticket-stub::after { content: ""; position: absolute; left: -15px; width: 28px; height: 28px; border-radius: 50%; background: var(--notch); }
+.ticket-stub::before { top: -15px; }
+.ticket-stub::after { bottom: -15px; }
+.fare { font-size: 44px; font-weight: 900; letter-spacing: -0.03em; }
+.fare-note { font-size: 11px; font-weight: 800; letter-spacing: .1em; color: var(--muted); }
+.ticket-premium .fare-note { color: rgba(255, 255, 255, .8); }
+.fare-or { margin-top: 8px; font-size: 14px; font-weight: 700; }
+.fine-print { margin-top: 24px; font-size: 15px; color: var(--muted); }
+.fine-print a { color: var(--text); font-weight: 700; margin-left: 6px; }
+
+/* FAQ */
+.faq { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 2fr); gap: 40px 64px; padding-block: 24px 112px; }
+.faq h2 { font-size: 48px; line-height: 1.05; font-weight: 900; letter-spacing: -0.03em; }
+.faq-list { border-top: 1px solid rgba(255, 255, 255, .1); }
+.faq-list details { border-bottom: 1px solid rgba(255, 255, 255, .1); }
+.faq-list summary { list-style: none; cursor: pointer; display: flex; align-items: center; justify-content: space-between; gap: 20px; padding-block: 22px; font-size: 20px; font-weight: 700; letter-spacing: -0.01em; }
+.faq-list summary::-webkit-details-marker { display: none; }
+.faq-list summary::after { content: ""; flex: none; width: 30px; height: 30px; border-radius: 50%; background: linear-gradient(var(--text), var(--text)) center / 12px 2px no-repeat, linear-gradient(var(--text), var(--text)) center / 2px 12px no-repeat, var(--raised); box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .1); }
+.faq-list details[open] summary::after { background: linear-gradient(var(--text), var(--text)) center / 12px 2px no-repeat, var(--pink); box-shadow: none; }
+.faq-list details p { max-width: 640px; padding-bottom: 24px; font-size: 17px; line-height: 1.55; color: var(--secondary); }
+.faq-list details a { color: var(--text); font-weight: 600; }
+
+/* Footer: the tab bar's lines rising from the bottom */
+.site-footer { background: var(--footer); padding-top: 88px; overflow: hidden; }
+.footer-main { display: flex; flex-direction: column; align-items: center; gap: 22px; text-align: center; }
+.footer-main h2 { font-size: clamp(40px, 5vw, 64px); line-height: 1; font-weight: 900; letter-spacing: -0.035em; }
+.footer-main p { font-size: 15px; font-weight: 500; color: var(--muted); }
+.footer-nav { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px 24px; padding-top: 18px; }
+.footer-nav a { color: var(--secondary); text-decoration: none; font-size: 15px; font-weight: 600; min-height: 44px; display: inline-flex; align-items: center; }
+.footer-nav a:hover, .footer-nav a[aria-current="page"] { color: var(--text); }
+.tab-lines { display: flex; justify-content: center; align-items: flex-end; gap: clamp(28px, 6vw, 72px); padding-top: 56px; }
+.tab-lines span { display: flex; flex-direction: column; align-items: center; }
+.tab-lines span::before { content: ""; width: 34px; height: 34px; border-radius: 50%; background: var(--line); }
+.tab-lines span::after { content: ""; width: 10px; height: var(--rise); background: var(--line); }
+
+@media (max-width: 1000px) {
+  .perks { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .faq { grid-template-columns: minmax(0, 1fr); }
+}
+
+@media (max-width: 720px) {
+  .wrap { width: min(100% - 32px, 1200px); }
+  html { scroll-padding-top: 72px; }
+  .site-nav .nav-link { display: none; }
+  .header-inner { padding-block: 12px; }
+  .lede { font-size: 18px; }
+  .section-head { margin-bottom: 36px; }
+  .section-head h2, .faq h2 { font-size: 34px; }
+  .perks { grid-template-columns: minmax(0, 1fr); gap: 28px; margin-top: 44px; }
+  .story-fan { width: 84%; margin-inline: auto; }
+  .ticket { flex-direction: column; flex-basis: 100%; }
+  .ticket-main { padding: 24px 22px; }
+  .ticket-stub { width: auto; flex-direction: row; flex-wrap: wrap; justify-content: flex-start; align-items: baseline; gap: 4px 10px; padding: 18px 22px; border-left: 0; border-top: 2px dashed rgba(255, 255, 255, .18); }
+  .ticket-premium .ticket-stub { border-top-color: rgba(255, 255, 255, .5); }
+  .ticket-stub::before { top: -15px; left: -15px; }
+  .ticket-stub::after { top: -15px; bottom: auto; left: auto; right: -15px; }
+  .fare { font-size: 36px; }
+  .fare-or { margin-top: 0; }
+  .faq { padding-block: 8px 80px; gap: 24px; }
+  .faq-list summary { font-size: 18px; padding-block: 18px; }
+  .site-footer { padding-top: 72px; }
+}

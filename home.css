@@ -1,0 +1,150 @@
+/* tunetransit.app homepage. Loads after site.css. */
+
+/* Hero */
+.hero { display: flex; flex-wrap: wrap; align-items: center; gap: 48px; padding-block: 40px 88px; }
+.hero-copy { flex: 1 1 600px; min-width: 0; display: flex; flex-direction: column; gap: 24px; }
+.hero h1 { font-size: clamp(46px, 6.1vw, 88px); line-height: 0.98; font-weight: 900; letter-spacing: -0.035em; }
+.hero h1 span { color: var(--pink); }
+.platforms { font-size: 15px; font-weight: 500; color: var(--muted); }
+.route-map { flex: 1 1 440px; min-width: 0; display: flex; justify-content: center; }
+.map-frame { position: relative; width: 100%; max-width: 600px; }
+.map-frame svg { width: 100%; height: auto; font-family: var(--font); }
+
+/* Little app cards riding the map: the song leaving, and a friend opening it */
+.map-card { position: absolute; bottom: 0; width: 39%; display: flex; align-items: center; gap: 10px; padding: 10px 12px; border-radius: 16px; background: var(--raised); border: 1px solid rgba(255, 255, 255, .09); box-shadow: 0 20px 36px -20px rgba(0, 0, 0, .7); opacity: 0; animation: rise .5s ease-out forwards; }
+.map-card-out { left: 0; animation-delay: .2s; }
+.map-card-in { right: 0; animation-delay: 1.9s; }
+.map-card img { width: 46px; height: 46px; flex: none; border-radius: 9px; }
+.map-card > span:last-child { min-width: 0; display: flex; flex-direction: column; font-size: 16px; font-weight: 800; letter-spacing: -0.01em; }
+.map-card i { font-style: normal; font-size: 13px; font-weight: 500; color: var(--secondary); }
+.map-card-label { font-size: 10px; font-weight: 800; letter-spacing: .07em; color: var(--teal); margin-bottom: 2px; }
+.map-card-in .map-card-label { color: var(--green); }
+.map-card-check { width: 46px; height: 46px; flex: none; border-radius: 50%; background: var(--green); color: #052A1E; display: grid; place-items: center; font-size: 22px; font-weight: 900; }
+
+/* The route map draws itself like the app's launch animation. */
+.route { stroke-dasharray: 1; stroke-dashoffset: 1; animation: draw .95s cubic-bezier(.45, 0, .2, 1) forwards; }
+.route:nth-child(2) { animation-delay: .14s; }
+.route:nth-child(3) { animation-delay: .28s; }
+.route:nth-child(4) { animation-delay: .42s; }
+.station { opacity: 0; transform-box: fill-box; transform-origin: center; animation: arrive .35s ease-out forwards; }
+.station-1 { animation-delay: 1.0s; } .station-2 { animation-delay: 1.1s; } .station-3 { animation-delay: 1.2s; } .station-4 { animation-delay: 1.3s; }
+@keyframes draw { to { stroke-dashoffset: 0; } }
+@keyframes arrive { from { opacity: 0; transform: scale(.4); } to { opacity: 1; transform: scale(1); } }
+@keyframes rise { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: none; } }
+@media (prefers-reduced-motion: reduce) {
+  .route { animation: none; stroke-dashoffset: 0; }
+  .station, .map-card { animation: none; opacity: 1; }
+  .pulses { display: none; }
+}
+
+/* Departure board */
+.board { padding-bottom: 104px; }
+.board .wrap { display: flex; flex-wrap: wrap; align-items: center; gap: 40px 64px; }
+.board-head { flex: 1 1 300px; display: flex; flex-direction: column; gap: 16px; }
+.board-head h2 { font-size: 40px; line-height: 1.05; font-weight: 900; letter-spacing: -0.03em; }
+.board-head p { font-size: 18px; line-height: 1.5; color: var(--secondary); }
+.board-panel { flex: 2 1 640px; min-width: 0; background: var(--board); border-radius: 22px; border: 1px solid rgba(255, 255, 255, .07); padding: 22px 26px 12px; color: var(--amber); font-variant-numeric: tabular-nums; box-shadow: inset 0 1px 0 rgba(255, 255, 255, .04); }
+.board-top { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding-bottom: 14px; }
+.board-name { display: inline-flex; align-items: center; gap: 10px; font-size: 15px; font-weight: 800; letter-spacing: .14em; }
+.board-name::before { content: ""; width: 10px; height: 10px; border-radius: 50%; background: var(--amber); box-shadow: 0 0 12px var(--amber); }
+.board-note { font-size: 10px; font-weight: 700; letter-spacing: .08em; color: rgba(255, 184, 0, .5); }
+.board-rows { list-style: none; margin: 0; padding: 0; }
+.board-row { display: grid; grid-template-columns: 52px minmax(0, 1.9fr) minmax(0, 1fr) minmax(0, 1.1fr) 92px; gap: 14px; align-items: center; padding-block: 13px; border-top: 1px solid rgba(255, 184, 0, .13); font-size: 14px; font-weight: 700; letter-spacing: .04em; }
+.board-labels { padding-block: 0 8px; border-top: 0; font-size: 10px; letter-spacing: .1em; color: rgba(255, 184, 0, .5); }
+.b-song { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.b-song i { font-style: normal; color: rgba(255, 184, 0, .55); padding-left: 6px; }
+.b-from { color: rgba(255, 184, 0, .75); }
+/* Split-flap tiles: a dark tile with the hinge line through the middle */
+.flap { display: inline-block; overflow: hidden; vertical-align: middle; padding: 4px 7px; border-radius: 4px; background: linear-gradient(#171D25 0 49%, #05070A 49% 53%, #12171E 53%); white-space: nowrap; }
+.opened { color: var(--green); }
+.boarding { animation: blink 1.1s steps(2, start) infinite; }
+@keyframes blink { to { visibility: hidden; } }
+@media (prefers-reduced-motion: reduce) { .boarding { animation: none; } }
+
+/* Group chat, before and after */
+.chats { padding-block: 24px 104px; }
+.chat-pair { display: flex; flex-wrap: wrap; gap: 20px; }
+.chat { flex: 1 1 400px; min-width: 0; margin: 0; background: var(--raised); border: 1px solid rgba(255, 255, 255, .07); border-radius: 28px; padding: 22px 22px 20px; display: flex; flex-direction: column; gap: 18px; }
+.chat-label { font-size: 12px; font-weight: 800; letter-spacing: .08em; color: var(--muted); }
+.chat-after .chat-label { color: var(--pink); }
+.bubbles { flex: 1; display: flex; flex-direction: column; gap: 6px; }
+.bubble { max-width: 78%; padding: 10px 15px; border-radius: 20px; font-size: 16px; line-height: 1.35; }
+.bubble.out { align-self: flex-end; background: var(--pink); color: #FFFFFF; border-bottom-right-radius: 6px; }
+.bubble.in { align-self: flex-start; background: #2A323C; border-bottom-left-radius: 6px; }
+.bubble-url { text-decoration: underline; text-underline-offset: 3px; word-break: break-all; }
+.chat-before .bubble.out { background: #3A4350; }
+.bubble.bubble-card { width: 240px; padding: 0 0 12px; overflow: hidden; display: flex; flex-direction: column; background: #F5F6F8; color: #18212D; }
+.bubble-card img { width: 100%; height: auto; aspect-ratio: 2; object-fit: cover; margin-bottom: 10px; }
+.card-title { padding-inline: 14px; font-size: 16px; font-weight: 800; }
+.card-meta { padding-inline: 14px; font-size: 12px; color: #4D5A69; }
+.chat-status { font-size: 12px; font-weight: 800; letter-spacing: .07em; padding-top: 14px; border-top: 1px solid rgba(255, 255, 255, .08); }
+.status-lost { color: #F87171; }
+.status-arrived { color: var(--green); }
+
+/* How a song travels */
+.how { background: var(--band); padding-block: 96px; }
+.steps { position: relative; display: flex; flex-wrap: wrap; gap: 40px; list-style: none; margin: 0; padding: 0; }
+.steps::before { content: ""; position: absolute; left: 20px; right: 20px; top: 15px; height: 10px; border-radius: 5px; background: var(--pink); }
+.step { flex: 1 1 300px; min-width: 0; position: relative; display: flex; flex-direction: column; gap: 18px; }
+.step-number { width: 40px; height: 40px; border-radius: 50%; border: 6px solid var(--band); background: var(--pink); color: #FFFFFF; display: grid; place-items: center; font-size: 16px; font-weight: 900; }
+.step h3 { font-size: 26px; font-weight: 800; letter-spacing: -0.02em; }
+.step p { max-width: 340px; font-size: 17px; line-height: 1.5; color: var(--secondary); }
+.step .phone { margin-top: 10px; }
+
+/* Step 3: the Smart Link page as a friend sees it */
+.link-screen { height: 100%; border-radius: calc(var(--w) * .12); background: #F5F6F8; color: #18212D; padding: 16px 16px 20px; display: flex; flex-direction: column; gap: 12px; overflow: hidden; }
+.link-address { align-self: center; font-size: 11px; font-weight: 600; color: #4D5A69; background: #E6E8EC; border-radius: 999px; padding: 5px 12px; }
+.link-art { width: 100%; height: auto; aspect-ratio: 1; border-radius: 16px; object-fit: cover; }
+.link-song { display: flex; flex-direction: column; gap: 2px; }
+.link-from { font-size: 12px; font-weight: 700; color: #C80E69; }
+.link-title { font-size: 21px; font-weight: 800; letter-spacing: -0.02em; }
+.link-artist { font-size: 14px; color: #4D5A69; }
+.link-label { font-size: 11px; font-weight: 800; letter-spacing: .08em; color: #4D5A69; }
+.link-screen .services { gap: 14px; }
+.link-screen .service { width: 40px; height: 40px; }
+.link-screen .service svg { width: 21px; height: 21px; }
+
+/* Stops along the line */
+.stops { display: flex; flex-direction: column; gap: 112px; padding-block: 112px 40px; overflow-x: clip; }
+.stop { display: flex; flex-wrap: wrap; align-items: center; gap: 64px; }
+.stop-flip { flex-wrap: wrap-reverse; }
+.stop-copy { flex: 1 1 420px; min-width: 0; display: flex; flex-direction: column; gap: 18px; }
+.stop h2 { font-size: 46px; line-height: 1.04; font-weight: 900; letter-spacing: -0.03em; }
+.stop-copy p { max-width: 470px; font-size: 18px; line-height: 1.55; color: var(--secondary); }
+.stop-copy .fine { font-size: 15px; color: var(--muted); }
+
+.premium { padding-block: 96px; }
+
+@media (max-width: 720px) {
+  .hero { gap: 28px; padding-block: 20px 64px; }
+  .map-frame { max-width: 400px; margin-inline: auto; }
+  .map-card { width: 42%; gap: 7px; padding: 7px 8px; border-radius: 12px; }
+  .map-card img, .map-card-check { width: 32px; height: 32px; font-size: 16px; }
+  .map-card > span:last-child { font-size: 12px; }
+  .map-card i { font-size: 11px; }
+  .map-card-label { font-size: 8px; }
+  .board { padding-bottom: 72px; }
+  .board .wrap { gap: 28px; }
+  .board-head h2 { font-size: 34px; }
+  .board-panel { padding: 16px 14px 6px; border-radius: 18px; }
+  .board-row { grid-template-columns: minmax(0, 1fr) auto; grid-template-areas: "song status" "route route"; gap: 8px 10px; padding-block: 12px; font-size: 12px; }
+  .board-labels, .b-time { display: none; }
+  .b-song { grid-area: song; }
+  .b-status { grid-area: status; }
+  .b-from { grid-area: route; }
+  .b-to { grid-area: route; justify-self: end; }
+  .b-to::before { content: "→"; padding-right: 8px; color: rgba(255, 184, 0, .55); }
+  .b-song i { display: block; padding-left: 0; font-size: 11px; }
+  .chats { padding-block: 8px 72px; }
+  .chat { flex-basis: 100%; padding: 18px 16px 16px; border-radius: 24px; }
+  .bubble { font-size: 15px; }
+  .how { padding-block: 72px; }
+  .steps::before { left: 15px; right: auto; top: 20px; bottom: 20px; width: 10px; height: auto; }
+  .steps { gap: 56px; }
+  .step { padding-left: 56px; }
+  .step-number { position: absolute; left: 0; top: -6px; }
+  .stops { gap: 80px; padding-block: 80px 24px; }
+  .stop { gap: 36px; }
+  .stop h2 { font-size: 34px; }
+  .premium { padding-block: 72px; }
+}
