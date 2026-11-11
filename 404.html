@@ -8,28 +8,37 @@
 <meta name="theme-color" content="#11161C">
 <link rel="icon" href="/favicon.ico?v=2" sizes="32x32">
 <link rel="icon" href="/assets/t-badge.svg" type="image/svg+xml">
-<link rel="stylesheet" href="/site.css?v=1">
-<link rel="stylesheet" href="/pages.css?v=3">
+<link rel="stylesheet" href="/site.css?v=4">
+<link rel="stylesheet" href="/home.css?v=22">
+<link rel="stylesheet" href="/pages.css?v=4">
 </head>
 <body>
 <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
   <symbol id="tt-badge" viewBox="147 147 730 730"><circle cx="512" cy="512" r="365" fill="#E8177D"/><path d="M279 304H745V408H565V754H459V408H279Z" fill="#FFFFFF"/></symbol>
+  <symbol id="i-spotify" viewBox="0 0 168 168"><path d="M84 0C37.6 0 0 37.6 0 84s37.6 84 84 84 84-37.6 84-84S130.4 0 84 0zm38.5 121.2c-1.5 2.5-4.7 3.2-7.1 1.7-19.5-11.9-44-14.6-72.9-8-2.8.6-5.6-1.1-6.2-3.9-.6-2.8 1.1-5.6 3.9-6.2 31.6-7.2 58.7-4.1 80.6 9.3 2.5 1.5 3.2 4.7 1.7 7.1zm10.3-22.9c-1.9 3-5.9 4-8.9 2.1-22.3-13.7-56.3-17.7-82.7-9.7-3.3 1-6.8-.9-7.8-4.2-1-3.3.9-6.8 4.2-7.8 30.1-9.1 67.5-4.7 93 11.1 3 1.9 4 5.9 2.2 8.5zm.9-23.8c-26.8-15.9-71-17.4-96.6-9.6-4.1 1.3-8.4-1.1-9.6-5.2-1.3-4.1 1.1-8.4 5.2-9.6 29.4-8.9 78.3-7.2 109.2 11.1 3.7 2.2 4.9 6.9 2.7 10.6-2.2 3.7-6.9 4.9-10.6 2.7h-.3z"/></symbol>
+  <symbol id="i-apple" viewBox="0 0 24 24"><path d="M23.994 6.124a9.23 9.23 0 00-.24-2.19c-.317-1.31-1.062-2.31-2.18-3.043a5.022 5.022 0 00-1.877-.726 10.496 10.496 0 00-1.564-.15c-.04-.003-.083-.01-.124-.013H5.986c-.152.01-.303.017-.455.026-.747.043-1.49.123-2.193.4-1.336.53-2.3 1.452-2.865 2.78-.192.448-.292.925-.363 1.408-.056.392-.088.785-.1 1.18 0 .032-.007.062-.01.093v12.223c.01.14.017.283.027.424.05.815.154 1.624.497 2.373.65 1.42 1.738 2.353 3.234 2.801.42.127.856.187 1.293.228.555.053 1.11.06 1.667.06h11.03a12.5 12.5 0 001.57-.1c.822-.106 1.596-.35 2.295-.81a5.046 5.046 0 001.88-2.207c.186-.42.293-.87.37-1.324.113-.675.138-1.358.137-2.04-.002-3.8 0-7.595-.003-11.393zm-6.423 3.99v5.712c0 .417-.058.827-.244 1.206-.29.59-.76.962-1.388 1.14-.35.1-.706.157-1.07.173-.95.045-1.773-.6-1.943-1.536a1.88 1.88 0 011.038-2.022c.323-.16.67-.25 1.018-.324.378-.082.758-.153 1.134-.24.274-.063.457-.23.51-.516a.904.904 0 00.02-.193c0-1.815 0-3.63-.002-5.443a.725.725 0 00-.026-.185c-.04-.15-.15-.243-.304-.234-.16.01-.318.035-.475.066-.76.15-1.52.303-2.28.456l-2.325.47-1.374.278c-.016.003-.032.01-.048.013-.277.077-.377.203-.39.49-.002.042 0 .086 0 .13-.002 2.602 0 5.204-.003 7.805 0 .42-.047.836-.215 1.227-.278.64-.77 1.04-1.434 1.233-.35.1-.71.16-1.075.172-.96.036-1.755-.6-1.92-1.544-.14-.812.23-1.685 1.154-2.075.357-.15.73-.232 1.108-.31.287-.06.575-.116.86-.177.383-.083.583-.323.6-.714v-.15c0-2.96 0-5.922.002-8.882 0-.123.013-.25.042-.37.07-.285.273-.448.546-.518.255-.066.515-.112.774-.165.733-.15 1.466-.296 2.2-.444l2.27-.46c.67-.134 1.34-.27 2.01-.403.22-.043.442-.088.663-.106.31-.025.523.17.554.482.008.073.012.148.012.223.002 1.91.002 3.822 0 5.732z"/></symbol>
+  <symbol id="i-tidal" viewBox="4 3.5 24 24"><path d="M8 8l3.5 3.5L8 15l-3.5-3.5L8 8zM16 8l3.5 3.5L16 15l-3.5-3.5L16 8zM24 8l3.5 3.5L24 15l-3.5-3.5L24 8zM16 16l3.5 3.5L16 23l-3.5-3.5L16 16z"/></symbol>
+  <symbol id="i-youtube" viewBox="0 0 24 24"><path d="M12 0C5.376 0 0 5.376 0 12s5.376 12 12 12 12-5.376 12-12S18.624 0 12 0zm0 19.104c-3.924 0-7.104-3.18-7.104-7.104S8.076 4.896 12 4.896s7.104 3.18 7.104 7.104-3.18 7.104-7.104 7.104zm0-13.332c-3.432 0-6.228 2.796-6.228 6.228S8.568 18.228 12 18.228s6.228-2.796 6.228-6.228S15.432 5.772 12 5.772zM9.684 15.54V8.46L15.816 12l-6.132 3.54z"/></symbol>
+  <symbol id="t-mixtapes" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="6" width="18" height="12" rx="2.5"/><circle cx="8.5" cy="11.3" r="1.5"/><circle cx="15.5" cy="11.3" r="1.5"/><path d="M7 18l1.4-3h7.2l1.4 3"/></symbol>
+  <symbol id="t-tracks" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M8 19V5.5M4.3 9.2 8 5.5l3.7 3.7M16 5v13.5M12.3 14.8 16 18.5l3.7-3.7"/></symbol>
+  <symbol id="t-search" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round"><circle cx="10.5" cy="10.5" r="5.6"/><path d="M15 15l4.6 4.6"/></symbol>
+  <symbol id="t-board" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4.5" width="16" height="15" rx="2.5"/><path d="M4 9h16M8 12.6h2.6M13.4 12.6H16M8 16h2.6M13.4 16H16"/></symbol>
+  <symbol id="t-premium" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3.5 8.5a1.5 1.5 0 0 1 1.5-1.5h14a1.5 1.5 0 0 1 1.5 1.5v1.7a1.8 1.8 0 0 0 0 3.6v1.7a1.5 1.5 0 0 1-1.5 1.5H5a1.5 1.5 0 0 1-1.5-1.5v-1.7a1.8 1.8 0 0 0 0-3.6z"/><path d="M14.5 7.5v1.6M14.5 11.2v1.6M14.5 14.9v1.6"/></symbol>
 </svg>
 
 <header class="site-header">
   <div class="header-inner wrap">
     <a class="wordmark" href="/" aria-label="TuneTransit home"><svg aria-hidden="true"><use href="#tt-badge"/></svg>TuneTransit</a>
     <nav class="site-nav" aria-label="Site">
-      <a class="nav-link" href="/#how">How it works</a>
-      <a class="nav-link" href="/#mixtapes">Mixtapes</a>
       <a class="nav-link" href="/premium">Premium</a>
+      <a class="nav-link" href="/press">Press kit</a>
       <a class="nav-link" href="/#faq">FAQ</a>
       <a class="pill pill-pink" href="https://apps.apple.com/us/app/tunetransit/id6743822790?pt=127726804&ct=website&mt=8">GET THE APP</a>
     </nav>
   </div>
 </header>
 
-<main class="lost wrap">
+<main id="main" class="lost wrap">
   <!-- A line that runs out before it reaches its stop -->
   <svg viewBox="0 0 340 80" aria-hidden="true">
     <path d="M40 40 H196" stroke="#E8177D" stroke-width="10" stroke-linecap="round"/>
@@ -37,12 +46,11 @@
     <circle cx="300" cy="40" r="20" fill="none" stroke="#8D98A6" stroke-width="6" stroke-dasharray="7 6"/>
     <use href="#tt-badge" x="6" y="6" width="68" height="68"/>
   </svg>
-  <p class="eyebrow">404 · WRONG STOP</p>
-  <h1>This track<br><span>isn’t here.</span></h1>
-  <p class="lede">The page you’re looking for has moved or never existed. If you were opening a song someone shared, check the link they sent you.</p>
+  <h1>This page isn’t on the map.</h1>
+  <p class="lede">It has moved or never existed. If you were opening a song someone shared with you, check the link they sent.</p>
   <div class="actions">
     <a class="pill pill-pink" href="/">BACK TO TUNETRANSIT</a>
-    <a class="text-link" href="/#how">See what TuneTransit does →</a>
+    <a class="pill pill-quiet" href="/#how">HOW IT WORKS</a>
   </div>
 </main>
 
@@ -56,13 +64,15 @@
       <a href="https://instagram.com/tunetransit">Instagram</a>
     </nav>
   </div>
-  <div class="tab-lines" aria-hidden="true">
-    <span style="--line: #6366F1; --rise: 80px"></span>
-    <span style="--line: #09B5D1; --rise: 110px"></span>
-    <span style="--line: #E8177D; --rise: 60px"></span>
-    <span style="--line: #FFB800; --rise: 110px"></span>
-    <span style="--line: #10B981; --rise: 80px"></span>
-  </div>
+  <div class="terminus" aria-hidden="true"><svg></svg></div>
+  <nav class="tabbar tabbar-docked" aria-label="TuneTransit’s tabs, on the home page">
+    <a class="tab" href="/#mixtapes" data-tab="mixtapes" style="--line: #6366F1; --lean: 1"><span class="tab-name">Mixtapes</span><span class="tab-disc"><svg aria-hidden="true"><use href="#t-mixtapes"/></svg></span></a>
+    <a class="tab" href="/#tracks" data-tab="tracks" style="--line: #09B5D1; --lean: 1"><span class="tab-name">Tracks</span><span class="tab-disc"><svg aria-hidden="true"><use href="#t-tracks"/></svg></span></a>
+    <a class="tab" href="/#search" data-tab="search" style="--line: #E8177D; --lean: 0"><span class="tab-name">Search</span><span class="tab-disc"><svg aria-hidden="true"><use href="#t-search"/></svg></span></a>
+    <a class="tab" href="/#board" data-tab="board" style="--line: #FFB800; --lean: -1"><span class="tab-name">Board</span><span class="tab-disc"><svg aria-hidden="true"><use href="#t-board"/></svg></span></a>
+    <a class="tab" href="/#premium" data-tab="premium" style="--line: #10B981; --lean: -1"><span class="tab-name">Premium</span><span class="tab-disc"><svg aria-hidden="true"><use href="#t-premium"/></svg></span></a>
+  </nav>
 </footer>
+<script src="/home.js?v=9" defer></script>
 </body>
 </html>
