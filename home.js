@@ -185,7 +185,7 @@
   draw();
 })();
 
-// Easter egg. TuneTransit 3.1 runs on iPhone Duo, so double-clicking a phone (or typing "duo") unfolds one:
+// Easter egg. TuneTransit runs natively on iPhone Duo, so double-clicking a phone (or typing "duo") unfolds one:
 // closed on its cover display first, then open across the inner display.
 (() => {
   const base = new URL('assets/duo/', document.currentScript.src);
@@ -209,7 +209,7 @@
       sheet.setAttribute('aria-modal', 'true');
       sheet.setAttribute('aria-label', 'TuneTransit on iPhone Duo');
       sheet.innerHTML = '<div class="duo" aria-hidden="true"><div class="duo-half duo-right"></div><div class="duo-half duo-left"><div class="duo-face"></div><div class="duo-back"></div></div><div class="duo-whole"></div></div>'
-        + '<p class="duo-note"><b>You found the fold.</b> TuneTransit 3.1 runs on iPhone Duo, closed and open.</p>'
+        + '<p class="duo-note"><b>You found the fold.</b> TuneTransit runs natively on iPhone Duo, closed and open.</p>'
         + '<button class="pill pill-quiet" type="button">FOLD IT BACK</button>';
       button = sheet.querySelector('button');
       sheet.addEventListener('click', close);
